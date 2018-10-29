@@ -19,10 +19,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 //import com.gluonhq.charm.glisten.control.TextField;
 =======
->>>>>>> 502959c34cef7f5b49e1be7a669ef5d0fb0e1c6e
+>>>>>>> 502959*/
 
 public class MyController implements Initializable {
 	
