@@ -16,7 +16,7 @@ import java.io.IOException;
 
 class Login_Test extends ApplicationTest{
 
-    @Override
+    /*@Override
     public void start(Stage stage){
         Parent root = null;
         try {
@@ -29,28 +29,28 @@ class Login_Test extends ApplicationTest{
         stage.setTitle("My Application");
         stage.setScene(new Scene(root));
         stage.show();
-    }
+    }*/
 
     /* Test valid login: valid username and password */
 	@Test
-	void valid_login() {
+	/*void valid_login() {
 		final boolean expected = true;
 		clickOn("#login");
-		write().push(KeyCode.ENTER); //put in sample login
+		//write().push(KeyCode.ENTER); //put in sample login
 
-        assertThat();
+        //assertThat();
 
         fail("Not yet implemented");
-	}
+	}*/
 	
 	/* Test invalid login: valid username and invalid password */
     @Test
-    void invalid_password() {
+    /*void invalid_password() {
         final boolean expected = true;
         clickOn("#login");
-        write(); //put in sample login
+        //write(); //put in sample login
         fail("Not yet implemented");
-    }
+    }*/
 	
 	/* Test invalid login: invalid username and invalid password */
 	
