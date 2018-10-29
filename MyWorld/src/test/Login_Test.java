@@ -19,6 +19,6 @@ class Login_Test {
 	
 	/* Test invalid login: invalid username and invalid password */
 	
-	/* Test invalid login: inval*/
+
 
 }
