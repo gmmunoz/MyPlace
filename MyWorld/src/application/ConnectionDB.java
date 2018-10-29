@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class ConnectionDB {
 	Connection conn = null;
-	/*Connection conn = null;
-    public static Connection connect()
+
+	public static Connection connect()
     {
         try {
         	//@MICHAELLA
@@ -19,5 +19,5 @@ public class ConnectionDB {
            return null;
         }
     }
-    */
+    
 }
