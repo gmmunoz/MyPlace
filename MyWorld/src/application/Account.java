@@ -3,7 +3,7 @@ package application;
 public class Account {
 	
 	private String username; 
-	private String password; //create Password 
+	private String password; //create Password class and encrypt with hash function
 	
 	Account(String user, String pass){
 		username = user; 
