@@ -43,6 +43,8 @@ public class RegisterController {
 
     @FXML
     private TextField q1answer;
+    
+    private DataConnection con = new DataConnection();
 	
 	
 	 @FXML
@@ -54,19 +56,28 @@ public class RegisterController {
 		 Question2.setItems(questionList2);
 	 }
 	@FXML	
-	void handleRegBut(ActionEvent event) {
+	void handleRegBut(ActionEvent event) throws Exception {
 
 		//NEED to save info into database (username/pwd/questions 1&2)
 		//here is where you add info & save it to DB
+		String userName = txtUserName.getText().trim();
+		String passwd = Password.getText().trim();
+		String q1_ans = q1answer.getText().trim();
+		String q2_ans = q2answer.getText().trim();
 		
-		//return to login page
-		System.out.println("You are now registered! Now try to login! ");    			    		 		  		
-		try {
-			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MyPlace_login.fxml"));
-			backgroundRoot.getChildren().setAll(pane);
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		if (con.addUser(userName, passwd, q1_ans, q2_ans) == true) {
+			System.out.println("You are now registered! Now try to login! ");  
+			//return to login page
+			try {
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MyPlace_login.fxml"));
+				backgroundRoot.getChildren().setAll(pane);
+				
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		else {
+			System.out.println("Error registering, please try again with new username and password");
 		}
 				   
 	}	
