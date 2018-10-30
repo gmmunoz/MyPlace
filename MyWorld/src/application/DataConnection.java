@@ -50,12 +50,12 @@ public class DataConnection {
 		}
 	}
 	
-	public boolean addUser(String user, String pass, String answer1, String answer2) throws Exception {
-		if (user == null || pass == null) {
-			return false;
+	public int addUser(String user, String pass, String answer1, String answer2) throws Exception {
+		if (user.isEmpty() || pass.isEmpty() || answer1.isEmpty() || answer2.isEmpty()) {
+			return 1; //1 corresponds to fields being empty
 		}
 		else if (userExists(user) == true) {
-			return false;
+			return 2; //2 corresponds to username already being taken
 		}
 		else {
 			PreparedStatement add_statement = c.prepareStatement("INSERT INTO accounts(username, password, q1_answer, q2_answer) VALUES(?,?,?,?)");
@@ -64,7 +64,13 @@ public class DataConnection {
 			add_statement.setString(3, answer1);
 			add_statement.setString(4, answer2);
 			add_statement.executeUpdate();
-			return true;
+			return 3; //3 corresponds to account being added successfully
 		}
+	}
+	
+	public String deleteUser(String user) throws Exception {
+		PreparedStatement delete_statement = c.prepareStatement("DELETE FROM accounts WHERE username = ?");
+		delete_statement.setString(1, user);
+		return user;
 	}
 }
