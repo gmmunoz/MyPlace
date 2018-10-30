@@ -71,6 +71,8 @@ public class DataConnection {
 	public String deleteUser(String user) throws Exception {
 		PreparedStatement delete_statement = c.prepareStatement("DELETE FROM accounts WHERE username = ?");
 		delete_statement.setString(1, user);
+		delete_statement.executeUpdate();
+		System.out.println("Your account has been deleted");
 		return user;
 	}
 }
