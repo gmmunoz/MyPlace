@@ -15,6 +15,10 @@ class CreateAccount_Test {
 	
 	/* Create account with invalid field */
 	
-	/* Create account with username that's */
+	/* Create account with invalid username (already exists) */
+	@Test
+    void invalid_user(){
+	    /* Invalid username: invalid@email.com Password: password */
+    }
 
 }
