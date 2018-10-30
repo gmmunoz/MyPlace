@@ -1,7 +1,5 @@
 package application;
 
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,6 +55,12 @@ public class RegisterController {
 		 
 		 Question2.setValue("Security Question #2");
 		 Question2.setItems(questionList2);
+		 
+		ChangeListener max_length_listener = new ChangeListener(txtUserName, 20); //set max length for user name at 20 characters
+		txtUserName.textProperty().addListener(max_length_listener);
+		
+		ChangeListener max_length_pass_listener = new ChangeListener(Password, 20); //set max length for user name at 20 characters
+		Password.textProperty().addListener(max_length_pass_listener);
 	 }
 	@FXML	
 	void handleRegBut(ActionEvent event) throws Exception {
