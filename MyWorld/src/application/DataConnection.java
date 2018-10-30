@@ -22,28 +22,31 @@ public class DataConnection {
 	}
 	
 	public boolean validAccount(String user, String pass) throws Exception {
-		PreparedStatement account_statement = c.prepareStatement("SELECT username, password FROM accounts WHERE username = 'user'");
+		PreparedStatement account_statement = c.prepareStatement("SELECT username, password FROM accounts WHERE username = ? AND password = ?");
+		account_statement.setString(1, user);
+		account_statement.setString(2, pass);
 		ResultSet results = account_statement.executeQuery();
 		if (results.next()) {
-			String associated_pass = results.getString("password");
+			/*String associated_pass = results.getString("password");
 			if (associated_pass == pass) {
 				return true;
-			}
+			}*/
+			return true;
 		}
 		else {
 			return false;
 		}
-		return false;
 	}
 	
 	public boolean userExists(String user) throws Exception {
-		PreparedStatement username_statement = c.prepareStatement("SELECT username FROM accounts WHERE username = 'user'");
+		PreparedStatement username_statement = c.prepareStatement("SELECT username FROM accounts WHERE username = ?");
+		username_statement.setString(1, user);
 		ResultSet results = username_statement.executeQuery();
-		if (results == null) {
-			return false;
+		if (results.next()) {
+			return true;
 		}
 		else {
-			return true;
+			return false;
 		}
 	}
 	
@@ -55,7 +58,11 @@ public class DataConnection {
 			return false;
 		}
 		else {
-			PreparedStatement add_statement = c.prepareStatement("INSERT INTO accounts(username, password, q1_answer, q2_answer) VALUES(user, pass, answer1, answer2)");
+			PreparedStatement add_statement = c.prepareStatement("INSERT INTO accounts(username, password, q1_answer, q2_answer) VALUES(?,?,?,?)");
+			add_statement.setString(1, user);
+			add_statement.setString(2, pass);
+			add_statement.setString(3, answer1);
+			add_statement.setString(4, answer2);
 			add_statement.executeUpdate();
 			return true;
 		}
