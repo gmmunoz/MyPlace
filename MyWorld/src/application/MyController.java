@@ -47,12 +47,14 @@ public class MyController implements Initializable {
 	    @FXML
 	    private Button signupBut;
 
-	    private Connection con = null;
+	    /*private Connection con = null;
 	    private PreparedStatement ps = null;
-		private ResultSet rs = null;
+		private ResultSet rs = null;*/
+	    
+	    private DataConnection dcon = null;
 
 		public MyController() {
-			con = ConnectionDB.connect();
+			dcon = new DataConnection();
 		}
 		
 		 //action to register
@@ -79,9 +81,9 @@ public class MyController implements Initializable {
 	    				String passwd = Password.getText().trim();
 
 	    				// SQL connect now
-	    				String sql = "SELECT * user WHERE userName = ? AND passwd = ?";
+	    				//String sql = "SELECT * user WHERE userName = ? AND passwd = ?";
 	    				try {
-	    					ps = con.prepareStatement(sql);
+	    					/*ps = con.prepareStatement(sql);
 	    					ps.setString(1, userName);
 	    					ps.setString(2, passwd);
 	    					rs = ps.executeQuery();
@@ -91,8 +93,11 @@ public class MyController implements Initializable {
 	    						System.out.println("You logged in successfully!");    			    		 
 	    						  
 	    			    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainPageFXML.fxml"));
-	    			    		backgroundRoot.getChildren().setAll(pane);
-	    			    			
+	    			    		backgroundRoot.getChildren().setAll(pane);*/
+	    					
+	    					if (dcon.validAccount(userName, passwd) == true) {
+	    						System.out.println("You logged in successfully!");
+	    						//once we include places we will need to query for all places associated with this user and save those
 	    						
 	    					} else {
 	    						// show error --> try again
