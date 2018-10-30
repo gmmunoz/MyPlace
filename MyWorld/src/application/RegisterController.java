@@ -44,6 +44,9 @@ public class RegisterController {
     @FXML
     private TextField q1answer;
     
+    @FXML
+    private Button backBut;
+    
     private DataConnection con = new DataConnection();
 	
 	
@@ -65,7 +68,7 @@ public class RegisterController {
 		String q1_ans = q1answer.getText().trim();
 		String q2_ans = q2answer.getText().trim();
 		
-		if (con.addUser(userName, passwd, q1_ans, q2_ans) == true) {
+		if (con.addUser(userName, passwd, q1_ans, q2_ans) == 3) {
 			System.out.println("You are now registered! Now try to login! ");  
 			//return to login page
 			try {
@@ -76,9 +79,24 @@ public class RegisterController {
 				ex.printStackTrace();
 			}
 		}
-		else {
-			System.out.println("Error registering, please try again with new username and password");
+		else if (con.addUser(userName, passwd, q1_ans, q2_ans) == 2) {
+			System.out.println("Username taken, please try again with new username");
+			
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/UsernameTakenFXML.fxml"));
+    		backgroundRoot.getChildren().setAll(pane);
 		}
-				   
-	}	
+		else if (con.addUser(userName, passwd, q1_ans, q2_ans) == 1) {
+			System.out.println("No fields can be left blank");
+			
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/FieldsLeftBlankFXML.fxml"));
+    		backgroundRoot.getChildren().setAll(pane);
+		}
+	}
+	
+	@FXML
+	void handleBackBut(ActionEvent event) throws Exception {
+		System.out.println("Clicking back button");
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MyPlace_login.fxml"));
+		backgroundRoot.getChildren().setAll(pane);
+	}
 }
