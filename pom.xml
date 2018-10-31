@@ -102,7 +102,7 @@
                 <!-- Reports all bugs (other values are medium and max) -->
                 <threshold>Low</threshold>
                 <!-- Produces XML report -->
-                <xmlOutput>false</xmlOutput>
+                <xmlOutput>true</xmlOutput>
                 <failOnError>false</failOnError>
             </configuration>
         </plugin>
