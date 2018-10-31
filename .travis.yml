@@ -1,1 +1,4 @@
 language: java
+jdk: jdkoracle8
+
+install: mvn clean install
