@@ -77,7 +77,7 @@ public class DataConnection {
 		PreparedStatement delete_statement = c.prepareStatement("DELETE FROM accounts WHERE username = ?");
 		delete_statement.setString(1, user);
 		delete_statement.executeUpdate();
-		//delete_statement.close();
+		delete_statement.close();
 		System.out.println("Your account has been deleted");
 		return user;
 	}
