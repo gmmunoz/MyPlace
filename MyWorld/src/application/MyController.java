@@ -98,6 +98,7 @@ public class MyController implements Initializable {
 	    					if (dcon.validAccount(userName, passwd) == true) {
 	    						System.out.println("You logged in successfully!");
 	    						//once we include places we will need to query for all places associated with this user and save those
+	    						dcon.close();
 	    						
 	    					} else {
 	    						// show error --> try again

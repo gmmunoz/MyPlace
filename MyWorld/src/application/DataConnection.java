@@ -27,13 +27,13 @@ public class DataConnection {
 		account_statement.setString(2, pass);
 		ResultSet results = account_statement.executeQuery();
 		if (results.next()) {
-			/*String associated_pass = results.getString("password");
-			if (associated_pass == pass) {
-				return true;
-			}*/
+			account_statement.close();
+			results.close();
 			return true;
 		}
 		else {
+			account_statement.close();
+			results.close();
 			return false;
 		}
 	}
@@ -43,9 +43,13 @@ public class DataConnection {
 		username_statement.setString(1, user);
 		ResultSet results = username_statement.executeQuery();
 		if (results.next()) {
+			username_statement.close();
+			results.close();
 			return true;
 		}
 		else {
+			username_statement.close();
+			results.close();
 			return false;
 		}
 	}
@@ -64,6 +68,7 @@ public class DataConnection {
 			add_statement.setString(3, answer1);
 			add_statement.setString(4, answer2);
 			add_statement.executeUpdate();
+			add_statement.close();
 			return 3; //3 corresponds to account being added successfully
 		}
 	}
@@ -72,7 +77,12 @@ public class DataConnection {
 		PreparedStatement delete_statement = c.prepareStatement("DELETE FROM accounts WHERE username = ?");
 		delete_statement.setString(1, user);
 		delete_statement.executeUpdate();
+		delete_statement.close();
 		System.out.println("Your account has been deleted");
 		return user;
+	}
+	
+	public void close() throws Exception {
+		c.close();
 	}
 }
