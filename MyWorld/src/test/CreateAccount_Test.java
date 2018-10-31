@@ -15,10 +15,10 @@ class CreateAccount_Test {
 		String usernameTest = "test"; 
 		String passwordTest = "12"; 
 		
-		assertEquals(usernameTest, dataConnection.deleteUser(usernameTest));
+		//assertEquals(usernameTest, dataConnection.deleteUser(usernameTest));
 		assertFalse(dataConnection.userExists(usernameTest));
 		
-		assertTrue(dataConnection.addUser(usernameTest, passwordTest, "12", "12") == 2); 
+		assertTrue(dataConnection.addUser(usernameTest, passwordTest, "12", "12") == 3); 
 		assertTrue(dataConnection.userExists(usernameTest)); 
 		
 		//delete test user
