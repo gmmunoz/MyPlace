@@ -82,6 +82,7 @@ public class RegisterController {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
+			con.close();
 		}
 		else if (con.addUser(userName, passwd, q1_ans, q2_ans) == 2) {
 			System.out.println("Username taken, please try again with new username");

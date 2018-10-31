@@ -19,6 +19,7 @@ class CreateAccount_Test {
 		assertFalse(dataConnection.userExists(usernameTest));
 		
 		assertTrue(dataConnection.addUser(usernameTest, passwordTest, "12", "12") == 3); 
+		//dataConnection.addUser(usernameTest, passwordTest, "12", "12");
 		assertTrue(dataConnection.userExists(usernameTest)); 
 		
 		//delete test user
