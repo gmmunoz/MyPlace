@@ -17,8 +17,7 @@ public class Login_Test {
 		
 		dataConnection.addUser(usernameTest, passwordTest, securityqTest, securityqTest); 
 		
-		//assertTrue(dataConnection.userExists(usernameTest));
-		dataConnection.userExists(usernameTest);
+		assertTrue(dataConnection.userExists(usernameTest));
 		dataConnection.deleteUser(usernameTest); 
 		
 	}
