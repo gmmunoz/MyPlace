@@ -82,6 +82,10 @@ public class DataConnection {
 		return user;
 	}
 	
+	public void test() {
+		int test = 123;
+	}
+	
 	public void close() throws Exception {
 		c.close();
 	}
