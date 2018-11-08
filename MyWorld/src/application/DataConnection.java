@@ -83,7 +83,7 @@ public class DataConnection {
 	}
 	
 	public void test() {
-		int test = 1234;
+		int test = 1234567;
 	}
 	
 	public void close() throws Exception {
