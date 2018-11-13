@@ -83,7 +83,9 @@ public class DataConnection {
 	}
 	
 	public void test() {
+
 		int test = 12345678;
+
 	}
 	
 	public void close() throws Exception {
