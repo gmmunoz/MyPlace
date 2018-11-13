@@ -83,9 +83,14 @@ public class DataConnection {
 	}
 	
 	public void test() {
+<<<<<<< HEAD
 
 		int test = 12345678;
 
+=======
+		int test = 123;
+		//testing commit
+>>>>>>> 8220518adf1246392102b1245982bba8e9434c1b
 	}
 	
 	public void close() throws Exception {
