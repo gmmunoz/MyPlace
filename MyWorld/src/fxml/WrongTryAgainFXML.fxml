@@ -5,14 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" prefHeight="156.0" prefWidth="259.0" style="-fx-background-color: #9370DB;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WrongController">
+<AnchorPane fx:id="backgroundRoot" prefHeight="156.0" prefWidth="259.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WrongController">
    <children>
-      <Button fx:id="TryAgainBut" layoutX="80.0" layoutY="78.0" mnemonicParsing="false" onAction="#returnBack" prefHeight="34.0" prefWidth="99.0" text="Try Again" textFill="MEDIUMPURPLE" />
+      <Button fx:id="TryAgainBut" layoutX="80.0" layoutY="78.0" mnemonicParsing="false" onAction="#returnBack" prefHeight="34.0" prefWidth="99.0" text="Try Again" textFill="MEDIUMPURPLE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font></Button>
       <AnchorPane layoutY="17.0" prefHeight="34.0" prefWidth="259.0" style="-fx-background-color: #E6E6FA;">
          <children>
-            <Label layoutX="20.0" layoutY="10.0" text="Wrong Password or Username!" textFill="MEDIUMPURPLE">
+            <Label layoutX="21.0" layoutY="10.0" text="Wrong Password or Username!" textFill="MEDIUMPURPLE">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Label>
          </children>
