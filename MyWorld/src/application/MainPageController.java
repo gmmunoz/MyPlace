@@ -12,7 +12,6 @@ public class MainPageController {
 	@FXML	
 	private Label labl;
 	
-	//pls work now
 	
 }
 

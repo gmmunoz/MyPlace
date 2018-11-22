@@ -6,24 +6,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="application.RetrievePwdController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RetrievePwdController">
    <children>
-      <AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="301.0" style="-fx-background-color: #9370DB;">
+      <AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="301.0" style="-fx-background-color: #311a95;">
          <children>
-            <TextField fx:id="YourPwd" layoutX="13.0" layoutY="70.0" prefHeight="34.0" prefWidth="273.0" promptText="YourPwd" />
+            <TextField fx:id="YourPwd" layoutX="13.0" layoutY="70.0" prefHeight="34.0" prefWidth="273.0" promptText="YourPwd">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font></TextField>
             <AnchorPane layoutY="14.0" prefHeight="34.0" prefWidth="300.0" style="-fx-background-color: #E6E6FA;">
                <children>
                   <Label layoutX="46.0" layoutY="9.0" text="Here is your password!" textFill="MEDIUMPURPLE">
                      <font>
-                        <Font name="System Bold" size="17.0" />
+                        <Font name="Arial Rounded MT Bold" size="17.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
             <Button fx:id="TryNowBut" layoutX="97.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleTryNow" prefHeight="34.0" text="Try to login!" textFill="MEDIUMPURPLE">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
             </Button>
          </children>
