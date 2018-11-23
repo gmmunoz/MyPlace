@@ -21,7 +21,7 @@ public class WrongController {
     	try {	
     		System.out.println("You clicked try again button!");    			    		 		  
 		
-    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainPageFXML.fxml"));		
+    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MyPlace_login.fxml"));		
     		backgroundRoot.getChildren().setAll(pane);
 		
     	} catch (Exception ex) {

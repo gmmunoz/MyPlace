@@ -40,7 +40,7 @@ public class Login_Test {
 		
 		assertTrue(dataConnection.addUser(usernameTest, passwordTest, securityqTest, securityqTest) == 3); 
 		
-		String incorrectPassword = "Test123"; 
+		String incorrectPassword = "Test12"; 
 		assertFalse(dataConnection.validAccount(usernameTest, incorrectPassword));
 		dataConnection.deleteUser(usernameTest);
 	}

@@ -7,24 +7,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="301.0" style="-fx-background-color: #9370DB;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ForgotPwdController">
+<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="301.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ForgotPwdController">
    <children>
       <Button fx:id="forgotBut" layoutX="57.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleForgotBut" prefHeight="34.0" prefWidth="177.0" text="Retrieve Password" textFill="MEDIUMPURPLE">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Arial Rounded MT Bold" size="13.0" />
          </font></Button>
       <TextField fx:id="userName" layoutX="14.0" layoutY="66.0" prefHeight="34.0" prefWidth="273.0" promptText="userName" />
       <AnchorPane layoutY="14.0" prefHeight="34.0" prefWidth="300.0" style="-fx-background-color: #E6E6FA;">
          <children>
             <Label layoutX="77.0" layoutY="8.0" text="Forgot Password" textFill="MEDIUMPURPLE">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="Arial Rounded MT Bold" size="17.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <ComboBox fx:id="SecQbox" layoutX="14.0" layoutY="118.0" prefHeight="34.0" prefWidth="273.0" promptText="Security Question" />
+      <ComboBox fx:id="SecQbox" layoutX="14.0" layoutY="118.0" prefHeight="34.0" prefWidth="273.0" promptText="Security Question" style="-fx-background-color: #E6E6FA;" />
       <TextField fx:id="answer1" layoutX="14.0" layoutY="165.0" prefHeight="34.0" prefWidth="273.0" promptText="answer" />
    </children>
 </AnchorPane>
-
