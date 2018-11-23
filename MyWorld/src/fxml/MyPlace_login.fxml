@@ -5,32 +5,43 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #E6E6FA;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
+<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="700.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController">
    <children>
-      <AnchorPane layoutX="443.0" layoutY="79.0" prefHeight="238.0" prefWidth="241.0" style="-fx-background-color: #9370DB;">
+      <AnchorPane layoutX="432.0" layoutY="64.0" prefHeight="238.0" prefWidth="241.0" style="-fx-background-color: #9370DB;">
          <children>
-            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="60.0" prefHeight="27.0" prefWidth="200.0" promptText="Username" />
-            <PasswordField fx:id="Password" accessibleText="Password" layoutX="21.0" layoutY="107.0" prefHeight="27.0" prefWidth="200.0" promptText="Password" />
-            <ButtonBar layoutX="5.0" layoutY="166.0" prefHeight="40.0" prefWidth="216.0" />
-            <Label layoutX="83.0" layoutY="14.0" text="Sign In" textFill="WHITE">
+            <TextField fx:id="txtUserName" layoutX="21.0" layoutY="53.0" prefHeight="27.0" prefWidth="200.0" promptText="Username" />
+            <PasswordField fx:id="Password" accessibleText="Password" layoutX="21.0" layoutY="99.0" prefHeight="27.0" prefWidth="200.0" promptText="Password">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font></PasswordField>
+            <ButtonBar layoutX="5.0" layoutY="166.0" prefHeight="40.0" prefWidth="216.0" />
+            <Label layoutX="89.0" layoutY="14.0" text="Sign In" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="19.0" />
                </font>
             </Label>
-          <Button fx:id="loginBut" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="153.0" mnemonicParsing="false" onAction="#logIn" prefHeight="27.0" prefWidth="200.0" text="Log in" textAlignment="CENTER" textFill="MEDIUMPURPLE" />
-          <Button fx:id="forgetPwd" layoutX="53.0" layoutY="195.0" mnemonicParsing="false" onAction="#retrievePwd" text="Forgot Password?" textFill="MEDIUMPURPLE" />
+          <Button fx:id="loginBut" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="143.0" mnemonicParsing="false" onAction="#logIn" prefHeight="27.0" prefWidth="200.0" text="Log in" textAlignment="CENTER" textFill="MEDIUMPURPLE" />
+          <Button fx:id="forgetPwd" layoutX="53.0" layoutY="185.0" mnemonicParsing="false" onAction="#retrievePwd" text="Forgot Password?" textFill="MEDIUMPURPLE" underline="true">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="13.0" />
+               </font></Button>
          </children>
       </AnchorPane>
-      <Label layoutX="19.0" layoutY="115.0" text="Welcome to MyPlace" textFill="MEDIUMPURPLE">
+      <Label alignment="TOP_LEFT" layoutX="22.0" layoutY="149.0" prefHeight="20.0" prefWidth="413.0" text="Register now to pin places you've been and want to go" textFill="WHITE">
          <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label alignment="TOP_LEFT" layoutX="22.0" layoutY="149.0" prefHeight="20.0" prefWidth="413.0" text="Register now to pin places you've been and want to go" />
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font></Label>
       <Button fx:id="signupBut" layoutX="21.0" layoutY="176.0" mnemonicParsing="false" onAction="#signUp" prefHeight="27.0" prefWidth="89.0" text="Sign Up" textFill="MEDIUMPURPLE" />
       <ButtonBar layoutX="471.0" layoutY="327.0" prefHeight="40.0" prefWidth="200.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="11.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../MyPlace%20copy.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

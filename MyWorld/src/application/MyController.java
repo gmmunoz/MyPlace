@@ -83,22 +83,13 @@ public class MyController implements Initializable {
 	    				// SQL connect now
 	    				//String sql = "SELECT * user WHERE userName = ? AND passwd = ?";
 	    				try {
-	    					/*ps = con.prepareStatement(sql);
-	    					ps.setString(1, userName);
-	    					ps.setString(2, passwd);
-	    					rs = ps.executeQuery();
-
-	    					if (rs.next()) {
-	    						// if username + password exist & match --> main page
-	    						System.out.println("You logged in successfully!");    			    		 
-	    						  
-	    			    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainPageFXML.fxml"));
-	    			    		backgroundRoot.getChildren().setAll(pane);*/
 	    					
 	    					if (dcon.validAccount(userName, passwd) == true) {
 	    						System.out.println("You logged in successfully!");
 	    						//once we include places we will need to query for all places associated with this user and save those
 	    						dcon.close();
+	    						AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
+	    			    		backgroundRoot.getChildren().setAll(pane);
 	    						
 	    					} else {
 	    						// show error --> try again
@@ -106,14 +97,7 @@ public class MyController implements Initializable {
 	    			    		   
 	    			    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/WrongTryAgainFXML.fxml"));
 	    			    		backgroundRoot.getChildren().setAll(pane);
-
-//	    						Parent root = FXMLLoader.load(getClass().getResource("../fxml/WrongTryAgainFXML.fxml"));
-//
-//	    						Scene scene = new Scene(root);	    
-//	    				    	Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();	    
-//	    				    	stage.setTitle("Error: Try Again");
-//	    				    	stage.setScene(scene);	  
-//	    				    	stage.show();	    				    	
+	    					    				    	
 	    						
 	    					}	 
 
