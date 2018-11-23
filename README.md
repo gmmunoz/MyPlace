@@ -1,5 +1,4 @@
 # MyPlace
-Test commit
 
 Trying to redo
 
