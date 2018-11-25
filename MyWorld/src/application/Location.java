@@ -8,7 +8,7 @@ public class Location {
 	private String name;
 	private String address;
 	private String comment;
-	private String picture;
+	private String picture; //for another iteration
 	
 	public Location(Place input_place, String input_comment, String input_picture) {
 		name = input_place.getPlaceName();
