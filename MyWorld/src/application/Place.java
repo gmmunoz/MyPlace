@@ -20,6 +20,14 @@ public class Place {
 		similarVenues = returned_similarVenues;
 	}
 	
+	public String getPlaceName() {
+		return name;
+	}
+	
+	public String getPlaceAddress() {
+		return address;
+	}
+	
 	public void printPlace() {
 		System.out.println(name);
 		System.out.println(address);
