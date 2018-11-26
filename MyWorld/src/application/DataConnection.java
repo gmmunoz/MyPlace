@@ -99,29 +99,30 @@ public class DataConnection {
 	
 	//adding location to user's personal lists
 	//for the list parameter, 1 is for the list of places visited and 2 for future places
-	public int addLocation(Location location, int uid, int list) throws Exception {
-		String query = "INSERT INTO locations(uid, name, address, list) VALUES(?,?,?,?)";
+	public String addLocation(Place location, String user, int which_list) throws Exception {
+		String query = "INSERT INTO places(username, place_name, address, which_tab) VALUES(?,?,?,?)";
 		PreparedStatement addLocation = c.prepareStatement(query);
-		addLocation.setInt(1, uid);
-		addLocation.setString(2, location.getName());
-		addLocation.setString(3, location.getAddress());
-		addLocation.setInt(4, list);
+		addLocation.setString(1, user);
+		addLocation.setString(2, location.getPlaceName());
+		addLocation.setString(3, location.getPlaceAddress());
+		addLocation.setInt(4, which_list);
 		addLocation.executeUpdate();
 		addLocation.close();
 		System.out.println("Successfully added location!");
-		return 1; //1 corresponds to location being added successfully
+		return location.getPlaceName(); //returns the name of the place that it added
 	}
 	
 	//deletes location 
-	public int deleteLocation(Location location, int uid, int list) throws Exception{
-		String query = "DELETE FROM locations WHERE uid = ? AND name = ?";
+	public String deleteLocation(Place location, String user, int which_list) throws Exception{
+		String query = "DELETE FROM places WHERE username = ? AND place_name = ? AND which_tab = ?";
 		PreparedStatement delete_location = c.prepareStatement(query);
-		delete_location.setInt(1, uid);
-		delete_location.setString(2, location.getName());
+		delete_location.setString(1, user);
+		delete_location.setString(2, location.getPlaceName());
+		delete_location.setInt(3, which_list);
 		delete_location.executeUpdate();
 		delete_location.close();
 		System.out.println("Successfully deleted a location from list.");
-		return 1;
+		return location.getPlaceName(); //returns the name of the place that it deleted
 	}
 	
 	public void test() {
