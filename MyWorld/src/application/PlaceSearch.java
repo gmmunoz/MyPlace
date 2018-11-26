@@ -18,8 +18,8 @@ public class PlaceSearch {
 	
 	private String place_name;
 	private String city;
-	private String foursquare_id = "PLACEHOLDER";
-	private String foursquare_secret = "PLACEHOLDER";
+	private String foursquare_id = "YF1RC14OTL1V3HOKOWRRYL4XNSHD2ZLBBLIXBNUONLNPM40J";
+	private String foursquare_secret = "CXYEIKYBNRQBTS2JIBSO4OG1QL5YNPMWX01SLHMGXE3ABVJB";
 	private String v = "20181122";
 
 	public PlaceSearch() {
