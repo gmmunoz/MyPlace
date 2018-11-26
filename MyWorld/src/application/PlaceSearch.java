@@ -1,11 +1,13 @@
 package application;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.io.FileWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +16,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
+
 public class PlaceSearch {
 	
 	private String place_name;
@@ -21,14 +27,15 @@ public class PlaceSearch {
 	private String foursquare_id = "YF1RC14OTL1V3HOKOWRRYL4XNSHD2ZLBBLIXBNUONLNPM40J";
 	private String foursquare_secret = "CXYEIKYBNRQBTS2JIBSO4OG1QL5YNPMWX01SLHMGXE3ABVJB";
 	private String v = "20181122";
+	private DataConnection dataConn = null;
 
 	public PlaceSearch() {
-		
 	}
 	
 	public PlaceSearch(String name, String city_name) {
 		place_name = name;
-		city = city_name;		
+		city = city_name;
+		dataConn = new DataConnection();
 	}
 	
 	public ArrayList<Place> getResults() throws Exception {
@@ -112,7 +119,9 @@ public class PlaceSearch {
 		    //System.out.println(similarVenues);
 		    
 	    	Place new_place = new Place(name, fullAddress, simVenItems);
+	    	
 	    	locationList.add(new_place);
+	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
 	    }
 	    
 	    return locationList;

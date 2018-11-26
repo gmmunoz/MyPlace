@@ -17,6 +17,12 @@ public class Matches_Controller {
     private AnchorPane backgroundRoot;
 
     @FXML
+    private AnchorPane backgroundRoot1;
+
+    @FXML
+    private AnchorPane backgroundRoot2;
+    
+    @FXML
     private Button LogoutBut;
 
     @FXML
@@ -26,11 +32,15 @@ public class Matches_Controller {
     private TableView<dataClass> PossibleMatches;
 
     @FXML
-    private TableColumn<dataClass,String> PlaceName;
+    private TableColumn<?, ?> PlaceNameCol;
 
     @FXML
-    private TableColumn<dataClass, String> Address;
+    private TableColumn<?, ?> AddressCol;
 
+    @FXML
+    private TableColumn<?, ?> AddCol;
+
+   
     @FXML
     void LogoutUser(ActionEvent event) {
     	System.out.println("You have officially logged out!");

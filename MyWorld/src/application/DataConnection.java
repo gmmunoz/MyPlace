@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DataConnection {
 	
@@ -80,6 +82,46 @@ public class DataConnection {
 		delete_statement.close();
 		System.out.println("Your account has been deleted");
 		return user;
+	}
+	
+	/*public void createNewTable() throws Exception {
+		String locations = "CREATE TABLE IF NOT EXISTS locations (\n"
+				+ "name text NOT NULL, \n"
+				+ "address text NOT NULL, \n"
+				+ ");";
+		try(Statement stmt = c.createStatement()){
+			stmt.execute(locations);
+		}
+		catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}*/
+	
+	//adding location to user's personal lists
+	//for the list parameter, 1 is for the list of places visited and 2 for future places
+	public int addLocation(Location location, int uid, int list) throws Exception {
+		String query = "INSERT INTO locations(uid, name, address, list) VALUES(?,?,?,?)";
+		PreparedStatement addLocation = c.prepareStatement(query);
+		addLocation.setInt(1, uid);
+		addLocation.setString(2, location.getName());
+		addLocation.setString(3, location.getAddress());
+		addLocation.setInt(4, list);
+		addLocation.executeUpdate();
+		addLocation.close();
+		System.out.println("Successfully added location!");
+		return 1; //1 corresponds to location being added successfully
+	}
+	
+	//deletes location 
+	public int deleteLocation(Location location, int uid, int list) throws Exception{
+		String query = "DELETE FROM locations WHERE uid = ? AND name = ?";
+		PreparedStatement delete_location = c.prepareStatement(query);
+		delete_location.setInt(1, uid);
+		delete_location.setString(2, location.getName());
+		delete_location.executeUpdate();
+		delete_location.close();
+		System.out.println("Successfully deleted a location from list.");
+		return 1;
 	}
 	
 	public void test() {
