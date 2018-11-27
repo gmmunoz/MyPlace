@@ -126,7 +126,7 @@ public class DataConnection {
 	}
 	
 	public ResultSet loadPlaces(String user, int which_list) throws Exception {
-		String query = "SELECT place_name, address FROM places WHERE username = ? AND which_list = ?";
+		String query = "SELECT place_name, address FROM places WHERE username = ? AND which_tab = ?";
 		PreparedStatement load_places = c.prepareStatement(query);
 		load_places.setString(1, user);
 		load_places.setInt(2, which_list);
@@ -134,8 +134,25 @@ public class DataConnection {
 		return results;
 	}
 	
-	public void test() {
-		int test = 12345678;
+	public String securityQuestionCheck(String user, String answer1, String answer2) throws Exception {
+		if (user.isEmpty() || answer1.isEmpty() || answer2.isEmpty()) {
+			return "fieldsBlank"; 
+		}
+		else {
+			String query = "SELECT password FROM accounts WHERE username = ? AND answer1 = ? AND answer2 = ?";
+			PreparedStatement checkQuestions = c.prepareStatement(query);
+			checkQuestions.setString(1, user);
+			checkQuestions.setString(2,  answer1);
+			checkQuestions.setString(3, answer2);
+			ResultSet results = checkQuestions.executeQuery();
+			if (results.next()) {
+				String retrieved_password = results.getString("password");
+				return retrieved_password;
+			}
+			else {
+				return "noMatchingAccount";
+			}
+		}
 	}
 	
 	public void close() throws Exception {

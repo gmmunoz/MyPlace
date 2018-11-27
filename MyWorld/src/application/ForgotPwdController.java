@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 
 
 public class ForgotPwdController {
@@ -45,6 +46,20 @@ public class ForgotPwdController {
 
     @FXML
     private TextField answer2;
+   
+    @FXML
+    private Button backBut;
+    
+    @FXML
+    private Label PassLabel;
+
+    @FXML
+    void SendUsertoPrevPage(ActionEvent event) throws IOException {
+    	//now load previous page
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MyPlace_login.fxml"));
+		backgroundRoot.getChildren().setAll(pane);
+    }
+
     
     @FXML
     void initialize() {
@@ -54,22 +69,39 @@ public class ForgotPwdController {
 		 SecQbox2.setItems(questionList2);
     }
     
-    @FXML
-    void handleForgotBut(ActionEvent event) {
+    private DataConnection con = new DataConnection();
+    
+    @SuppressWarnings("restriction")
+	@FXML
+    void handleForgotBut(ActionEvent event) throws Exception {
     	//check DB to see if username & answer to security question exist, if yes --> show pwd
     	
+    	String user = userName.getText().trim();
+    	String q1_answer = answer1.getText().trim();
+    	String q2_answer = answer2.getText().trim();
     	
-    	
-    	//return to login page			
-    	System.out.println("Retrieve Password!");    			    		 		  		
-    			
-    	try {  				
-    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/RetreivePwdFXML.fxml"));    				
-    		backgroundRoot.getChildren().setAll(pane);
- 			
-    	} catch (Exception ex) {   				
-    		ex.printStackTrace();    			
+    	if (con.securityQuestionCheck(user, q1_answer, q2_answer).equals("fieldsBlank")) {
+    		System.out.println("You cannot leave fields blank.");
     	}
+    	
+    	else if (con.securityQuestionCheck(user, q1_answer, q2_answer).equals("noMatchingAccount")) {
+    		System.out.println("No matching account was found");
+    	}
+    	
+    	else {
+    		String retrieved_pass = con.securityQuestionCheck(user, q1_answer, q2_answer);
+    		System.out.println("Retrieve Password!");
+    		System.out.println(retrieved_pass);
+    		PassLabel.setText("Password: " + retrieved_pass);
+    		
+    		/*try {  
+    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/RetreivePwdFXML.fxml"));    				
+        		backgroundRoot.getChildren().setAll(pane);
+     			
+        	} catch (Exception ex) {   				
+        		ex.printStackTrace();    			
+        	}*/
+    	}   	
    
     }
 
