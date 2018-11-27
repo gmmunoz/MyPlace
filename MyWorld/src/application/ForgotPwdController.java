@@ -45,6 +45,17 @@ public class ForgotPwdController {
 
     @FXML
     private TextField answer2;
+   
+    @FXML
+    private Button backBut;
+
+    @FXML
+    void SendUsertoPrevPage(ActionEvent event) throws IOException {
+    	//now load previous page
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MyPlace_login.fxml"));
+		backgroundRoot.getChildren().setAll(pane);
+    }
+
     
     @FXML
     void initialize() {
