@@ -28,6 +28,10 @@ public class Place {
 		return address;
 	}
 	
+	public JSONArray getSimilarVenues() {
+		return similarVenues;
+	}
+	
 	public void printPlace() {
 		System.out.println(name);
 		System.out.println(address);

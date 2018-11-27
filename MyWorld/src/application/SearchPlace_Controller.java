@@ -1,7 +1,10 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SearchPlace_Controller {
+	String name;
+	String city;
+	public SearchPlace_Controller() throws Exception {
+	}
 
     @FXML
     private AnchorPane backgroundRoot;
@@ -48,8 +55,23 @@ public class SearchPlace_Controller {
     //send to page with possible matches
     @FXML
     void handleSearch(ActionEvent event) throws IOException {
+    	name = placeName.getText();
+    	System.out.println("this is name " + name);
     	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
+    	city = City.getText();
+    	System.out.println("this is city " + city);
+    }
+    
+    public String getName() {
+    	
+    	return this.name;
+    }
+    
+    public String getCity() {
+    	return this.city;
     }
 
+    public void initialize() throws Exception {
+    }
 }
