@@ -19,15 +19,19 @@ public class SearchPlace_Controller {
 	String city;
 	
 	ArrayList<String> stringPlaces = new ArrayList<String>();
+	
+	
 	ObservableList<String> data;
-
 	public SearchPlace_Controller() throws Exception {
 		initialize();
-		data = FXCollections.observableArrayList(stringPlaces);
+		data = FXCollections.observableList(stringPlaces);
 	}
 
     @FXML
     private AnchorPane backgroundRoot;
+    
+    @FXML
+    private AnchorPane backgroundRoot2;
 
     @FXML
     private TextField placeName;
@@ -46,6 +50,8 @@ public class SearchPlace_Controller {
 
     @FXML
     private ComboBox<String> MatchesList;
+    
+    
 
     public ArrayList<String> initialize() throws Exception {
     	System.out.println("this is from matches " + name + " "+ city);
@@ -53,14 +59,18 @@ public class SearchPlace_Controller {
     	PlaceSearch searchResults = new PlaceSearch(name,city);
     	ArrayList<Place> searchPlaces = searchResults.getResults();
     	
-    	System.out.println("HELLO: " + searchResults.getResults());
+    	System.out.println("OKAY LETS GO: " + searchPlaces);
     	
     	try {
     		for(int i = 0; i< searchPlaces.size(); i++) {
+    			//System.out.println(searchPlaces.get(i).getPlaceName() + searchPlaces.get(i).getPlaceAddress());
     			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
     			stringPlaces.add(entry);
     		} 
+    		//System.out.println(stringPlaces);
     	    MatchesList.setValue("Potential Matches");
+    	    //data = (ObservableList<String>) stringPlaces;
+    	    //System.out.println(data);
     		MatchesList.setItems(data);
     	}
     	catch(Exception e) {
@@ -90,8 +100,6 @@ public class SearchPlace_Controller {
     	name = placeName.getText();
     	city = City.getText();
     	System.out.println("this is name " + name + " " + city);
-//    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
-//		backgroundRoot.getChildren().setAll(pane);
     	return initialize();
     }
     
