@@ -39,8 +39,8 @@ public class PlaceSearch {
 	}
 	
 	public ArrayList<Place> getResults() throws Exception {
-			
-		URL url = new URL("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret);
+		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
+		URL url = new URL(urlString);
 	    HttpURLConnection con = (HttpURLConnection) url.openConnection();
 	    con.setRequestMethod("GET");
 	    con.connect();
