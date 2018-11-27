@@ -24,7 +24,7 @@ public class MainFramework_Controller {
 
     @FXML
     void DirectPlacesYB(ActionEvent event) throws IOException {
-    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
+    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
     }
 

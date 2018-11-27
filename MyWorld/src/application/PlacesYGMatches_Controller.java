@@ -17,10 +17,10 @@ public class PlacesYGMatches_Controller {
 	ArrayList<String> stringPlaces = new ArrayList<String>();
 	ObservableList<String> data;
 	
-	private DataConnection dcon = null;
+	//private DataConnection dcon = null;
 	 
 	public PlacesYGMatches_Controller() throws Exception {
-		dcon = new DataConnection();
+		//dcon = new DataConnection();
 		initialize();
 		data = FXCollections.observableArrayList(stringPlaces);
 	}
@@ -41,7 +41,7 @@ public class PlacesYGMatches_Controller {
 
     @FXML
     void addPlacetoDB(ActionEvent event) {
-    	dcon.addLocation(location, user, which_list);
+    	//dcon.addLocation(location, user, which_list);
 
     }
 
@@ -54,7 +54,9 @@ public class PlacesYGMatches_Controller {
     }
 
     public ArrayList<String> initialize() throws Exception {
-    	PlaceSearch searchResults = new PlaceSearch("pizza", "chicago");
+    	SearchPlace_Controller spController = new SearchPlace_Controller();
+    	System.out.println("this is from matches " + spController.getName());
+    	PlaceSearch searchResults = new PlaceSearch(spController.getName(), spController.getCity());
     	ArrayList<Place> searchPlaces = searchResults.getResults();
     	try {
     		for(int i = 0; i< searchPlaces.size(); i++) {
@@ -69,10 +71,11 @@ public class PlacesYGMatches_Controller {
     	}
 		return stringPlaces;
     }
+    	
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws IOException {
     	//now load previous page
-    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/SearchPlace.fxml"));
+    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/SearchPlacesYG.fxml"));
     			backgroundRoot2.getChildren().setAll(pane);
     	    }
   
