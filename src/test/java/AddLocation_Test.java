@@ -15,5 +15,10 @@ public class AddLocation_Test {
 		String locationAddressTest = "testAddress";
 		
 		Place place = new Place(locationNameTest, locationAddressTest, null);
+		
+		
 	}
+	
+	/* Add location with invalid fields */
+	
 }
