@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="302.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ForgotPwdController">
+<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="302.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ForgotPwdController">
    <children>
       <Button fx:id="forgotBut" layoutX="62.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleForgotBut" prefHeight="34.0" prefWidth="177.0" text="Retrieve Password" textFill="MEDIUMPURPLE">
          <font>
@@ -32,5 +36,10 @@
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="PassLabel" layoutX="3.0" layoutY="417.0" prefHeight="21.0" prefWidth="296.0" textFill="MEDIUMPURPLE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

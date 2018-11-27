@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RetrievePwdController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RetrievePwdController">
    <children>
       <AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="181.0" prefWidth="301.0" style="-fx-background-color: #311a95;">
          <children>
-            <TextField fx:id="YourPwd" layoutX="13.0" layoutY="70.0" prefHeight="34.0" prefWidth="273.0" promptText="YourPwd" />
             <AnchorPane layoutY="14.0" prefHeight="34.0" prefWidth="300.0" style="-fx-background-color: #E6E6FA;">
                <children>
                   <Label layoutX="46.0" layoutY="7.0" text="Here is your password!" textFill="MEDIUMPURPLE">
@@ -25,6 +28,11 @@
                   <Font name="Arial Rounded MT Bold" size="13.0" />
                </font>
             </Button>
+            <Label fx:id="PasswordLabel" layoutX="54.0" layoutY="70.0" prefHeight="21.0" prefWidth="205.0" textFill="MEDIUMPURPLE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="17.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

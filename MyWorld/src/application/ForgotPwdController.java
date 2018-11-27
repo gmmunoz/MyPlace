@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 
 
 public class ForgotPwdController {
@@ -48,6 +49,9 @@ public class ForgotPwdController {
    
     @FXML
     private Button backBut;
+    
+    @FXML
+    private Label PassLabel;
 
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws IOException {
@@ -67,7 +71,8 @@ public class ForgotPwdController {
     
     private DataConnection con = new DataConnection();
     
-    @FXML
+    @SuppressWarnings("restriction")
+	@FXML
     void handleForgotBut(ActionEvent event) throws Exception {
     	//check DB to see if username & answer to security question exist, if yes --> show pwd
     	
@@ -85,19 +90,18 @@ public class ForgotPwdController {
     	
     	else {
     		String retrieved_pass = con.securityQuestionCheck(user, q1_answer, q2_answer);
+    		System.out.println("Retrieve Password!");
     		System.out.println(retrieved_pass);
-    	}
-    	
-    	//return to login page			
-    	System.out.println("Retrieve Password!");    			    		 		  		
-    			
-    	try {  				
-    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/RetreivePwdFXML.fxml"));    				
-    		backgroundRoot.getChildren().setAll(pane);
- 			
-    	} catch (Exception ex) {   				
-    		ex.printStackTrace();    			
-    	}
+    		PassLabel.setText("Password: " + retrieved_pass);
+    		
+    		/*try {  
+    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/RetreivePwdFXML.fxml"));    				
+        		backgroundRoot.getChildren().setAll(pane);
+     			
+        	} catch (Exception ex) {   				
+        		ex.printStackTrace();    			
+        	}*/
+    	}   	
    
     }
 
