@@ -14,6 +14,5 @@ public class TestPlaceSearch {
 		for (int i = 0; i < no_results; i++) {
 			search_results.get(i).printPlace();
 		}
-	}
-	
+	}	
 }
