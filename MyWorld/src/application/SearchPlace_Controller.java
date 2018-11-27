@@ -22,6 +22,7 @@ public class SearchPlace_Controller {
 	ObservableList<String> data;
 	
 	public SearchPlace_Controller() throws Exception {
+		dcon = new DataConnection();
 		initialize();
 		data = FXCollections.observableList(stringPlaces);
 	}
@@ -55,22 +56,37 @@ public class SearchPlace_Controller {
 
     @FXML
     private Button SearchBut;
+    
+    @FXML
+    private Button addBut;
+
+    private DataConnection dcon = null;
+    
+    @FXML
+    void AddPlaceYBtoDB(ActionEvent event) throws IOException {
+    	String selected = MatchesList.getSelectionModel().getSelectedItem().toString();
+    	System.out.println("please work " + selected);
+    	//dcon.addLocation(selected, user, 1);
+    	System.out.println("Location has been added!");
+    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
+		backgroundRoot.getChildren().setAll(pane);
+    }
 	
 
     public ArrayList<String> initialize() throws Exception {
-    	System.out.println("this is from matches " + name + " "+ city);
+    	//System.out.println("this is from matches " + name + " "+ city);
     	
     	PlaceSearch searchResults = new PlaceSearch(name,city);
     	ArrayList<Place> searchPlaces = searchResults.getResults();
     	
-    	System.out.println("OKAY LETS GO: " + searchPlaces);
+    	//System.out.println("OKAY LETS GO: " + searchPlaces);
     	
     	try {
     		for(int i = 0; i< searchPlaces.size(); i++) {
     			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
     			stringPlaces.add(entry);
     		} 
-    	    MatchesList.setValue("Potential Matches");
+    	    MatchesList.setValue("Select Potential Match");
     		MatchesList.setItems(data);
     	}
     	catch(Exception e) {
