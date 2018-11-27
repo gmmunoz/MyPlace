@@ -125,6 +125,15 @@ public class DataConnection {
 		return location.getPlaceName(); //returns the name of the place that it deleted
 	}
 	
+	public ResultSet loadPlaces(String user, int which_list) throws Exception {
+		String query = "SELECT place_name, address FROM places WHERE username = ? AND which_list = ?";
+		PreparedStatement load_places = c.prepareStatement(query);
+		load_places.setString(1, user);
+		load_places.setInt(2, which_list);
+		ResultSet results = load_places.executeQuery();
+		return results;
+	}
+	
 	public void test() {
 		int test = 12345678;
 	}
