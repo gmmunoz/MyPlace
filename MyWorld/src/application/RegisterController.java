@@ -14,9 +14,9 @@ import javafx.scene.layout.AnchorPane;
 
 public class RegisterController {
 	
-	ObservableList<String> questionList1 = FXCollections.observableArrayList("What is the name of your first pet?", "What is your mother's maiden name?","What is your dream job?");
+	ObservableList<String> questionList1 = FXCollections.observableArrayList( "What is your mother's maiden name?");
 		
-	ObservableList<String> questionList2 = FXCollections.observableArrayList("What is your favorite color?", "What is your father's middle name?","What was your childhood nickname?");
+	ObservableList<String> questionList2 = FXCollections.observableArrayList("What is your favorite color?");
 	
 	@FXML
     private AnchorPane backgroundRoot;

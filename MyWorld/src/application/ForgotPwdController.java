@@ -21,7 +21,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class ForgotPwdController {
 	
-	ObservableList<String> questionList = FXCollections.observableArrayList("What is your favorite color?","What is your father's middle name?","What was your childhood nickname?","What is the name of your first pet?", "What is your mother's maiden name?","What is your dream job?");
+	ObservableList<String> questionList = FXCollections.observableArrayList("What is your mother's maiden name?");
+	ObservableList<String> questionList2 = FXCollections.observableArrayList("What is your favorite color?");
 	 
 	@FXML
 	private AnchorPane backgroundRoot;
@@ -40,9 +41,17 @@ public class ForgotPwdController {
     private TextField answer1;
 
     @FXML
+    private ComboBox<String> SecQbox2;
+
+    @FXML
+    private TextField answer2;
+    
+    @FXML
     void initialize() {
-		 SecQbox.setValue("Security Question");
+		 SecQbox.setValue("Security Question #1");
 		 SecQbox.setItems(questionList);
+		 SecQbox2.setValue("Security Question #2");
+		 SecQbox2.setItems(questionList2);
     }
     
     @FXML
