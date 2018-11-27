@@ -155,11 +155,12 @@ public class DataConnection {
 		}
 	}
 	
-	public boolean placeInAccount(String user, String place) throws SQLException {
-		String query = "SELECT place_name FROM places WHERE username = ? AND place_name = ?";
+	public boolean placeInAccount(String user, String place, int which_list) throws SQLException {
+		String query = "SELECT place_name FROM places WHERE username = ? AND place_name = ? AND which_tab = ?";
 		PreparedStatement checkPlace = c.prepareStatement(query);
 		checkPlace.setString(1, user);
 		checkPlace.setString(2,  place);
+		checkPlace.setInt(3,  which_list);
 		ResultSet results = checkPlace.executeQuery();
 		if (results.next()) {
 			return true;
