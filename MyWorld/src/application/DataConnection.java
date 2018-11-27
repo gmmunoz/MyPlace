@@ -64,7 +64,7 @@ public class DataConnection {
 			return 2; //2 corresponds to username already being taken
 		}
 		else {
-			PreparedStatement add_statement = c.prepareStatement("INSERT INTO accounts(username, password, q1_answer, q2_answer) VALUES(?,?,?,?)");
+			PreparedStatement add_statement = c.prepareStatement("INSERT INTO accounts(username, password, answer1, answer2) VALUES(?,?,?,?)");
 			add_statement.setString(1, user);
 			add_statement.setString(2, pass);
 			add_statement.setString(3, answer1);
