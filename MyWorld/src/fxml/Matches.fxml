@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" prefHeight="401.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Matches_Controller">
+<AnchorPane fx:id="backgroundRoot" prefHeight="401.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Matches_Controller">
    <children>
       <AnchorPane fx:id="backgroundRoot1" layoutY="10.0" prefHeight="387.0" prefWidth="774.0">
          <children>
@@ -31,7 +31,7 @@
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="MatchesList" layoutX="33.0" layoutY="36.0" prefHeight="27.0" prefWidth="712.0" />
+                        <ComboBox fx:id="MatchesList" layoutX="33.0" layoutY="81.0" prefHeight="27.0" prefWidth="712.0" />
                         <Button fx:id="addPageBut" layoutX="461.0" layoutY="356.0" mnemonicParsing="false" onAction="#addPlacetoDB" text="Add Place" textFill="MEDIUMPURPLE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />

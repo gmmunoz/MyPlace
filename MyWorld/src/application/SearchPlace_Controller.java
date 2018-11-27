@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -16,7 +17,13 @@ import javafx.stage.Stage;
 public class SearchPlace_Controller {
 	String name;
 	String city;
+	
+	ArrayList<String> stringPlaces = new ArrayList<String>();
+	ObservableList<String> data;
+
 	public SearchPlace_Controller() throws Exception {
+		initialize();
+		data = FXCollections.observableArrayList(stringPlaces);
 	}
 
     @FXML
@@ -38,6 +45,31 @@ public class SearchPlace_Controller {
     private Button SendBackBut;
 
     @FXML
+    private ComboBox<String> MatchesList;
+
+    public ArrayList<String> initialize() throws Exception {
+    	System.out.println("this is from matches " + name + " "+ city);
+    	
+    	PlaceSearch searchResults = new PlaceSearch(name,city);
+    	ArrayList<Place> searchPlaces = searchResults.getResults();
+    	
+    	System.out.println("HELLO: " + searchResults.getResults());
+    	
+    	try {
+    		for(int i = 0; i< searchPlaces.size(); i++) {
+    			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
+    			stringPlaces.add(entry);
+    		} 
+    	    MatchesList.setValue("Potential Matches");
+    		MatchesList.setItems(data);
+    	}
+    	catch(Exception e) {
+    		System.out.println("An error occured while searching!");
+    	}
+		return stringPlaces;
+    }
+
+    @FXML
     void LogoutUser(ActionEvent event) {
     	System.out.println("You have officially logged out!");
         Stage stage = (Stage) LogoutBut.getScene().getWindow();
@@ -54,13 +86,13 @@ public class SearchPlace_Controller {
     //handle search --> integrate with API
     //send to page with possible matches
     @FXML
-    void handleSearch(ActionEvent event) throws IOException {
+    ArrayList<String> handleSearch(ActionEvent event) throws Exception {
     	name = placeName.getText();
-    	System.out.println("this is name " + name);
-    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
-		backgroundRoot.getChildren().setAll(pane);
     	city = City.getText();
-    	System.out.println("this is city " + city);
+    	System.out.println("this is name " + name + " " + city);
+//    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
+//		backgroundRoot.getChildren().setAll(pane);
+    	return initialize();
     }
     
     public String getName() {
@@ -72,6 +104,5 @@ public class SearchPlace_Controller {
     	return this.city;
     }
 
-    public void initialize() throws Exception {
-    }
+    
 }
