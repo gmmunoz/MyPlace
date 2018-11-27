@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="374.0" prefWidth="302.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ForgotPwdController">
+<AnchorPane fx:id="backgroundRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="302.0" style="-fx-background-color: #311a95;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ForgotPwdController">
    <children>
-      <Button fx:id="forgotBut" layoutX="62.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleForgotBut" prefHeight="34.0" prefWidth="177.0" text="Retrieve Password" textFill="MEDIUMPURPLE">
+      <Button fx:id="forgotBut" layoutX="62.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleForgotBut" prefHeight="34.0" prefWidth="177.0" text="Retrieve Password" textFill="MEDIUMPURPLE">
          <font>
             <Font name="Arial Rounded MT Bold" size="13.0" />
          </font></Button>
-      <TextField fx:id="userName" layoutX="14.0" layoutY="63.0" prefHeight="34.0" prefWidth="273.0" promptText="userName" />
-      <AnchorPane layoutX="1.0" layoutY="14.0" prefHeight="34.0" prefWidth="300.0" style="-fx-background-color: #E6E6FA;">
+      <TextField fx:id="userName" layoutX="14.0" layoutY="101.0" prefHeight="34.0" prefWidth="273.0" promptText="userName" />
+      <AnchorPane layoutX="1.0" layoutY="52.0" prefHeight="34.0" prefWidth="302.0" style="-fx-background-color: #E6E6FA;">
          <children>
             <Label layoutX="77.0" layoutY="8.0" text="Forgot Password" textFill="MEDIUMPURPLE">
                <font>
@@ -23,9 +23,14 @@
             </Label>
          </children>
       </AnchorPane>
-      <ComboBox fx:id="SecQbox" layoutX="14.0" layoutY="112.0" prefHeight="34.0" prefWidth="273.0" promptText="Security Question #1" style="-fx-background-color: #E6E6FA;" />
-      <TextField fx:id="answer1" layoutX="14.0" layoutY="165.0" prefHeight="34.0" prefWidth="273.0" promptText="answer" />
-      <ComboBox fx:id="SecQbox2" layoutX="15.0" layoutY="215.0" prefHeight="34.0" prefWidth="273.0" promptText="Security Question #2" style="-fx-background-color: #E6E6FA;" />
-      <TextField fx:id="answer2" layoutX="15.0" layoutY="268.0" prefHeight="34.0" prefWidth="273.0" promptText="answer" />
+      <ComboBox fx:id="SecQbox" layoutX="14.0" layoutY="150.0" prefHeight="34.0" prefWidth="273.0" promptText="Security Question #1" style="-fx-background-color: #E6E6FA;" />
+      <TextField fx:id="answer1" layoutX="14.0" layoutY="203.0" prefHeight="34.0" prefWidth="273.0" promptText="answer" />
+      <ComboBox fx:id="SecQbox2" layoutX="15.0" layoutY="253.0" prefHeight="34.0" prefWidth="273.0" promptText="Security Question #2" style="-fx-background-color: #E6E6FA;" />
+      <TextField fx:id="answer2" layoutX="15.0" layoutY="306.0" prefHeight="34.0" prefWidth="273.0" promptText="answer" />
+      <Button fx:id="backBut" layoutX="8.0" layoutY="9.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" prefHeight="34.0" prefWidth="67.0" text="Back" textFill="MEDIUMPURPLE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
