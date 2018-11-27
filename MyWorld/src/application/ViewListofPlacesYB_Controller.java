@@ -1,4 +1,5 @@
 package application;
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -10,7 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Options_Controller {
+public class ViewListofPlacesYB_Controller {
 
     @FXML
     private AnchorPane backgroundRoot;
@@ -28,22 +29,21 @@ public class Options_Controller {
     private TableView<dataClass> PinnedPlaces;
 
     @FXML
-    private TableColumn<dataClass, String> PlaceNameCol;
+    private TableColumn<dataClass,String> PlaceNameCol;
 
     @FXML
-    private TableColumn<dataClass, String> AddressCol;
+    private TableColumn<dataClass,String> AddressCol;
 
     @FXML
-    private TableColumn<dataClass, String> CommentCol;
+    private TableColumn<dataClass,String> CommentCol;
 
     @FXML
     void AddPlace(ActionEvent event) throws IOException {
     	//now load Add a place page
-    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/SearchPlacesYG.fxml"));
+    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/SearchPlace.fxml"));
     	backgroundRoot.getChildren().setAll(pane);
     }
-    
-    //logs out user
+
     @FXML
     void LogoutUser(ActionEvent event) {
     	System.out.println("You have officially logged out!");
@@ -54,13 +54,12 @@ public class Options_Controller {
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws IOException {
     	//now load previous page
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
-		backgroundRoot.getChildren().setAll(pane);
+    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
+    			backgroundRoot.getChildren().setAll(pane);
     }
     
-    //dataClass is a (sub)class representing the data for TableView "Table"
     public class dataClass{
-    	
+    //2 --> places YB
     }
 
 }

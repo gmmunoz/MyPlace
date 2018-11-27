@@ -1,9 +1,7 @@
 package application;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,55 +10,42 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import org.json.simple.*;
-
-
-public class Matches_Controller {
+public class PlacesYGMatches_Controller {
 	ArrayList<String> stringPlaces = new ArrayList<String>();
 	ObservableList<String> data;
 	
 	//private DataConnection dcon = null;
 	 
-	public Matches_Controller() throws Exception {
+	public PlacesYGMatches_Controller() throws Exception {
 		//dcon = new DataConnection();
 		initialize();
 		data = FXCollections.observableArrayList(stringPlaces);
 	}
-
-
-    @FXML
-    private AnchorPane backgroundRoot;
-
-    @FXML
-    private AnchorPane backgroundRoot1;
-
     @FXML
     private AnchorPane backgroundRoot2;
-    
+
     @FXML
     private Button LogoutBut;
 
     @FXML
     private Button SendBackBut;
-    
-    @FXML
-    private Button addPageBut;
 
     @FXML
     private ComboBox<String> MatchesList;
-    
+
+    @FXML
+    private Button addPageBut;
+
     @FXML
     void addPlacetoDB(ActionEvent event) {
     	//dcon.addLocation(location, user, which_list);
 
     }
 
-    
+ 
     @FXML
     void LogoutUser(ActionEvent event) {
     	System.out.println("You have officially logged out!");
@@ -86,12 +71,12 @@ public class Matches_Controller {
     	}
 		return stringPlaces;
     }
+    	
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws IOException {
     	//now load previous page
-    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/SearchPlace.fxml"));
-    			backgroundRoot.getChildren().setAll(pane);
+    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/SearchPlacesYG.fxml"));
+    			backgroundRoot2.getChildren().setAll(pane);
     	    }
   
-   
 }
