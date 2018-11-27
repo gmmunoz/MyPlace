@@ -43,45 +43,37 @@ public class PlaceSearch {
 	}
 	
 	public ArrayList<Place> getResults() throws Exception {
-		ArrayList<Place> locationList = new ArrayList<>();
-		if(city.equals("") == true || city.equals(null)== true || place_name.equals("")== true || place_name.equals(null) == true) {
-			System.out.println("Please don't leave any fields blank!");
-		}
-		else if(isValid(city) == false || isValid(place_name)==false) {
-			System.out.println("Please enter valid entries!");
-		}
-		else {
-			String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
-			URL url = new URL(urlString);
-			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			try {
-				con.setRequestMethod("GET");
-				con.connect();
-			}
-			catch(Exception ResourceNotFound) {
-				System.out.println(ResourceNotFound);
-				System.out.println("Sorry! Seems like we can't find any places that you're looking for--try another search.");
-			}
+		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
+		URL url = new URL(urlString);
+	    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+	    try {
+	    	con.setRequestMethod("GET");
+	    	con.connect();
+	    }
+	    catch(Exception ResourceNotFound) {
+	    	System.out.println(ResourceNotFound);
+	    	System.out.println("Sorry! Seems like we can't find any places that you're looking for--try another search.");
+	    }
 	    
-			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			String inputLine;
-			StringBuffer content = new StringBuffer();
-			while ((inputLine = in.readLine()) != null) {
-				content.append(inputLine);
-			}
-			in.close();
+	    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	    String inputLine;
+	    StringBuffer content = new StringBuffer();
+	    while ((inputLine = in.readLine()) != null) {
+	        content.append(inputLine);
+	    }
+	    in.close();
 	    
-			BufferedWriter out = new BufferedWriter(new FileWriter(new File("output.txt")));	    
-			out.append(content);	    
-			out.flush();
-			out.close();
+	    BufferedWriter out = new BufferedWriter(new FileWriter(new File("output.txt")));	    
+	    out.append(content);	    
+	    out.flush();
+	    out.close();
 
 	    
-			Object obj = new JSONParser().parse(new FileReader("output.txt"));
-			//ArrayList<Place> locationList = new ArrayList<>();
-			JSONObject jsonObject = (JSONObject) obj;
-			JSONObject jsonObj = (JSONObject) jsonObject.get("response");
-			JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
+	    Object obj = new JSONParser().parse(new FileReader("output.txt"));
+	    ArrayList<Place> locationList = new ArrayList<>();
+	    JSONObject jsonObject = (JSONObject) obj;
+	    JSONObject jsonObj = (JSONObject) jsonObject.get("response");
+	    JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
 	    
 	    //System.out.println(jsonObject);
 	    //System.out.println(jsonArray);
@@ -91,19 +83,19 @@ public class PlaceSearch {
 	    //while (iterator.hasNext()) {
 	    	//Object it = iterator.next();
 	    
-			for (int x = 0; x < jsonArray.size(); x++) {
-				JSONObject data = (JSONObject) jsonArray.get(x);
-				String venue_id = (String) (data.get("id"));
+	    for (int x = 0; x < jsonArray.size(); x++) {
+	    	JSONObject data = (JSONObject) jsonArray.get(x);
+	    	String venue_id = (String) (data.get("id"));
 	    	
-				String name = (String) data.get("name");
+	    	String name = (String) data.get("name");
 	    	
-				JSONObject loc = (JSONObject) data.get("location");
-				JSONArray formattedAddress = (JSONArray) loc.get("formattedAddress");    	
-				String fullAddress = "";
-				for (int j = 0; j < formattedAddress.size(); j++) {
-					String address_line = (String) formattedAddress.get(j);
-					fullAddress = fullAddress + address_line;
-				}
+	    	JSONObject loc = (JSONObject) data.get("location");
+	    	JSONArray formattedAddress = (JSONArray) loc.get("formattedAddress");    	
+	    	String fullAddress = "";
+		    for (int j = 0; j < formattedAddress.size(); j++) {
+		    	String address_line = (String) formattedAddress.get(j);
+		    	fullAddress = fullAddress + address_line;
+		    }
 	    	
 	    	/*URL venue_url = new URL("https://api.foursquare.com/v2/venues/" + venue_id + "/similar" + "?v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret);
 	    	HttpURLConnection venue_con = (HttpURLConnection) venue_url.openConnection();
@@ -136,14 +128,12 @@ public class PlaceSearch {
 		    
 		    //System.out.println(similarVenues);*/
 		    
-				Place new_place = new Place(name, fullAddress);
+	    	Place new_place = new Place(name, fullAddress);
 	    	
-				locationList.add(new_place);
-				ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
-			}
+	    	locationList.add(new_place);
+	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
+	    }
 	    
-			return locationList;
-		}
-		return null;
+	    return locationList;
 	}
 }
