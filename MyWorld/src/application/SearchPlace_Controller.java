@@ -108,7 +108,7 @@ public class SearchPlace_Controller {
     	}
     	name = placeName.getText();
     	city = City.getText();
-<<<<<<< HEAD
+
     	//both fields are filled, checking for special characters
     	if(!isValid(name) || !isValid(city)) {
     		System.out.println("Please enter valid entries!");
@@ -116,8 +116,7 @@ public class SearchPlace_Controller {
     	}
 //    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
 //		backgroundRoot.getChildren().setAll(pane);
-=======
->>>>>>> fda17f65c22a1a48b21b2bb94a273d9e957c0e52
+
     	System.out.println("this is name " + name + " " + city);
     	return initialize();
     }
