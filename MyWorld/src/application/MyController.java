@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -32,6 +33,8 @@ public class MyController implements Initializable {
 	@FXML
 	private AnchorPane backgroundRoot;
 	
+	@FXML
+	    private ImageView MyPlaceLogo;
 
 	@FXML
 	    private TextField txtUserName;
