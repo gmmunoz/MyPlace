@@ -10,10 +10,10 @@
    <children>
       <AnchorPane layoutY="5.0">
          <children>
-            <AnchorPane fx:id="backgroundRoot" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="301.0" style="-fx-background-color: #311a95;">
+            <AnchorPane fx:id="backgroundRoot" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="378.0" style="-fx-background-color: #311a95;">
                <children>
-                  <TextField fx:id="placeName" layoutX="13.0" layoutY="88.0" prefHeight="30.0" prefWidth="273.0" promptText="place name" />
-                  <AnchorPane layoutY="32.0" prefHeight="34.0" prefWidth="301.0" style="-fx-background-color: #E6E6FA;">
+                  <TextField fx:id="placeName" layoutX="90.0" layoutY="125.0" prefHeight="30.0" prefWidth="273.0" promptText="place name" />
+                  <AnchorPane layoutX="77.0" layoutY="69.0" prefHeight="34.0" prefWidth="291.0" style="-fx-background-color: #E6E6FA;">
                      <children>
                         <Label layoutX="96.0" layoutY="7.0" text="Locate Place" textFill="MEDIUMPURPLE">
                            <font>
@@ -22,18 +22,18 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="SearchBut" layoutX="104.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" text="Search" textFill="MEDIUMPURPLE">
+                  <Button fx:id="SearchBut" layoutX="181.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" text="Search" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="13.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="City" layoutX="13.0" layoutY="131.0" prefHeight="30.0" prefWidth="273.0" promptText="city" />
-                  <Button fx:id="LogoutBut" layoutX="172.0" layoutY="231.0" mnemonicParsing="false" onAction="#LogoutUser" prefHeight="30.0" prefWidth="108.0" text="Logout" textFill="MEDIUMPURPLE">
+                  <TextField fx:id="City" layoutX="90.0" layoutY="168.0" prefHeight="30.0" prefWidth="273.0" promptText="city" />
+                  <Button fx:id="LogoutBut" layoutX="249.0" layoutY="268.0" mnemonicParsing="false" onAction="#LogoutUser" prefHeight="30.0" prefWidth="108.0" text="Logout" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SendBackBut" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" prefHeight="30.0" prefWidth="147.0" text="Back to previous page" textFill="MEDIUMPURPLE">
+                  <Button fx:id="SendBackBut" layoutX="91.0" layoutY="268.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" prefHeight="30.0" prefWidth="147.0" text="Back to previous page" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>

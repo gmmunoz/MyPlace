@@ -14,25 +14,25 @@
             <AnchorPane layoutX="10.0" layoutY="10.0" />
             <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="375.0" prefWidth="764.0">
                <children>
-                  <AnchorPane fx:id="backgroundRoot2" layoutX="-14.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="778.0" style="-fx-background-color: #311a95;">
+                  <AnchorPane fx:id="backgroundRoot2" layoutX="-14.0" layoutY="-20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="847.0" style="-fx-background-color: #311a95;">
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="18.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../MyPlace%20copy.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="LogoutBut" layoutX="707.0" layoutY="356.0" mnemonicParsing="false" onAction="#LogoutUser" text="Logout" textFill="MEDIUMPURPLE">
+                        <Button fx:id="LogoutBut" layoutX="738.0" layoutY="372.0" mnemonicParsing="false" onAction="#LogoutUser" text="Logout" textFill="MEDIUMPURPLE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="SendBackBut" layoutX="549.0" layoutY="356.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" text="Back to previous page" textFill="MEDIUMPURPLE">
+                        <Button fx:id="SendBackBut" layoutX="580.0" layoutY="372.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" text="Back to previous page" textFill="MEDIUMPURPLE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
                         </Button>
-                        <ComboBox fx:id="MatchesList" layoutX="33.0" layoutY="81.0" prefHeight="27.0" prefWidth="712.0" />
-                        <Button fx:id="addPageBut" layoutX="461.0" layoutY="356.0" mnemonicParsing="false" onAction="#addPlacetoDB" text="Add Place" textFill="MEDIUMPURPLE">
+                        <ComboBox fx:id="MatchesList" layoutX="64.0" layoutY="113.0" prefHeight="27.0" prefWidth="712.0" />
+                        <Button fx:id="addPageBut" layoutX="492.0" layoutY="372.0" mnemonicParsing="false" onAction="#addPlacetoDB" text="Add Place" textFill="MEDIUMPURPLE">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="12.0" />
                            </font>
