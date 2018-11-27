@@ -54,11 +54,28 @@ public class ForgotPwdController {
 		 SecQbox2.setItems(questionList2);
     }
     
+    private DataConnection con = new DataConnection();
+    
     @FXML
-    void handleForgotBut(ActionEvent event) {
+    void handleForgotBut(ActionEvent event) throws Exception {
     	//check DB to see if username & answer to security question exist, if yes --> show pwd
     	
+    	String user = userName.getText().trim();
+    	String q1_answer = answer1.getText().trim();
+    	String q2_answer = answer2.getText().trim();
     	
+    	if (con.securityQuestionCheck(user, q1_answer, q2_answer).equals("fieldsBlank")) {
+    		System.out.println("You cannot leave fields blank.");
+    	}
+    	
+    	else if (con.securityQuestionCheck(user, q1_answer, q2_answer).equals("noMatchingAccount")) {
+    		System.out.println("No matching account was found");
+    	}
+    	
+    	else {
+    		String retrieved_pass = con.securityQuestionCheck(user, q1_answer, q2_answer);
+    		System.out.println(retrieved_pass);
+    	}
     	
     	//return to login page			
     	System.out.println("Retrieve Password!");    			    		 		  		
