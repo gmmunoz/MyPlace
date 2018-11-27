@@ -59,12 +59,13 @@ public class SearchPlace_Controller {
     		for(int i = 0; i< searchPlaces.size(); i++) {
     			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
     			stringPlaces.add(entry);
+    			System.out.println("This is an entry: " + entry);
     		} 
     	    MatchesList.setValue("Potential Matches");
     		MatchesList.setItems(data);
     	}
     	catch(Exception e) {
-    		System.out.println("An error occured while searching!");
+    		System.out.println(e);
     	}
 		return stringPlaces;
     }
