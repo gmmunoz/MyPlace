@@ -24,8 +24,8 @@ public class PlaceSearch {
 	
 	private String place_name;
 	private String city;
-	private String foursquare_id = "YF1RC14OTL1V3HOKOWRRYL4XNSHD2ZLBBLIXBNUONLNPM40J";
-	private String foursquare_secret = "CXYEIKYBNRQBTS2JIBSO4OG1QL5YNPMWX01SLHMGXE3ABVJB";
+	private String foursquare_id = "1FFZZL5MNNBG2KJCB0H2UTN554BZOQXY4CHUTARLAL5WMJTT";
+	private String foursquare_secret = "HMVC3IMTTWCXRLXBENBPXXBMXKJBTMXA5HFJVMWJJ3ZBHNOZ";
 	private String v = "20181122";
 	private DataConnection dataConn = null;
 
@@ -87,7 +87,7 @@ public class PlaceSearch {
 		    	fullAddress = fullAddress + address_line;
 		    }
 	    	
-	    	URL venue_url = new URL("https://api.foursquare.com/v2/venues/" + venue_id + "/similar" + "?v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret);
+	    	/*URL venue_url = new URL("https://api.foursquare.com/v2/venues/" + venue_id + "/similar" + "?v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret);
 	    	HttpURLConnection venue_con = (HttpURLConnection) venue_url.openConnection();
 	    	venue_con.setRequestMethod("GET");
 	    	venue_con.connect();
@@ -116,9 +116,9 @@ public class PlaceSearch {
 		    JSONObject simVen = (JSONObject) response.get("similarVenues");
 		    JSONArray simVenItems = (JSONArray) simVen.get("items");
 		    
-		    //System.out.println(similarVenues);
+		    //System.out.println(similarVenues);*/
 		    
-	    	Place new_place = new Place(name, fullAddress, simVenItems);
+	    	Place new_place = new Place(name, fullAddress);
 	    	
 	    	locationList.add(new_place);
 	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);

@@ -69,9 +69,9 @@ public class Matches_Controller {
     }
 
     public ArrayList<String> initialize() throws Exception {
-    	SearchPlace_Controller spController = new SearchPlace_Controller();
-    	System.out.println("this is from matches " + spController.getName());
-    	PlaceSearch searchResults = new PlaceSearch(spController.getName(), spController.getCity());
+    	//SearchPlace_Controller spController = new SearchPlace_Controller();
+    	//System.out.println("this is from matches " + spController.getName());
+    	PlaceSearch searchResults = new PlaceSearch("pizza", "Chicago");
     	ArrayList<Place> searchPlaces = searchResults.getResults();
     	try {
     		for(int i = 0; i< searchPlaces.size(); i++) {
