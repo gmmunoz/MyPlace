@@ -20,24 +20,30 @@ public class SearchPlace_Controller {
 	
 	ArrayList<String> stringPlaces = new ArrayList<String>();
 	ObservableList<String> data;
-
+	
 	public SearchPlace_Controller() throws Exception {
 		initialize();
-		data = FXCollections.observableArrayList(stringPlaces);
+		data = FXCollections.observableList(stringPlaces);
 	}
+	
+	@FXML
+    private AnchorPane backgroundRoot;
 
     @FXML
-    private AnchorPane backgroundRoot;
+    private AnchorPane backgroundRoot1;
+
+    @FXML
+    private AnchorPane backgroundRoot2;
 
     @FXML
     private TextField placeName;
 
     @FXML
-    private Button SearchBut;
+    private AnchorPane backgroundRoot3;
 
     @FXML
     private TextField City;
-    
+
     @FXML
     private Button LogoutBut;
 
@@ -47,13 +53,17 @@ public class SearchPlace_Controller {
     @FXML
     private ComboBox<String> MatchesList;
 
+    @FXML
+    private Button SearchBut;
+	
+
     public ArrayList<String> initialize() throws Exception {
     	System.out.println("this is from matches " + name + " "+ city);
     	
     	PlaceSearch searchResults = new PlaceSearch(name,city);
     	ArrayList<Place> searchPlaces = searchResults.getResults();
     	
-    	System.out.println("HELLO: " + searchResults.getResults());
+    	System.out.println("OKAY LETS GO: " + searchPlaces);
     	
     	try {
     		for(int i = 0; i< searchPlaces.size(); i++) {
@@ -98,6 +108,7 @@ public class SearchPlace_Controller {
     	}
     	name = placeName.getText();
     	city = City.getText();
+<<<<<<< HEAD
     	//both fields are filled, checking for special characters
     	if(!isValid(name) || !isValid(city)) {
     		System.out.println("Please enter valid entries!");
@@ -105,6 +116,8 @@ public class SearchPlace_Controller {
     	}
 //    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
 //		backgroundRoot.getChildren().setAll(pane);
+=======
+>>>>>>> fda17f65c22a1a48b21b2bb94a273d9e957c0e52
     	System.out.println("this is name " + name + " " + city);
     	return initialize();
     }
