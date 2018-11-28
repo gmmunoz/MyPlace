@@ -12,32 +12,32 @@
 <AnchorPane prefHeight="267.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Options_Controller">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" />
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="431.0" prefWidth="526.0">
+      <AnchorPane fx:id="backgroundRoot2" layoutX="10.0" layoutY="10.0" prefHeight="431.0" prefWidth="526.0">
          <children>
-            <AnchorPane fx:id="backgroundRoot" layoutX="-14.0" layoutY="-23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="540.0" style="-fx-background-color: #311a95;">
+            <AnchorPane fx:id="backgroundRoot" layoutX="-14.0" layoutY="-23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="621.0" style="-fx-background-color: #311a95;">
                <children>
                   <ButtonBar layoutX="471.0" layoutY="327.0" prefHeight="40.0" prefWidth="200.0" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="69.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../MyPlace%20copy.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="LogoutBut" layoutX="472.0" layoutY="414.0" mnemonicParsing="false" onAction="#LogoutUser" text="Logout" textFill="MEDIUMPURPLE">
+                  <Button fx:id="LogoutBut" layoutX="510.0" layoutY="447.0" mnemonicParsing="false" onAction="#LogoutUser" text="Logout" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SendBackBut" layoutX="314.0" layoutY="414.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" text="Back to previous page" textFill="MEDIUMPURPLE">
+                  <Button fx:id="SendBackBut" layoutX="352.0" layoutY="447.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" text="Back to previous page" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="AddBut" layoutX="481.0" layoutY="50.0" mnemonicParsing="false" onAction="#AddPlace" text="+" textFill="MEDIUMPURPLE">
+                  <Button fx:id="AddBut" layoutX="519.0" layoutY="83.0" mnemonicParsing="false" onAction="#AddPlace" text="+" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </Button>
-                  <TableView fx:id="PinnedPlaces" layoutX="31.0" layoutY="103.0" prefHeight="296.0" prefWidth="481.0">
+                  <TableView fx:id="PinnedPlaces" layoutX="69.0" layoutY="136.0" prefHeight="296.0" prefWidth="481.0">
                     <columns>
                       <TableColumn fx:id="PlaceNameCol" prefWidth="92.0" text="Place Name" />
                       <TableColumn fx:id="AddressCol" prefWidth="73.0" text="Address" />
