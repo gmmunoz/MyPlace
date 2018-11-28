@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -36,6 +37,29 @@ public class PlaceSearch_Test {
 		}
 		
 	}
+	
+	/* invalid location*/
+	@Test
+	void results_InvalidCity() {
+		final String search = "";
+		final String invalid_City = "test";
+		
+		PlaceSearch invalidCity = new PlaceSearch(search, invalid_City); 
+		assertEquals(invalidCity.getResults().size(), 0); 
+		
+	}
+	
+	/* city with a space in its name, i.e. New York City */
+	@Test
+	void results_Space() {
+		final String search = "";
+		final String space_City = "New York City"; 
+		
+		PlaceSearch spaceCity = new PlaceSearch(search, space_City); 
+		assertTrue(spaceCity.getResults().size() > 0); 
+		
+	}
+	
 	
 	/* Misspelled search field -- should still return values */
 	@Test

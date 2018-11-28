@@ -44,8 +44,8 @@ public class Place {
 		return address;
 	}
 	
-	public JSONArray getSimVenues() {
+	/*public JSONArray getSimVenues() {
 		return similarVenues; 
-	}
+	}*/
 
 }
