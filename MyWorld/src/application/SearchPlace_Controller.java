@@ -65,6 +65,7 @@ public class SearchPlace_Controller {
     @FXML
     void AddPlaceYBtoDB(ActionEvent event) throws IOException {
     	String selected = MatchesList.getSelectionModel().getSelectedItem().toString();
+    	MatchesList.setValue(selected);
     	System.out.println("please work " + selected);
     	//dcon.addLocation(selected, user, 1);
     	System.out.println("Location has been added!");
@@ -117,17 +118,19 @@ public class SearchPlace_Controller {
     //send to page with possible matches
     @FXML
     ArrayList<String> handleSearch(ActionEvent event) throws Exception {
+    	SearchInput check = new SearchInput();
     	//check for fields being filled in 
-    	if(placeName.getText().trim().isEmpty() || City.getText().trim().isEmpty()) {
-    		System.out.println("Please fill in both fields!");
+    	boolean checking = check.CheckBlankFieldsFilled(placeName.getText().trim(), City.getText().trim()); 
+    	if(checking)
+    	{
     		return null;
     	}
     	name = placeName.getText();
     	city = City.getText();
 
     	//both fields are filled, checking for special characters
-    	if(!isValid(name) || !isValid(city)) {
-    		System.out.println("Please enter valid entries!");
+    	boolean checking2 = check.CheckCharacters(name, city);
+    	if(checking2) {
     		return null;
     	}
 //    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
