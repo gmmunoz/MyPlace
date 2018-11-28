@@ -60,6 +60,7 @@ class CreateAccount_Test {
 		assertEquals(usernameAttempt, dataConnection.deleteUser(usernameAttempt));
 		assertFalse(dataConnection.userExists(usernameAttempt));
 		
+		
 		dataConnection.close(); 
 	}
 

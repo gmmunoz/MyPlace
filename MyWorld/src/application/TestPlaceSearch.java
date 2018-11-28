@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TestPlaceSearch {
 	
 	public static void main(String[] args) throws Exception {
-		PlaceSearch test = new PlaceSearch("pizza", "Chichago");
+		PlaceSearch test = new PlaceSearch("", "Chicagho");
 		
 		ArrayList<Place> search_results = test.getResults();
 		
