@@ -131,3 +131,4 @@ public class PlaceSearch {
 	    return locationList;
 	}
 }
+>>>>>>> be7ad1b17cb476ffaf439acd2b20879aef226a05

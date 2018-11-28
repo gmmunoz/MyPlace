@@ -5,7 +5,8 @@ public class SearchInput {
 		
 	}
 	//checks if any field is left blank in search
-	public boolean CheckBlankFieldsFilled(String firstField, String secondField) throws Exception {
+	
+	public boolean CheckBlankFields(String firstField, String secondField) throws Exception {
 		try {
 			if(firstField.isEmpty() || secondField.isEmpty()) {
 				System.out.println("Please fill in both fields!");
@@ -24,6 +25,7 @@ public class SearchInput {
 	//FourSquare database
 	public boolean CheckCharacters(String firstField, String secondField) throws Exception{
 		try {
+			//at least one input is not valid and contains special characters
 			if(!isValid(firstField) || !isValid(secondField)) {
 				System.out.println("Please enter valid entries!");
 				return true;
@@ -36,6 +38,20 @@ public class SearchInput {
 		//true means that at least one field is left blank
 		//false means that both fields (city and name) are filled in
 	}
+	
+	public boolean OKCheck(String name, String city) throws Exception {
+		try {
+			if(!(CheckBlankFields(name, city)) && !(CheckCharacters(name, city))) {
+				System.out.println("Valid name and city");
+				return true;
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Invalid name and/or city");
+		}
+		return false;
+	}
+	
 	public boolean isValid(String input) {
 		return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
 	}
