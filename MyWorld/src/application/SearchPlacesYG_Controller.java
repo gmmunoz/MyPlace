@@ -143,15 +143,23 @@ public class SearchPlacesYG_Controller {
 	    	}
 	    	name = placeName.getText();
 	    	city = City.getText();
+	    	
 
 	    	//both fields are filled, checking for special characters
 	    	if(!isValid(name) || !isValid(city)) {
 	    		System.out.println("Please enter valid entries!");
 	    		return null;
 	    	}
+	    	
+	    	else if (!(dcon.isValidCity(city))) {
+	    		System.out.println("Please enter a valid city (we only support the 50 biggest cities in the US)");
+	    		return null;
+	    	}
 	    
-	    	System.out.println("this is name " + name + " " + city);
-	    	return initialize();
+	    	else {
+	    		System.out.println("this is name " + name + " " + city);
+	    		return initialize();
+	    	}
 	    }
 	    
 	}
