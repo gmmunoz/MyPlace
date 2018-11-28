@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 import application.DataConnection;
@@ -62,7 +63,7 @@ public class AddLocation_Test {
 	
 	/* deleteLocation attempts to remove non-existing place from database */
 	@Test
-	void deleteLocation_invalid() {
+	void deleteLocation_invalid() throws Exception {
 		final String locationINVALID_Test = "testINVALID";
 		
 		Place place = new Place(locationINVALID_Test, locationINVALID_Test);
@@ -99,4 +100,4 @@ public class AddLocation_Test {
 		
 	}
 	
-}
+
