@@ -79,8 +79,8 @@ public class SearchPlace_Controller {
     		System.out.println("Please input username!");
     		
     	} else {
-    		dcon.addLocation(index, user, 2);
-	    	if (dcon.placeInAccount(user, index.getPlaceName(), 2) == true) {
+    		dcon.addLocation(index, user, 1);
+	    	if (dcon.placeInAccount(user, index.getPlaceName(), 1) == true) {
 		    	System.out.println("Location has been added!");
 		    	
 		    	//Send back to main framework
