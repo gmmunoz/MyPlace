@@ -111,8 +111,6 @@ public class SearchPlace_Controller {
     			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
     			backgroundRoot.getChildren().setAll(pane);
     	    }
-
-
     //handle search --> integrate with API
     //send to page with possible matches
     @FXML
@@ -149,6 +147,4 @@ public class SearchPlace_Controller {
     public String getCity() {
     	return this.city;
     }
-
-    
 }

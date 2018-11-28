@@ -45,6 +45,7 @@ public class AddLocation_Test {
 		
 		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
 		
+		dataConnection.deleteUser(userTest);
 		dataConnection.close();
 	}
 	
@@ -53,6 +54,11 @@ public class AddLocation_Test {
 	@Test
 	void deleteLocation_test() throws Exception {
 		dataConnection = new DataConnection(); 
+		
+		if(dataConnection.userExists(userTest)) {
+			dataConnection.deleteUser(userTest); 
+		}
+		createAccount(userTest, userPass); 
 		
 		final String locationNameTest = "testName";
 		final String locationAddressTest = "testAddress";
@@ -63,6 +69,7 @@ public class AddLocation_Test {
 		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
 		assertFalse(dataConnection.placeInAccount(userTest, locationNameTest, 0)); 
 		
+		dataConnection.deleteUser(userTest);
 		dataConnection.close();
 			
 	}
@@ -73,6 +80,11 @@ public class AddLocation_Test {
 	void deleteLocation_invalid() throws Exception {
 		dataConnection = new DataConnection(); 
 		
+		if(dataConnection.userExists(userTest)) {
+			dataConnection.deleteUser(userTest); 
+		}
+		createAccount(userTest, userPass); 
+		
 		final String locationINVALID_Test = "testINVALID";
 		
 		Place place = new Place(locationINVALID_Test, locationINVALID_Test);
@@ -82,6 +94,7 @@ public class AddLocation_Test {
 		
 		assertFalse(dataConnection.placeInAccount(userTest, locationINVALID_Test, 0)); 
 		
+		dataConnection.deleteUser(userTest);
 		dataConnection.close();
 		
 	}
