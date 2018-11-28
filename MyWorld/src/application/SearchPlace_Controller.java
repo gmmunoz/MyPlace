@@ -24,7 +24,7 @@ public class SearchPlace_Controller {
 	public SearchPlace_Controller() throws Exception {
 		dcon = new DataConnection();
 		initialize();
-		data = FXCollections.observableList(stringPlaces);
+		data = FXCollections.observableArrayList();
 	}
 	
 	@FXML
@@ -85,13 +85,13 @@ public class SearchPlace_Controller {
     		for(int i = 0; i< searchPlaces.size(); i++) {
     			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
     			stringPlaces.add(entry);
-    			System.out.println("This is an entry: " + entry);
+    			data.add(entry);
     		} 
     	    MatchesList.setValue("Select Potential Match");
     		MatchesList.setItems(data);
     	}
     	catch(Exception e) {
-    		System.out.println(e);
+    		System.out.println("An error occured while searching!");
     	}
 		return stringPlaces;
     }
@@ -113,8 +113,8 @@ public class SearchPlace_Controller {
 	public boolean isValid(String input) {
 		return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
 	}
+	
     //handle search --> integrate with API
-    //send to page with possible matches
     @FXML
     ArrayList<String> handleSearch(ActionEvent event) throws Exception {
     	//check for fields being filled in 
@@ -130,21 +130,10 @@ public class SearchPlace_Controller {
     		System.out.println("Please enter valid entries!");
     		return null;
     	}
-//    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Matches.fxml"));
-//		backgroundRoot.getChildren().setAll(pane);
 
     	System.out.println("this is name " + name + " " + city);
     	return initialize();
     }
-    
-    public String getName() {
-    	
-    	return this.name;
-    }
-    
-    public String getCity() {
-    	return this.city;
-    }
-
+  
     
 }

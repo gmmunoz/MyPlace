@@ -23,8 +23,9 @@ public class SearchPlacesYG_Controller {
 		
 		public SearchPlacesYG_Controller() throws Exception {
 			initialize();
-			data = FXCollections.observableList(stringPlaces);
+			data = FXCollections.observableArrayList();			
 		}
+		
 		@FXML
 	    private AnchorPane backgroundRootRoot;
 
@@ -55,20 +56,31 @@ public class SearchPlacesYG_Controller {
 	    @FXML
 	    private Button SendBackBut;
 
-	    
-	    
+	    @FXML
+	    private Button addBut;
+
+	    private DataConnection dcon = null;
+
+	    @FXML
+	    void AddPlaceYBtoDB(ActionEvent event) throws IOException {
+	    	String selected = MatchesList.getSelectionModel().getSelectedItem().toString();
+	    	System.out.println("please work " + selected);
+	    	//dcon.addLocation(selected, user, 1);
+	    	System.out.println("Location has been added!");
+	    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
+			backgroundRoot.getChildren().setAll(pane);
+	    }
+
+	    	    
 	    public ArrayList<String> initialize() throws Exception {
-	    	System.out.println("this is from matches " + name + " "+ city);
-	    	
 	    	PlaceSearch searchResults = new PlaceSearch(name,city);
 	    	ArrayList<Place> searchPlaces = searchResults.getResults();
-	    	
-	    	System.out.println("OKAY LETS GO: " + searchPlaces);
-	    	
+	    		    	
 	    	try {
 	    		for(int i = 0; i< searchPlaces.size(); i++) {
 	    			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
 	    			stringPlaces.add(entry);
+	    			data.add(entry);
 	    		} 
 	    	    MatchesList.setValue("Potential Matches");
 	    		MatchesList.setItems(data);
@@ -78,7 +90,8 @@ public class SearchPlacesYG_Controller {
 	    	}
 			return stringPlaces;
 	    }
-	    
+
+	    	
 	    @FXML
 	    void LogoutUser(ActionEvent event) {
 	    	System.out.println("You have officially logged out!");
@@ -93,23 +106,29 @@ public class SearchPlacesYG_Controller {
 	    			backgroundRootRoot.getChildren().setAll(pane);
 	    	    }
 
+	    public boolean isValid(String input) {
+			return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
+		}
+	    
 	    //handle search --> integrate with API
-	    //send to page with possible matches
 	    @FXML
 	    ArrayList<String> handleSearch(ActionEvent event) throws Exception {
+	    	//check for fields being filled in 
+	    	if(placeName.getText().trim().isEmpty() || City.getText().trim().isEmpty()) {
+	    		System.out.println("Please fill in both fields!");
+	    		return null;
+	    	}
 	    	name = placeName.getText();
 	    	city = City.getText();
+
+	    	//both fields are filled, checking for special characters
+	    	if(!isValid(name) || !isValid(city)) {
+	    		System.out.println("Please enter valid entries!");
+	    		return null;
+	    	}
+	    
 	    	System.out.println("this is name " + name + " " + city);
 	    	return initialize();
-	    }
-	    
-	    public String getName() {
-	    	
-	    	return this.name;
-	    }
-	    
-	    public String getCity() {
-	    	return this.city;
 	    }
 	    
 	}
