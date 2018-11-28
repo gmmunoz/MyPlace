@@ -34,7 +34,7 @@
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="MatchesList" layoutX="59.0" layoutY="334.0" prefHeight="27.0" prefWidth="712.0" />
+                  <ComboBox fx:id="MatchesList" layoutX="59.0" layoutY="350.0" prefHeight="27.0" prefWidth="712.0" />
                   <Button fx:id="SearchBut" layoutX="163.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" text="Search" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="13.0" />
@@ -45,6 +45,7 @@
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="userName" layoutX="59.0" layoutY="316.0" promptText="username" />
                </children>
             </AnchorPane>
          </children>

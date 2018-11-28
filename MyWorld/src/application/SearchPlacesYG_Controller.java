@@ -17,13 +17,15 @@ import javafx.stage.Stage;
 public class SearchPlacesYG_Controller {
 		String name;
 		String city;
+		String user;
 
 		ArrayList<String> stringPlaces = new ArrayList<String>();
 		ObservableList<String> data;
 		
 		public SearchPlacesYG_Controller() throws Exception {
 			initialize();
-			data = FXCollections.observableArrayList();			
+			data = FXCollections.observableArrayList();
+			dcon = new DataConnection();
 		}
 		
 		@FXML
@@ -40,6 +42,9 @@ public class SearchPlacesYG_Controller {
 
 	    @FXML
 	    private TextField placeName;
+	    
+	    @FXML
+	    private TextField userName;
 
 	    @FXML
 	    private AnchorPane backgroundRoot2;
@@ -62,13 +67,31 @@ public class SearchPlacesYG_Controller {
 	    private DataConnection dcon = null;
 
 	    @FXML
-	    void AddPlaceYBtoDB(ActionEvent event) throws IOException {
-	    	String selected = MatchesList.getSelectionModel().getSelectedItem().toString();
-	    	System.out.println("please work " + selected);
-	    	//dcon.addLocation(selected, user, 1);
-	    	System.out.println("Location has been added!");
-	    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
-			backgroundRoot.getChildren().setAll(pane);
+	    void AddPlaceYBtoDB(ActionEvent event) throws Exception {
+	    	int selectedIndex = MatchesList.getSelectionModel().getSelectedIndex();
+	    	
+	    	PlaceSearch searchResults = new PlaceSearch(name,city);
+	    	Place index = searchResults.getResults().get(selectedIndex);
+	    	
+	    	//get username
+	    	user = userName.getText();
+	    	if (user == null) {
+	    		System.out.println("Please input username!");
+	    		
+	    	} else {
+	    		dcon.addLocation(index, user, 2);
+		    	if (dcon.placeInAccount(user, index.getPlaceName(), 2) == true) {
+			    	System.out.println("Location has been added!");
+			    	
+			    	//Send back to main framework
+			    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
+					backgroundRoot.getChildren().setAll(pane);
+			    	
+		    	} else {
+		    		System.out.println("Error adding location!");
+		    	}
+	    	}
+	    	dcon.close();
 	    }
 
 	    	    
