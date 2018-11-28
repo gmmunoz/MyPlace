@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 public class SearchPlace_Controller {
 	String name;
 	String city;
+	String user;
 	
 	ArrayList<String> stringPlaces = new ArrayList<String>();
 	ObservableList<String> data;
@@ -50,6 +51,9 @@ public class SearchPlace_Controller {
 
     @FXML
     private Button SendBackBut;
+    
+    @FXML
+    private TextField userName;
 
     @FXML
     private ComboBox<String> MatchesList;
@@ -63,24 +67,38 @@ public class SearchPlace_Controller {
     private DataConnection dcon = null;
     
     @FXML
-    void AddPlaceYBtoDB(ActionEvent event) throws IOException {
-    	String selected = MatchesList.getSelectionModel().getSelectedItem().toString();
-    	System.out.println("please work " + selected);
-    	//dcon.addLocation(selected, user, 1);
-    	System.out.println("Location has been added!");
-    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
-		backgroundRoot.getChildren().setAll(pane);
+    void AddPlaceYBtoDB(ActionEvent event) throws Exception {
+    	int selectedIndex = MatchesList.getSelectionModel().getSelectedIndex();
+    	
+    	PlaceSearch searchResults = new PlaceSearch(name,city);
+    	Place index = searchResults.getResults().get(selectedIndex);
+    	
+    	//get username
+    	user = userName.getText();
+    	if (user == null) {
+    		System.out.println("Please input username!");
+    		
+    	} else {
+    		dcon.addLocation(index, user, 2);
+	    	if (dcon.placeInAccount(user, index.getPlaceName(), 2) == true) {
+		    	System.out.println("Location has been added!");
+		    	
+		    	//Send back to main framework
+		    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
+				backgroundRoot.getChildren().setAll(pane);
+		    	
+	    	} else {
+	    		System.out.println("Error adding location!");
+	    	}
+    	}
+    	dcon.close();
     }
 	
 
-    public ArrayList<String> initialize() throws Exception {
-    	//System.out.println("this is from matches " + name + " "+ city);
-    	
+    public ArrayList<String> initialize() throws Exception {    	
     	PlaceSearch searchResults = new PlaceSearch(name,city);
     	ArrayList<Place> searchPlaces = searchResults.getResults();
-    	
-    	//System.out.println("OKAY LETS GO: " + searchPlaces);
-    	
+    	    	
     	try {
     		for(int i = 0; i< searchPlaces.size(); i++) {
     			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
@@ -135,5 +153,4 @@ public class SearchPlace_Controller {
     	return initialize();
     }
   
-    
 }
