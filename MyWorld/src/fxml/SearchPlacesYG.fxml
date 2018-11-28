@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="217.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchPlacesYG_Controller">
+<AnchorPane fx:id="backgroundRootRoot" prefHeight="217.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchPlacesYG_Controller">
    <children>
-      <AnchorPane layoutY="5.0">
+      <AnchorPane fx:id="backgroundRoot" layoutY="5.0">
          <children>
-            <AnchorPane fx:id="backgroundRoot" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="301.0" style="-fx-background-color: #311a95;">
+            <AnchorPane fx:id="backgroundRoot1" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="896.0" style="-fx-background-color: #311a95;">
                <children>
-                  <TextField fx:id="placeName" layoutX="13.0" layoutY="88.0" prefHeight="30.0" prefWidth="273.0" promptText="place name" />
-                  <AnchorPane layoutY="32.0" prefHeight="34.0" prefWidth="301.0" style="-fx-background-color: #E6E6FA;">
+                  <ComboBox fx:id="MatchesList" layoutX="69.0" layoutY="364.0" prefHeight="27.0" prefWidth="712.0" />
+                  <TextField fx:id="placeName" layoutX="90.0" layoutY="125.0" prefHeight="30.0" prefWidth="273.0" promptText="place name" />
+                  <AnchorPane fx:id="backgroundRoot2" layoutX="77.0" layoutY="69.0" prefHeight="34.0" prefWidth="291.0" style="-fx-background-color: #E6E6FA;">
                      <children>
                         <Label layoutX="96.0" layoutY="7.0" text="Locate Place" textFill="MEDIUMPURPLE">
                            <font>
@@ -22,18 +24,23 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="SearchBut" layoutX="104.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" text="Search" textFill="MEDIUMPURPLE">
+                  <Button fx:id="SearchBut" layoutX="181.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" text="Search" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="13.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="City" layoutX="13.0" layoutY="131.0" prefHeight="30.0" prefWidth="273.0" promptText="city" />
-                  <Button fx:id="LogoutBut" layoutX="172.0" layoutY="231.0" mnemonicParsing="false" onAction="#LogoutUser" prefHeight="30.0" prefWidth="108.0" text="Logout" textFill="MEDIUMPURPLE">
+                  <TextField fx:id="City" layoutX="90.0" layoutY="168.0" prefHeight="30.0" prefWidth="273.0" promptText="city" />
+                  <Button fx:id="LogoutBut" layoutX="249.0" layoutY="268.0" mnemonicParsing="false" onAction="#LogoutUser" prefHeight="30.0" prefWidth="108.0" text="Logout" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SendBackBut" layoutX="14.0" layoutY="231.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" prefHeight="30.0" prefWidth="147.0" text="Back to previous page" textFill="MEDIUMPURPLE">
+                  <Button fx:id="SendBackBut" layoutX="91.0" layoutY="268.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" prefHeight="30.0" prefWidth="147.0" text="Back to previous page" textFill="MEDIUMPURPLE">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addBut" layoutX="687.0" layoutY="517.0" mnemonicParsing="false" onAction="#AddPlaceYBtoDB" prefHeight="30.0" prefWidth="94.0" text="Add Place" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>

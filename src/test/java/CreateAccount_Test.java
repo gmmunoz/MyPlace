@@ -49,7 +49,7 @@ class CreateAccount_Test {
 		//remove from database
 		assertEquals(usernameAttempt, dataConnection.deleteUser(usernameAttempt));
 		assertFalse(dataConnection.userExists(usernameAttempt));
-	
+		
 	}
 
 }

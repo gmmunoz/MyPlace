@@ -51,10 +51,6 @@ public class MyController implements Initializable {
 	    @FXML
 	    private Button signupBut;
 
-	    /*private Connection con = null;
-	    private PreparedStatement ps = null;
-		private ResultSet rs = null;*/
-	    
 	    private DataConnection dcon = null;
 
 		public MyController() {

@@ -38,12 +38,22 @@ public class PlaceSearch {
 		dataConn = new DataConnection();
 	}
 	
+	public boolean isValid(String input) {
+		return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
+	}
+	
 	public ArrayList<Place> getResults() throws Exception {
-			
-		URL url = new URL("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret);
+		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
+		URL url = new URL(urlString);
 	    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-	    con.setRequestMethod("GET");
-	    con.connect();
+	    try {
+	    	con.setRequestMethod("GET");
+	    	con.connect();
+	    }
+	    catch(Exception ResourceNotFound) {
+	    	System.out.println(ResourceNotFound);
+	    	System.out.println("Sorry! Seems like we can't find any places that you're looking for--try another search.");
+	    }
 	    
 	    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	    String inputLine;
