@@ -10,7 +10,7 @@ import application.Place;
 
 public class AddLocation_Test {
 	
-	DataConnection dataConnection = new DataConnection(); 
+	DataConnection dataConnection; 
 	
 	//add dummy user
 	//Name: test Pass: "123"
@@ -24,6 +24,8 @@ public class AddLocation_Test {
 	/* addLocation successfully adds places to database */
 	@Test
 	void addLocation_valid() throws Exception {	
+		dataConnection = new DataConnection(); 
+		
 		if(dataConnection.userExists(userTest)) {
 			dataConnection.deleteUser(userTest); 
 		}
@@ -42,13 +44,16 @@ public class AddLocation_Test {
 		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 0));
 		
 		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
-			
+		
+		dataConnection.close();
 	}
 	
 	
 	/* deleteLocation successfully removes existing place from database */
 	@Test
 	void deleteLocation_test() throws Exception {
+		dataConnection = new DataConnection(); 
+		
 		final String locationNameTest = "testName";
 		final String locationAddressTest = "testAddress";
 		
@@ -57,6 +62,8 @@ public class AddLocation_Test {
 		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 0));
 		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
 		assertFalse(dataConnection.placeInAccount(userTest, locationNameTest, 0)); 
+		
+		dataConnection.close();
 			
 	}
 
@@ -64,12 +71,18 @@ public class AddLocation_Test {
 	/* deleteLocation attempts to remove non-existing place from database */
 	@Test
 	void deleteLocation_invalid() throws Exception {
+		dataConnection = new DataConnection(); 
+		
 		final String locationINVALID_Test = "testINVALID";
 		
 		Place place = new Place(locationINVALID_Test, locationINVALID_Test);
 		assertFalse(dataConnection.placeInAccount(userTest, locationINVALID_Test, 0));
 		
 		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationINVALID_Test); /*COME BACK TO THIS*/
+		
+		assertFalse(dataConnection.placeInAccount(userTest, locationINVALID_Test, 0)); 
+		
+		dataConnection.close();
 		
 	}
 	
