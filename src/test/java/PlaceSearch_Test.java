@@ -40,7 +40,7 @@ public class PlaceSearch_Test {
 	
 	/* invalid location*/
 	@Test
-	void results_InvalidCity() {
+	void results_InvalidCity() throws Exception {
 		final String search = "";
 		final String invalid_City = "test";
 		
@@ -51,7 +51,7 @@ public class PlaceSearch_Test {
 	
 	/* city with a space in its name, i.e. New York City */
 	@Test
-	void results_Space() {
+	void results_Space() throws Exception {
 		final String search = "";
 		final String space_City = "New York City"; 
 		
