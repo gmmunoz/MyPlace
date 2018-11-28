@@ -191,14 +191,8 @@ public class PlaceSearch {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
 	    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-	    try {
-	    	con.setRequestMethod("GET");
-	    	con.connect();
-	    }
-	    catch(Exception ResourceNotFound) {
-	    	System.out.println(ResourceNotFound);
-	    	System.out.println("Sorry! Seems like we can't find any places that you're looking for--try another search.");
-	    }
+	    con.setRequestMethod("GET");
+	    con.connect();
 	    
 	    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	    String inputLine;
