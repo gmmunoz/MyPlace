@@ -38,8 +38,12 @@ public class PlaceSearch {
 		dataConn = new DataConnection();
 	}
 	
-	public boolean isValid(String input) {
-		return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
+	public boolean isValidInput(String input) {
+		return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ) || input.trim().isEmpty();
+	}
+	
+	public boolean isValidInput_City(String city) {
+		return city.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ) && !city.trim().isEmpty();
 	}
 	
 	public ArrayList<Place> getResults() throws Exception {
@@ -131,4 +135,4 @@ public class PlaceSearch {
 	    return locationList;
 	}
 }
->>>>>>> be7ad1b17cb476ffaf439acd2b20879aef226a05
+
