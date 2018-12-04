@@ -12,6 +12,7 @@ public class AddLocation_Test {
 	
 	DataConnection dataConnection; 
 	
+	/* test test test test */
 	//add dummy user
 	//Name: test Pass: "123"
 	final String userTest = "test"; 

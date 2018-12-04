@@ -85,7 +85,7 @@ public class ForgotPassword_Test {
 		
 	}
 	
-	/* test invalid forgotPassword input -- empty field */
+	/* test invalid forgotPassword input -- empty field, should return "fieldsBlank" */
 	@Test
 	void forgotPassword_emptyField() throws Exception {
 		final String username = "test";

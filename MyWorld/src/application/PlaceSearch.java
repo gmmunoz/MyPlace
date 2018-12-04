@@ -46,12 +46,14 @@ public class PlaceSearch {
 		return city.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ) && !city.trim().isEmpty();
 	}
 	
+
 	public ArrayList<Place> getResults() throws Exception {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
 	    HttpURLConnection con = (HttpURLConnection) url.openConnection();
 	    con.setRequestMethod("GET");
 	    con.connect();
+	    
 	    
 	    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	    String inputLine;
@@ -70,8 +72,13 @@ public class PlaceSearch {
 	    Object obj = new JSONParser().parse(new FileReader("output.txt"));
 	    ArrayList<Place> locationList = new ArrayList<>();
 	    JSONObject jsonObject = (JSONObject) obj;
+	    JSONObject meta = (JSONObject) jsonObject.get("meta");
+	    System.out.println("THIS IS META " + meta);
+	    long code = (long) (meta.get("code"));
+	    System.out.println("CODE: " + code);
 	    JSONObject jsonObj = (JSONObject) jsonObject.get("response");
 	    JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
+	    System.out.println("TEST " + jsonArray);
 	    
 	    //System.out.println(jsonObject);
 	    //System.out.println(jsonArray);
