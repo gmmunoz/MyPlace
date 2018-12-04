@@ -93,8 +93,9 @@ public class SearchPlace_Controller {
 	    	} else {
 	    		System.out.println("Error adding location!");
 	    	}
+	    	dcon.close();
     	}
-    	dcon.close();
+    	//dcon.close();
     }
 	
 
@@ -171,5 +172,5 @@ public class SearchPlace_Controller {
     		return initialize();
     	}
     }
-  
+ 
 }

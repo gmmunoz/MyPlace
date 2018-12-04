@@ -21,6 +21,7 @@ public class MainFramework_Controller {
 
     @FXML
     private Button LogoutBut;
+    
 
     @FXML
     void DirectPlacesYB(ActionEvent event) throws IOException {
