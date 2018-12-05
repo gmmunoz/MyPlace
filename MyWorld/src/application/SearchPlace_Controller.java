@@ -128,7 +128,7 @@ public class SearchPlace_Controller {
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws IOException {
     	//now load previous page
-    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
+    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
     			backgroundRoot.getChildren().setAll(pane);
     	    }
 
