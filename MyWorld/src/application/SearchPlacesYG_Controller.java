@@ -151,10 +151,10 @@ public class SearchPlacesYG_Controller {
 	    		return null;
 	    	}
 	    	
-	    	else if (!(dcon.isValidCity(city))) {
+	    	/*else if (!(dcon.isValidCity(city))) {
 	    		System.out.println("Please enter a valid city (we only support the 50 biggest cities in the US)");
 	    		return null;
-	    	}
+	    	}*/
 	    
 	    	else {
 	    		System.out.println("this is name " + name + " " + city);

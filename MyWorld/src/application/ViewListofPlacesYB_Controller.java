@@ -79,6 +79,7 @@ public class ViewListofPlacesYB_Controller {
             }
 
     		//now need to figure out rows situation
+    		System.out.println(rs.next());
             while(rs.next()){
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
