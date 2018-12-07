@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DataConnection {
 	
@@ -125,13 +126,20 @@ public class DataConnection {
 		return location.getPlaceName(); //returns the name of the place that it deleted
 	}
 	
-	public ResultSet loadPlaces(String user, int which_list) throws Exception {
+	public ArrayList<ArrayList<String>> loadPlaces(String user, int which_list) throws Exception {
 		String query = "SELECT place_name, address FROM places WHERE username = ? AND which_tab = ?";
 		PreparedStatement load_places = c.prepareStatement(query);
 		load_places.setString(1, user);
 		load_places.setInt(2, which_list);
 		ResultSet results = load_places.executeQuery();
-		return results;
+		ArrayList<ArrayList<String>> string_results = new ArrayList<>();
+		while (results.next()) {
+			ArrayList<String> this_result = new ArrayList<>();
+			this_result.add(results.getString("place_name"));
+			this_result.add(results.getString("address"));
+			string_results.add(this_result);
+		}
+		return string_results;
 	}
 	
 	public String securityQuestionCheck(String user, String answer1, String answer2) throws Exception {
