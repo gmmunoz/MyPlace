@@ -25,9 +25,8 @@ public class ViewListofPlacesYB_Controller {
 	
 	private DataConnection dcon = null;
 	String user;
-	 @SuppressWarnings("rawtypes")
-	private ObservableList<ObservableList<String>> data;
-	//private ObservableList<> rowData;
+	 
+	private ObservableList<String> data = FXCollections.observableArrayList();
 
 	public ViewListofPlacesYB_Controller() throws Exception{
 		dcon = new DataConnection();
@@ -55,49 +54,39 @@ public class ViewListofPlacesYB_Controller {
     private TextField userName;
     
     
+    @FXML
+    private TableColumn<String, String> columnName;
+
+    @FXML
+    private TableColumn<String, String> columnAddy;
+
+    @FXML
+    private TableColumn<String, String> columnComment;
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    
+    
 	@FXML
     void viewList(ActionEvent event) throws Exception {
     	user = userName.getText();
     	if(user == null) {
     		System.out.println("Please input userName!");
     	} else {
-    		ResultSet rs = dcon.loadPlaces(user,1);
-    		
-    		for(int i =0; i<rs.getMetaData().getColumnCount(); i++) {
-    			final int j = i;
-    			@SuppressWarnings("rawtypes")
-				TableColumn col = new TableColumn<String,String>(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){                    
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {                                                                                              
-                        return new SimpleStringProperty(((List) param.getValue()).get(j).toString());                        
-                    }                    
-                });
-
-                PinnedPlaces.getColumns().addAll(col); 
-                //System.out.println("Column ["+i+"] " + col);
-            }
-
-    		//now need to figure out rows situation
-    		System.out.println(rs.next());
-    		
-            while(rs.next()){
-                //Iterate Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
-                    //Iterate Column
-                    row.add(rs.getString(i));
-                    //System.out.println("Row [" + i +"] added " + row );
-                }
-                System.out.println("Row [1] added "+ row );
-                //data.add(row);    			
-                
-    		} 		
+    		ArrayList<ArrayList<String>> list = dcon.loadPlaces(user,1);
+    		for(int i = 0; i < list.size(); i++ ) {
+        		String name = dcon.loadPlaces(user, 1).get(i).get(0);
+        		//System.out.println(name);
+        		data.add(name);
+    		}
+    		System.out.print(data);
+    		//PinnedPlaces.getItems().addAll(data);
+    		PinnedPlaces.setItems(data);
+    		//PinnedPlaces.set
     	}
-
     	dcon.close();
-    }
+	}
+    		
+
+
 
     @FXML
     void AddPlace(ActionEvent event) throws IOException {
@@ -120,8 +109,5 @@ public class ViewListofPlacesYB_Controller {
     			backgroundRoot.getChildren().setAll(pane);
     }
     
-    public class dataClass{
-    //2 --> places YB
-    }
 
 }
