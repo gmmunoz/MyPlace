@@ -26,7 +26,8 @@ public class ViewListofPlacesYB_Controller {
 	private DataConnection dcon = null;
 	String user;
 	 @SuppressWarnings("rawtypes")
-	private ObservableList<ObservableList> data;
+	private ObservableList<ObservableList<String>> data;
+	//private ObservableList<> rowData;
 
 	public ViewListofPlacesYB_Controller() throws Exception{
 		dcon = new DataConnection();
@@ -62,7 +63,7 @@ public class ViewListofPlacesYB_Controller {
     	if(user == null) {
     		System.out.println("Please input userName!");
     	} else {
-    		ResultSet rs = dcon.loadPlaces(user, 2);
+    		ResultSet rs = dcon.loadPlaces(user,1);
     		
     		for(int i =0; i<rs.getMetaData().getColumnCount(); i++) {
     			final int j = i;
@@ -80,15 +81,18 @@ public class ViewListofPlacesYB_Controller {
 
     		//now need to figure out rows situation
     		System.out.println(rs.next());
+    		
             while(rs.next()){
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
                     //Iterate Column
                     row.add(rs.getString(i));
+                    //System.out.println("Row [" + i +"] added " + row );
                 }
                 System.out.println("Row [1] added "+ row );
-                data.add(row);    			
+                //data.add(row);    			
+                
     		} 		
     	}
 
