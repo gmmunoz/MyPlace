@@ -3,12 +3,15 @@ package application;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -16,10 +19,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ViewListofPlacesYB_Controller {
 	
+	private Stage window;
 	private DataConnection dcon = null;
 
 	public ViewListofPlacesYB_Controller() throws Exception{
@@ -40,7 +45,7 @@ public class ViewListofPlacesYB_Controller {
     private Button AddBut;
 
     @FXML
-    private TableView<Place> PinnedPlaces;
+    private TableView<String> PinnedPlaces;
     
     private ObservableList<Place> data = FXCollections.observableArrayList();
     
@@ -52,28 +57,32 @@ public class ViewListofPlacesYB_Controller {
     
     
     @FXML
-    private TableColumn<Place, String> columnName;
+    private TableColumn<String, String> columnName;
     
     @SuppressWarnings("unchecked")
 	void initialize() throws Exception{
-    	AccountTracker currUser = new AccountTracker();
+    	columnName.setCellValueFactory(c -> new SimpleStringProperty(new String("HELLO")));
+		PinnedPlaces = new TableView<String>();
+		PinnedPlaces.setId("WORKS");
+    	PinnedPlaces.getColumns().addAll(columnName);
+    	/*AccountTracker currUser = new AccountTracker();
     	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
 		for(int i = 0; i < list.size(); i++ ) {
 			String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
 			String address = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(1);
     		data.add(new Place(name,address));
     		System.out.println(name + " " + address);
-		}
-		TableColumn<Place, String> nameColumn = new TableColumn<>("Name");
-		nameColumn.setMinWidth(200);
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		}*/
+		/*columnName = new TableColumn<Place, String>();
+		columnName.setCellValueFactory(new PropertyValueFactory<Place, String>("name"));
 		
-		TableColumn<Place, String> addressColumn = new TableColumn<>("Address");
-		addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+		//TableColumn<Place, String> addressColumn = new TableColumn<>("address");
+		//addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
 		
-		PinnedPlaces = new TableView<>();
+		PinnedPlaces = new TableView<Place>();
 		PinnedPlaces.setItems(data);
-		PinnedPlaces.getColumns().addAll(nameColumn, addressColumn);
+		PinnedPlaces.getColumns().addAll(columnName); */
+		
 //	dcon.close();
     }
     

@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="backgroundRoot" prefHeight="217.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchPlace_Controller">
+<AnchorPane fx:id="backgroundRoot" prefHeight="217.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchPlace_Controller">
    <children>
       <AnchorPane fx:id="backgroundRoot1" layoutY="5.0">
          <children>
             <AnchorPane fx:id="backgroundRoot2" layoutY="-7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="966.0" style="-fx-background-color: #311a95;">
                <children>
-                  <TextField fx:id="placeName" layoutX="72.0" layoutY="130.0" prefHeight="30.0" prefWidth="273.0" promptText="place name" />
+                  <TextField fx:id="placeName" layoutX="72.0" layoutY="130.0" prefHeight="30.0" prefWidth="273.0" promptText="Place Name/Keyword (Ex: Pizza)" />
                   <AnchorPane fx:id="backgroundRoot3" layoutX="59.0" layoutY="74.0" prefHeight="34.0" prefWidth="301.0" style="-fx-background-color: #E6E6FA;">
                      <children>
                         <Label layoutX="96.0" layoutY="7.0" text="Locate Place" textFill="MEDIUMPURPLE">
@@ -23,7 +23,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <TextField fx:id="City" layoutX="72.0" layoutY="173.0" prefHeight="30.0" prefWidth="273.0" promptText="city" />
+                  <TextField fx:id="City" layoutX="72.0" layoutY="173.0" prefHeight="30.0" prefWidth="273.0" promptText="City" />
                   <Button fx:id="LogoutBut" layoutX="231.0" layoutY="273.0" mnemonicParsing="false" onAction="#LogoutUser" prefHeight="30.0" prefWidth="108.0" text="Logout" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />

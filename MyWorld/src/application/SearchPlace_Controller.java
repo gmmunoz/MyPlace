@@ -115,10 +115,6 @@ public class SearchPlace_Controller {
 			System.out.println("An error occured while searching!");
 		}
 		return stringPlaces;
-<<<<<<< HEAD
-=======
-
->>>>>>> 999488b71310381c21bd76b3fddd54c439774526
 	}
 
 	@FXML

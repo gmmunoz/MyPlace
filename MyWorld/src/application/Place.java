@@ -5,8 +5,8 @@ import org.json.simple.JSONObject;
 
 public class Place {
 
-	private String name; 
-	private String address;
+	public String name; 
+	public String address;
 	//private JSONArray similarVenues;
 	
 	

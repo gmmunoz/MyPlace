@@ -112,12 +112,6 @@ public class MyController implements Initializable {
 	    				}
 	    }
 	    
-	    public String getUserLoggedIn() {
-	    	return userLoggedIn;
-	    }
-	    
-	    
-
 	    @FXML
 	    void retrievePwd(ActionEvent event) {
 	    	try {
