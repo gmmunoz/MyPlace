@@ -42,9 +42,6 @@ public class SearchPlacesYG_Controller {
 
 	    @FXML
 	    private TextField placeName;
-	    
-	    @FXML
-	    private TextField userName;
 
 	    @FXML
 	    private AnchorPane backgroundRoot2;
@@ -73,25 +70,19 @@ public class SearchPlacesYG_Controller {
 	    	PlaceSearch searchResults = new PlaceSearch(name,city);
 	    	Place index = searchResults.getResults().get(selectedIndex);
 	    	
-	    	//get username
-	    	user = userName.getText();
-	    	if (user == null) {
-	    		System.out.println("Please input username!");
-	    		
-	    	} else {
-	    		dcon.addLocation(index, user, 2);
-		    	if (dcon.placeInAccount(user, index.getPlaceName(), 2) == true) {
-			    	System.out.println("Location has been added!");
-			    	
-			    	//Send back to main framework
-			    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
-					backgroundRoot.getChildren().setAll(pane);
-			    	
-		    	} else {
-		    		System.out.println("Error adding location!");
-		    	}
-	    	}
-	    	dcon.close();
+	    	AccountTracker currUser = new AccountTracker();	
+			dcon.addLocation(index, currUser.getUser(), 2);	
+			if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 2) == true) {
+				System.out.println("Location has been added!");
+
+				// Send back to main framework
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
+				backgroundRoot.getChildren().setAll(pane);
+			} else {
+				System.out.println("Error adding location!");	
+			}
+			dcon.close();
+			
 	    }
 
 	    	    

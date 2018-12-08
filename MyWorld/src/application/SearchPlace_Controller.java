@@ -53,9 +53,6 @@ public class SearchPlace_Controller {
 	private Button SendBackBut;
 
 	@FXML
-	private TextField userName;
-
-	@FXML
 	private ComboBox<String> MatchesList;
 
 	@FXML
@@ -75,26 +72,18 @@ public class SearchPlace_Controller {
 		PlaceSearch searchResults = new PlaceSearch(name, city);
 		Place index = searchResults.getResults().get(selectedIndex);
 
-		// get username
-		user = userName.getText();
-		if (user == null) {
-			System.out.println("Please input username!");
+		AccountTracker currUser = new AccountTracker();	
+		dcon.addLocation(index, currUser.getUser(), 1);	
+		if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 1) == true) {
+			System.out.println("Location has been added!");
 
+			// Send back to main framework
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
+			backgroundRoot.getChildren().setAll(pane);
 		} else {
-			dcon.addLocation(index, user, 1);
-			if (dcon.placeInAccount(user, index.getPlaceName(), 1) == true) {
-				System.out.println("Location has been added!");
-
-				// Send back to main framework
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
-				backgroundRoot.getChildren().setAll(pane);
-
-			} else {
-				System.out.println("Error adding location!");
-			}
-			dcon.close();
+			System.out.println("Error adding location!");	
 		}
-		// dcon.close();
+		dcon.close();
 	}
 
 	public ArrayList<String> initialize() throws Exception {

@@ -2,8 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,11 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -64,7 +59,6 @@ public class ViewListofPlacesYB_Controller {
 			System.out.println(name);
 		}
 		listNames.setItems(data);	
-
     }
 
     @FXML

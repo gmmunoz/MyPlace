@@ -33,8 +33,8 @@
                   <Image url="@../../../../MyPlace_ASE%202/MyWorld/src/fxml/MyPlace%20copy.png" />
                </image>
             </ImageView>
-            <ListView fx:id="listNames" layoutX="174.0" layoutY="199.0" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="seeListBut" layoutX="244.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleDisplay" text="See List" />
+            <ListView fx:id="listNames" layoutX="156.0" layoutY="174.0" prefHeight="245.0" prefWidth="388.0" />
+            <Button fx:id="seeListBut" layoutX="307.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleDisplay" text="See List" />
          </children>
       </AnchorPane>
    </children>
