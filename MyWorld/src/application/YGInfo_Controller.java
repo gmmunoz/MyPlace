@@ -12,14 +12,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class YBInfo_Controller {
+
+public class YGInfo_Controller {
 
 	private DataConnection dcon = null;
-	
-	public YBInfo_Controller() throws Exception {
+
+	public YGInfo_Controller() throws Exception{
 		dcon = new DataConnection();
-		//initialize();
 	}
+	
+
     @FXML
     private AnchorPane backgroundRoot;
 
@@ -28,7 +30,7 @@ public class YBInfo_Controller {
 
     @FXML
     private Button SendBackBut;
-    
+
     @FXML
     private Label nameLabel;
 
@@ -37,7 +39,7 @@ public class YBInfo_Controller {
 
     @FXML
     private Label comLabel;
-    
+
     @FXML
     private Button seeInfoBut;
 
@@ -51,22 +53,22 @@ public class YBInfo_Controller {
     	//System.out.println("see if "+ selectInfo.getPlaceName());
     	
     	//set Addy label
-//    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
+//    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),2);
 //		for(int i = 0; i < list.size(); i++ ) {    		    	
 //			//placename compared to one selected
 //			if(list.get(0).get(i) == selectInfo.getPlaceName()) {   		
-//				String addy = dcon.loadPlaces(currUser.getUser(), 1).get(0).get(i);    		
+//				String addy = dcon.loadPlaces(currUser.getUser(), 2).get(0).get(i);    		
 //				addyLabel.setText(addy);
 //			}
 //		}
     	
     	//set Comment Label
-    	String comment = dcon.loadComment(currUser.getUser(), selectInfo.getPlaceName(), 1);
+    	String comment = dcon.loadComment(currUser.getUser(), selectInfo.getPlaceName(), 2);
     	//System.out.println(comment);
     	comLabel.setText(comment);
     	   	    	
     }
-   
+    
     @FXML
     void LogoutUser(ActionEvent event) {
     	System.out.println("You have officially logged out!");
@@ -77,7 +79,8 @@ public class YBInfo_Controller {
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws Exception {
     	//now load previous page
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
     }
 }
+	
