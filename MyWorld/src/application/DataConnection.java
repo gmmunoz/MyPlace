@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DataConnection {
 	
@@ -83,29 +84,15 @@ public class DataConnection {
 		System.out.println("Your account has been deleted");
 		return user;
 	}
-	
-	/*public void createNewTable() throws Exception {
-		String locations = "CREATE TABLE IF NOT EXISTS locations (\n"
-				+ "name text NOT NULL, \n"
-				+ "address text NOT NULL, \n"
-				+ ");";
-		try(Statement stmt = c.createStatement()){
-			stmt.execute(locations);
-		}
-		catch(SQLException e) {
-			System.out.println(e.getMessage());
-		}
-	}*/
-	
-	//adding location to user's personal lists
-	//for the list parameter, 1 is for the list of places visited and 2 for future places
-	public String addLocation(Place location, String user, int which_list) throws Exception {
-		String query = "INSERT INTO places(username, place_name, address, which_tab) VALUES(?,?,?,?)";
+
+	public String addLocation(Place location, String user, int which_list, String comment) throws Exception {
+		String query = "INSERT INTO places(username, place_name, address, which_tab, comment) VALUES(?,?,?,?,?)";
 		PreparedStatement addLocation = c.prepareStatement(query);
 		addLocation.setString(1, user);
 		addLocation.setString(2, location.getPlaceName());
 		addLocation.setString(3, location.getPlaceAddress());
 		addLocation.setInt(4, which_list);
+		addLocation.setString(5, comment);
 		addLocation.executeUpdate();
 		addLocation.close();
 		System.out.println("Successfully added location!");
@@ -125,13 +112,20 @@ public class DataConnection {
 		return location.getPlaceName(); //returns the name of the place that it deleted
 	}
 	
-	public ResultSet loadPlaces(String user, int which_list) throws Exception {
+	public ArrayList<ArrayList<String>> loadPlaces(String user, int which_list) throws Exception {
 		String query = "SELECT place_name, address FROM places WHERE username = ? AND which_tab = ?";
 		PreparedStatement load_places = c.prepareStatement(query);
 		load_places.setString(1, user);
 		load_places.setInt(2, which_list);
 		ResultSet results = load_places.executeQuery();
-		return results;
+		ArrayList<ArrayList<String>> string_results = new ArrayList<>();
+		while (results.next()) {
+			ArrayList<String> this_result = new ArrayList<>();
+			this_result.add(results.getString("place_name"));
+			this_result.add(results.getString("address"));
+			string_results.add(this_result);
+		}
+		return string_results;
 	}
 	
 	public String securityQuestionCheck(String user, String answer1, String answer2) throws Exception {
@@ -170,18 +164,19 @@ public class DataConnection {
 		}
 	}
 	
-	public boolean isValidCity(String entered_cityname) throws SQLException {
-		String lowercase_cityname = entered_cityname.toLowerCase();
-		String query = "SELECT city_name FROM cities WHERE city_name = ?";
-		PreparedStatement checkCity = c.prepareStatement(query);
-		checkCity.setString(1,  lowercase_cityname);
-		ResultSet results = checkCity.executeQuery();
-		if (results.next()) {
-			return true;
+	//loads comment
+	public String loadComment(String user, String place, int which_list) throws SQLException {
+		String query = "SELECT comment FROM places WHERE username = ? AND place_name = ? AND which_tab = ?";
+		PreparedStatement getComment = c.prepareStatement(query);
+		getComment.setString(1, user);
+		getComment.setString(2,  place);
+		getComment.setInt(3,  which_list);
+		ResultSet results = getComment.executeQuery();
+		String string_results = "";
+		if (results!=null) {
+			string_results = results.getString("comment");
 		}
-		else {
-			return false;
-		}
+		return string_results;
 	}
 	
 	public void close() throws Exception {

@@ -86,11 +86,17 @@ public class MyController implements Initializable {
 	    					
 	    					if (dcon.validAccount(userName, passwd) == true) {
 	    						System.out.println("You logged in successfully!");
+	    						
+	    						AccountTracker currUser = new AccountTracker(userName);
+	    						
+
+	    			    		System.out.println(dcon.loadPlaces(userName, 2));
+	    			    		
 	    						//once we include places we will need to query for all places associated with this user and save those
 	    						dcon.close();
 	    						AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
 	    			    		backgroundRoot.getChildren().setAll(pane);
-	    						
+	    			    		
 	    					} else {
 	    						// show error --> try again
 	    						System.out.println("You entered wrong password or username!");
@@ -105,9 +111,6 @@ public class MyController implements Initializable {
 	    					ex.printStackTrace();
 	    				}
 	    }
-	    
-	    
-
 	    @FXML
 	    void retrievePwd(ActionEvent event) {
 	    	try {

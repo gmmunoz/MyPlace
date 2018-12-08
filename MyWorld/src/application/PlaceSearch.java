@@ -1,16 +1,14 @@
-package application;
+ package application;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
+
+import javax.xml.ws.http.HTTPException;
+
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.PreparedStatement;
-import java.io.FileWriter;
-import java.io.File;
-import java.io.FileReader;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -20,6 +18,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
+import java.io.*;
+import java.lang.*;
+
 public class PlaceSearch {
 	
 	private String place_name;
@@ -27,15 +28,16 @@ public class PlaceSearch {
 	private String foursquare_id = "1FFZZL5MNNBG2KJCB0H2UTN554BZOQXY4CHUTARLAL5WMJTT";
 	private String foursquare_secret = "HMVC3IMTTWCXRLXBENBPXXBMXKJBTMXA5HFJVMWJJ3ZBHNOZ";
 	private String v = "20181122";
-	private DataConnection dataConn = null;
+	//private DataConnection dataConn = null;
+	ArrayList<Place> locationList = new ArrayList<>();
 
 	public PlaceSearch() {
 	}
 	
-	public PlaceSearch(String name, String city_name) {
+	public PlaceSearch(String name, String city_name) throws IOException {
 		place_name = name;
 		city = city_name;
-		dataConn = new DataConnection();
+		//dataConn = new DataConnection();
 	}
 	
 	public boolean isValidInput(String input) {
@@ -49,23 +51,37 @@ public class PlaceSearch {
 	public ArrayList<Place> getResults() throws Exception {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
-	    HttpURLConnection con = (HttpURLConnection) url.openConnection();
-	    con.setRequestMethod("GET");
-	    con.connect();
-	    
-	    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-	    String inputLine;
-	    StringBuffer content = new StringBuffer();
-	    while ((inputLine = in.readLine()) != null) {
-	        content.append(inputLine);
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+	    try {
+	    	int code = con.getResponseCode();
+		    if (code == HttpURLConnection.HTTP_OK) {
+		    	con.setRequestMethod("GET");
+		    }
+		    else if(code == HttpURLConnection.HTTP_BAD_REQUEST) {
+		    	System.out.println("That city does not exist!");
+		    }
 	    }
-	    in.close();
-	    
-	    BufferedWriter out = new BufferedWriter(new FileWriter(new File("output.txt")));	    
-	    out.append(content);	    
-	    out.flush();
-	    out.close();
-
+	    catch(RuntimeException e) {
+	    }
+	    finally {
+	    	con.connect();
+	    }
+	    try{
+	    	BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		    String inputLine;
+		    StringBuffer content = new StringBuffer();
+		    while ((inputLine = in.readLine()) != null) {
+		        content.append(inputLine);
+		    }
+		    in.close();
+		    BufferedWriter out = new BufferedWriter(new FileWriter(new File("output.txt")));	    
+		    out.append(content);	    
+		    out.flush();
+		    out.close();
+	    }
+	    catch(IOException e){
+	    	System.out.println("Please input a valid city name!");
+	    }
 	    
 	    Object obj = new JSONParser().parse(new FileReader("output.txt"));
 	    ArrayList<Place> locationList = new ArrayList<>();

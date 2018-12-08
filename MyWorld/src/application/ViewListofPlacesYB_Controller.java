@@ -1,18 +1,25 @@
 package application;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ViewListofPlacesYB_Controller {
+	private DataConnection dcon = null;
 
+	public ViewListofPlacesYB_Controller() throws Exception{
+		dcon = new DataConnection();
+	}
+	
     @FXML
     private AnchorPane backgroundRoot;
 
@@ -24,18 +31,51 @@ public class ViewListofPlacesYB_Controller {
 
     @FXML
     private Button AddBut;
+    
+    private ObservableList<String> data = FXCollections.observableArrayList();
+    
+    @FXML
+    private Button seePlaces;
+    
+    @FXML
+    private TextField userName;
+    
+    @FXML
+    private ListView<String> listNames;
+    
+    @FXML
+    private Button seeListBut;
+    
+    @FXML
+    private Button viewInfoBut;
+    
+    @FXML
+    void displayInfo(ActionEvent event) throws IOException {
+    	String location = listNames.getSelectionModel().getSelectedItem(); 	
+    	System.out.println(location);
+    	
+    	if(location != null) {
+    	//now load info page	
+    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/YBInfo.fxml"));
+    		backgroundRoot.getChildren().setAll(pane);
+    		TrackingInfo trackInfo = new TrackingInfo(location);
+  
+    	} else {   	
+    		System.out.println("Please select pinned place!");
+    	}
+    }
 
     @FXML
-    private TableView<dataClass> PinnedPlaces;
-
-    @FXML
-    private TableColumn<dataClass,String> PlaceNameCol;
-
-    @FXML
-    private TableColumn<dataClass,String> AddressCol;
-
-    @FXML
-    private TableColumn<dataClass,String> CommentCol;
+    void handleDisplay(ActionEvent event) throws Exception{
+    	AccountTracker currUser = new AccountTracker();
+    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
+		for(int i = 0; i < list.size(); i++ ) {
+			String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
+			data.add(name);
+			System.out.println(name);
+		}
+		listNames.setItems(data);	
+    }
 
     @FXML
     void AddPlace(ActionEvent event) throws IOException {
@@ -56,10 +96,6 @@ public class ViewListofPlacesYB_Controller {
     	//now load previous page
     			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
     			backgroundRoot.getChildren().setAll(pane);
-    }
-    
-    public class dataClass{
-    //2 --> places YB
     }
 
 }
