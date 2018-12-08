@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -41,24 +42,32 @@ public class YBInfo_Controller {
     private Button seeInfoBut;
 
     @FXML
-    void handleDisplayInfo(ActionEvent event) {
+    void handleDisplayInfo(ActionEvent event) throws Exception {
     	TrackingInfo selectInfo = new TrackingInfo();
-    	System.out.println(selectInfo.getPlaceName());
+    	AccountTracker currUser = new AccountTracker();
+    	
+    	//set Name label
     	nameLabel.setText(selectInfo.getPlaceName());
-    	//AccountTracker currUser = new AccountTracker();	
+    	//System.out.println("see if "+ selectInfo.getPlaceName());
+    	
+    	//set Addy label
+//    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
+//		for(int i = 0; i < list.size(); i++ ) {    		    	
+//			//placename compared to one selected
+//			if(list.get(0).get(i) == selectInfo.getPlaceName()) {   		
+//				String addy = dcon.loadPlaces(currUser.getUser(), 1).get(0).get(i);    		
+//				addyLabel.setText(addy);
+//			}
+//		}
+    	
+    	//set Comment Label
+    	String comment = dcon.loadComment(currUser.getUser(), selectInfo.getPlaceName(), 1);
+    	//System.out.println(comment);
+    	comLabel.setText(comment);
+    	   	    	
     }
     
-//    void initialize() throws Exception {
-//    	AccountTracker currUser = new AccountTracker();
-//    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
-//		for(int i = 0; i < list.size(); i++ ) {
-//			if(list.)
-//			String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
-//			//data.add(name);
-//			//System.out.println(name);
-//			nameLabel.setText(name);
-//		}
-//    }
+
     
     @FXML
     void LogoutUser(ActionEvent event) {
