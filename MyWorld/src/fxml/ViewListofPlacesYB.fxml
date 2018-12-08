@@ -35,6 +35,7 @@
             </ImageView>
             <ListView fx:id="listNames" layoutX="156.0" layoutY="174.0" prefHeight="245.0" prefWidth="388.0" />
             <Button fx:id="seeListBut" layoutX="307.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleDisplay" text="See List" />
+            <Button fx:id="viewInfoBut" layoutX="73.0" layoutY="438.0" mnemonicParsing="false" onAction="#displayInfo" text="View Information" />
          </children>
       </AnchorPane>
    </children>

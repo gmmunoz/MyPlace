@@ -48,6 +48,25 @@ public class ViewListofPlacesYB_Controller {
     
     @FXML
     private Button seeListBut;
+    
+    @FXML
+    private Button viewInfoBut;
+    
+    @FXML
+    void displayInfo(ActionEvent event) throws IOException {
+    	String location = listNames.getSelectionModel().getSelectedItem(); 	
+    	System.out.println(location);
+    	
+    	if(location != null) {
+    	//now load info page	
+    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/YBInfo.fxml"));
+    		backgroundRoot.getChildren().setAll(pane);
+    		TrackingInfo trackInfo = new TrackingInfo(location);
+  
+    	} else {   	
+    		System.out.println("Please select pinned place!");
+    	}
+    }
 
     @FXML
     void handleDisplay(ActionEvent event) throws Exception{
