@@ -164,6 +164,20 @@ public class DataConnection {
 		}
 	}
 	
+	//loads comment
+	public String loadComment(String user, String place, int which_list) throws SQLException {
+		String query = "SELECT comment FROM places WHERE username = ? AND place_name = ? AND which_tab = ?";
+		PreparedStatement getComment = c.prepareStatement(query);
+		getComment.setString(1, user);
+		getComment.setString(2,  place);
+		getComment.setInt(3,  which_list);
+		ResultSet results = getComment.executeQuery();
+		String string_results = "";
+		if (results!=null) {
+			string_results = results.getString("comment");
+		}
+		return string_results;
+	}
 	
 	public void close() throws Exception {
 		c.close();
