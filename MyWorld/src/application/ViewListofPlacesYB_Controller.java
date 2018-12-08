@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,7 +25,6 @@ public class ViewListofPlacesYB_Controller {
 
 	public ViewListofPlacesYB_Controller() throws Exception{
 		dcon = new DataConnection();
-		initialize();
 	}
 	
     @FXML
@@ -39,10 +39,8 @@ public class ViewListofPlacesYB_Controller {
     @FXML
     private Button AddBut;
 
-    @FXML
-    private TableView<Place> PinnedPlaces;
     
-    private ObservableList<Place> data = FXCollections.observableArrayList();
+    private ObservableList<String> data = FXCollections.observableArrayList();
     
     @FXML
     private Button seePlaces;
@@ -50,52 +48,24 @@ public class ViewListofPlacesYB_Controller {
     @FXML
     private TextField userName;
     
+    @FXML
+    private ListView<String> listNames;
     
     @FXML
-    private TableColumn<Place, String> columnName;
-    
-    @SuppressWarnings("unchecked")
-	void initialize() throws Exception{
+    private Button seeListBut;
+
+    @FXML
+    void handleDisplay(ActionEvent event) throws Exception{
     	AccountTracker currUser = new AccountTracker();
     	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
 		for(int i = 0; i < list.size(); i++ ) {
 			String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
-			String address = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(1);
-    		data.add(new Place(name,address));
-    		System.out.println(name + " " + address);
+			data.add(name);
+			System.out.println(name);
 		}
-		TableColumn<Place, String> nameColumn = new TableColumn<>("Name");
-		nameColumn.setMinWidth(200);
-		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-		
-		TableColumn<Place, String> addressColumn = new TableColumn<>("Address");
-		addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
-		
-		PinnedPlaces = new TableView<>();
-		PinnedPlaces.setItems(data);
-		PinnedPlaces.getColumns().addAll(nameColumn, addressColumn);
-//	dcon.close();
-    }
-    
-	@FXML
-    void viewList(ActionEvent event) throws Exception {
-//		
-//    	user = userName.getText();
-//    	if(user == null) {
-//    		System.out.println("Please input userName!");
-//    	} else {
-//    		ArrayList<ArrayList<String>> list = dcon.loadPlaces(user,1);
-//    		for(int i = 0; i < list.size(); i++ ) {
-//        		String name = dcon.loadPlaces(user, 1).get(i).get(0);
-//        		//System.out.println(name);
-//        		data.add(name);
-//    		}
-//    		System.out.print(data);
-//    		PinnedPlaces.setItems(data);
-//    	}
-//    	dcon.close();
-	}
+		listNames.setItems(data);	
 
+    }
 
     @FXML
     void AddPlace(ActionEvent event) throws IOException {
@@ -117,6 +87,5 @@ public class ViewListofPlacesYB_Controller {
     			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
     			backgroundRoot.getChildren().setAll(pane);
     }
-    
 
 }
