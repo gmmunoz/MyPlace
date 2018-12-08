@@ -170,19 +170,6 @@ public class DataConnection {
 		}
 	}
 	
-	public boolean isValidCity(String entered_cityname) throws SQLException {
-		String lowercase_cityname = entered_cityname.toLowerCase();
-		String query = "SELECT city_name FROM cities WHERE city_name = ?";
-		PreparedStatement checkCity = c.prepareStatement(query);
-		checkCity.setString(1,  lowercase_cityname);
-		ResultSet results = checkCity.executeQuery();
-		if (results.next()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	public void close() throws Exception {
 		c.close();

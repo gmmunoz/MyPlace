@@ -58,7 +58,7 @@ public class PlaceSearch {
 		    	con.setRequestMethod("GET");
 		    }
 		    else if(code == HttpURLConnection.HTTP_BAD_REQUEST) {
-		    	System.out.println("That city does not exist");
+		    	System.out.println("That city does not exist!");
 		    }
 	    }
 	    catch(RuntimeException e) {

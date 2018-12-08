@@ -114,7 +114,6 @@ public class SearchPlace_Controller {
 			System.out.println("An error occured while searching!");
 		}
 		return stringPlaces;
-<<<<<<< HEAD
 	}
 
 	@FXML
@@ -148,8 +147,6 @@ public class SearchPlace_Controller {
 		name = placeName.getText();
 		city = City.getText();
 
-		//System.out.println(dcon.isValidCity(city));
-
 		// both fields are filled, checking for special characters
 		if (!psearch.isValidInput(name)) {
 			System.out.println("Please enter valid entries only consisting of letters!");
@@ -160,11 +157,6 @@ public class SearchPlace_Controller {
 			System.out.println("Please enter a city name consisting of only letters!");
 			return null;
 		}
-		/*
-		 * else if (!(dcon.isValidCity(city))) { System.out.
-		 * println("Please enter a valid city (we only support the 50 biggest cities in the US)"
-		 * ); return null; }
-		 */
 
 		else {
 			System.out.println("this is name " + name + " " + city);
@@ -173,63 +165,4 @@ public class SearchPlace_Controller {
 	}
 
 }
-=======
-    }
 
-    @FXML
-    void LogoutUser(ActionEvent event) {
-    	System.out.println("You have officially logged out!");
-        Stage stage = (Stage) LogoutBut.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void SendUsertoPrevPage(ActionEvent event) throws IOException {
-    	//now load previous page
-    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
-    			backgroundRoot.getChildren().setAll(pane);
-    	    }
-
-	/*public boolean isValid(String input) {
-		return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
-	}*/
-	
-	
-    //handle search --> integrate with API
-    @FXML
-    ArrayList<String> handleSearch(ActionEvent event) throws Exception {
-    	//check for fields being filled in 
-    	/*if(placeName.getText().trim().isEmpty() || City.getText().trim().isEmpty()) {
-    		System.out.println("Please fill in both fields!");
-    		return null;
-    	}*/
-    	
-    	name = placeName.getText();
-    	city = City.getText();
-    	
-    	System.out.println(dcon.isValidCity(city));
-
-    	//both fields are filled, checking for special characters
-    	if(!psearch.isValidInput(name)) {
-    		System.out.println("Please enter valid entries only consisting of letters!");
-    		return null;
-    	}
-    	
-    	else if(!psearch.isValidInput_City(city)) {
-    		System.out.println("Please enter a city name consisting of only letters!");
-    		return null; 
-    	}
-    	
-    	else if (!(dcon.isValidCity(city))) {
-    		System.out.println("Please enter a valid city (we only support the 50 biggest cities in the US)");
-    		return null;
-    	}
-
-    	else {
-    		System.out.println("this is name " + name + " " + city);
-    		return initialize();
-    	}
-    }
- 
-}
->>>>>>> 3f290e7889fb2c9c07abab7411226ce1bf34166f
