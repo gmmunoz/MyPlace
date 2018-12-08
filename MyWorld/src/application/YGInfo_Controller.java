@@ -47,20 +47,22 @@ public class YGInfo_Controller {
     void handleDisplayInfo(ActionEvent event) throws Exception {
     	TrackingInfo selectInfo = new TrackingInfo();
     	AccountTracker currUser = new AccountTracker();
+    	String name = selectInfo.getPlaceName();
     	
     	//set Name label
     	nameLabel.setText(selectInfo.getPlaceName());
     	//System.out.println("see if "+ selectInfo.getPlaceName());
     	
     	//set Addy label
-//    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),2);
-//		for(int i = 0; i < list.size(); i++ ) {    		    	
-//			//placename compared to one selected
-//			if(list.get(0).get(i) == selectInfo.getPlaceName()) {   		
-//				String addy = dcon.loadPlaces(currUser.getUser(), 2).get(0).get(i);    		
-//				addyLabel.setText(addy);
-//			}
-//		}
+    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),2);
+		for(int i = 0; i < list.size(); i++ ) {    		    	
+			if(list.get(i).get(0).equalsIgnoreCase(name)) {   		
+				String addy = dcon.loadPlaces(currUser.getUser(), 2).get(i).get(1);    	
+				//System.out.println(addy);
+				addyLabel.setText(addy);
+				break;
+				}
+		}
     	
     	//set Comment Label
     	String comment = dcon.loadComment(currUser.getUser(), selectInfo.getPlaceName(), 2);
