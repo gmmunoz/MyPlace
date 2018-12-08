@@ -2,7 +2,7 @@ package application;
 
 public class TrackingInfo {
 
-	private String placeName;
+	private static String placeName;
 //	private String address;
 //	private String comment;
 	

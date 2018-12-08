@@ -79,7 +79,7 @@ public class SearchPlace_Controller {
 		AccountTracker currUser = new AccountTracker();	
 		dcon.addLocation(index, currUser.getUser(), 1, comment);
 		if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 1) == true) {
-			System.out.println("Location has been added!");
+			//System.out.println("Location has been added!");
 
 			// Send back to main framework
 			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
@@ -153,7 +153,7 @@ public class SearchPlace_Controller {
 		}
 
 		else {
-			System.out.println("this is name " + name + " " + city);
+			//System.out.println("this is name " + name + " " + city);
 			return initialize();
 		}
 	}
