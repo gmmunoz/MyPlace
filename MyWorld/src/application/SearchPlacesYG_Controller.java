@@ -51,7 +51,10 @@ public class SearchPlacesYG_Controller {
 
 	    @FXML
 	    private TextField City;
-
+	    
+	    @FXML
+	    private TextField Comment;
+	    
 	    @FXML
 	    private Button LogoutBut;
 
@@ -65,13 +68,14 @@ public class SearchPlacesYG_Controller {
 
 	    @FXML
 	    void AddPlaceYBtoDB(ActionEvent event) throws Exception {
+	    	String comment = Comment.getText();
 	    	int selectedIndex = MatchesList.getSelectionModel().getSelectedIndex();
 	    	
 	    	PlaceSearch searchResults = new PlaceSearch(name,city);
 	    	Place index = searchResults.getResults().get(selectedIndex);
 	    	
 	    	AccountTracker currUser = new AccountTracker();	
-			dcon.addLocation(index, currUser.getUser(), 2);	
+			dcon.addLocation(index, currUser.getUser(), 2, comment);	
 			if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 2) == true) {
 				System.out.println("Location has been added!");
 
@@ -141,11 +145,6 @@ public class SearchPlacesYG_Controller {
 	    		System.out.println("Please enter valid entries!");
 	    		return null;
 	    	}
-	    	
-	    	/*else if (!(dcon.isValidCity(city))) {
-	    		System.out.println("Please enter a valid city (we only support the 50 biggest cities in the US)");
-	    		return null;
-	    	}*/
 	    
 	    	else {
 	    		System.out.println("this is name " + name + " " + city);
