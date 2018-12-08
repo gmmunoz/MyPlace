@@ -1,4 +1,4 @@
-package application;
+ package application;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +20,11 @@ public class SearchPlace_Controller {
 	String user;
 
 	ArrayList<String> stringPlaces = new ArrayList<String>();
-	ObservableList<String> data;
+	
 
 	public SearchPlace_Controller() throws Exception {
 		dcon = new DataConnection();
 		initialize();
-		data = FXCollections.observableArrayList();
 		psearch = new PlaceSearch();
 	}
 
@@ -99,6 +98,8 @@ public class SearchPlace_Controller {
 	}
 
 	public ArrayList<String> initialize() throws Exception {
+		ObservableList<String> data;
+		data = FXCollections.observableArrayList();
 		PlaceSearch searchResults = new PlaceSearch(name, city);
 		ArrayList<Place> searchPlaces = searchResults.getResults();
 
@@ -114,6 +115,10 @@ public class SearchPlace_Controller {
 			System.out.println("An error occured while searching!");
 		}
 		return stringPlaces;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 999488b71310381c21bd76b3fddd54c439774526
 	}
 
 	@FXML
@@ -126,7 +131,7 @@ public class SearchPlace_Controller {
 	@FXML
 	void SendUsertoPrevPage(ActionEvent event) throws IOException {
 		// now load previous page
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
 	}
 
