@@ -14,7 +14,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -22,14 +21,12 @@ import javafx.stage.Stage;
 public class ViewListofPlacesYB_Controller {
 	
 	private DataConnection dcon = null;
-	String user;
-	 
-	private ObservableList<String> data = FXCollections.observableArrayList();
-	
+
 	public ViewListofPlacesYB_Controller() throws Exception{
 		dcon = new DataConnection();
 		initialize();
 	}
+	
     @FXML
     private AnchorPane backgroundRoot;
 
@@ -43,7 +40,9 @@ public class ViewListofPlacesYB_Controller {
     private Button AddBut;
 
     @FXML
-    private TableView<String> PinnedPlaces;
+    private TableView<Place> PinnedPlaces;
+    
+    private ObservableList<Place> data = FXCollections.observableArrayList();
     
     @FXML
     private Button seePlaces;
@@ -53,29 +52,33 @@ public class ViewListofPlacesYB_Controller {
     
     
     @FXML
-    private TableColumn<String, String> columnName;
-
-//    @FXML
-//    private TableColumn<String, String> columnAddy;
-//
-//    @FXML
-//    private TableColumn<String, String> columnComment;
+    private TableColumn<Place, String> columnName;
     
-    void initialize() throws Exception{
+    @SuppressWarnings("unchecked")
+	void initialize() throws Exception{
     	AccountTracker currUser = new AccountTracker();
     	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
 		for(int i = 0; i < list.size(); i++ ) {
-    		String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
-    		//System.out.println(name);
-    		data.add(name);
+			String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
+			String address = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(1);
+    		data.add(new Place(name,address));
+    		System.out.println(name + " " + address);
 		}
-		System.out.print(data);
+		TableColumn<Place, String> nameColumn = new TableColumn<>("Name");
+		nameColumn.setMinWidth(200);
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+		
+		TableColumn<Place, String> addressColumn = new TableColumn<>("Address");
+		addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+		
+		PinnedPlaces = new TableView<>();
 		PinnedPlaces.setItems(data);
-	dcon.close();
+		PinnedPlaces.getColumns().addAll(nameColumn, addressColumn);
+//	dcon.close();
     }
     
-//	@FXML
-//    void viewList(ActionEvent event) throws Exception {
+	@FXML
+    void viewList(ActionEvent event) throws Exception {
 //		
 //    	user = userName.getText();
 //    	if(user == null) {
@@ -91,7 +94,7 @@ public class ViewListofPlacesYB_Controller {
 //    		PinnedPlaces.setItems(data);
 //    	}
 //    	dcon.close();
-//	}
+	}
 
 
     @FXML
