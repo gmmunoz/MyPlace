@@ -87,6 +87,9 @@ public class MyController implements Initializable {
 	    					if (dcon.validAccount(userName, passwd) == true) {
 	    						System.out.println("You logged in successfully!");
 	    						
+	    						AccountTracker currUser = new AccountTracker(userName);
+	    						
+
 	    			    		System.out.println(dcon.loadPlaces(userName, 2));
 	    			    		
 	    						//once we include places we will need to query for all places associated with this user and save those
@@ -107,6 +110,10 @@ public class MyController implements Initializable {
 	    				} catch (Exception ex) {
 	    					ex.printStackTrace();
 	    				}
+	    }
+	    
+	    public String getUserLoggedIn() {
+	    	return userLoggedIn;
 	    }
 	    
 	    
