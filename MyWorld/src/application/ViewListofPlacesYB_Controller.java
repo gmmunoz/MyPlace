@@ -49,7 +49,7 @@ public class ViewListofPlacesYB_Controller {
     @FXML
     private Button viewInfoBut;
     
-    @FXML
+    @FXML //view information
     void displayInfo(ActionEvent event) throws IOException {
     	String location = listNames.getSelectionModel().getSelectedItem(); 	
     	System.out.println(location);
@@ -65,7 +65,7 @@ public class ViewListofPlacesYB_Controller {
     	}
     }
 
-    @FXML
+    @FXML //see list
     void handleDisplay(ActionEvent event) throws Exception{
     	AccountTracker currUser = new AccountTracker();
     	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
