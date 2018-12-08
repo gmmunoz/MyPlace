@@ -2,7 +2,6 @@ package application;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ViewListofPlacesYB_Controller {
-	
 	private DataConnection dcon = null;
 
 	public ViewListofPlacesYB_Controller() throws Exception{
@@ -33,7 +31,6 @@ public class ViewListofPlacesYB_Controller {
 
     @FXML
     private Button AddBut;
-
     
     private ObservableList<String> data = FXCollections.observableArrayList();
     

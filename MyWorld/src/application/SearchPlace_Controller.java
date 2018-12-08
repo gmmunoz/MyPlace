@@ -45,6 +45,9 @@ public class SearchPlace_Controller {
 
 	@FXML
 	private TextField City;
+	
+	@FXML
+	private TextField Comment;
 
 	@FXML
 	private Button LogoutBut;
@@ -67,13 +70,14 @@ public class SearchPlace_Controller {
 
 	@FXML
 	void AddPlaceYBtoDB(ActionEvent event) throws Exception {
+		String comment = Comment.getText();
 		int selectedIndex = MatchesList.getSelectionModel().getSelectedIndex();
 
 		PlaceSearch searchResults = new PlaceSearch(name, city);
 		Place index = searchResults.getResults().get(selectedIndex);
 
 		AccountTracker currUser = new AccountTracker();	
-		dcon.addLocation(index, currUser.getUser(), 1);	
+		dcon.addLocation(index, currUser.getUser(), 1, comment);
 		if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 1) == true) {
 			System.out.println("Location has been added!");
 
@@ -104,7 +108,6 @@ public class SearchPlace_Controller {
 			System.out.println("An error occured while searching!");
 		}
 		return stringPlaces;
-
 	}
 
 	@FXML
@@ -138,8 +141,6 @@ public class SearchPlace_Controller {
 		name = placeName.getText();
 		city = City.getText();
 
-		//System.out.println(dcon.isValidCity(city));
-
 		// both fields are filled, checking for special characters
 		if (!psearch.isValidInput(name)) {
 			System.out.println("Please enter valid entries only consisting of letters!");
@@ -150,11 +151,6 @@ public class SearchPlace_Controller {
 			System.out.println("Please enter a city name consisting of only letters!");
 			return null;
 		}
-		/*
-		 * else if (!(dcon.isValidCity(city))) { System.out.
-		 * println("Please enter a valid city (we only support the 50 biggest cities in the US)"
-		 * ); return null; }
-		 */
 
 		else {
 			System.out.println("this is name " + name + " " + city);

@@ -111,7 +111,6 @@ public class MyController implements Initializable {
 	    					ex.printStackTrace();
 	    				}
 	    }
-
 	    @FXML
 	    void retrievePwd(ActionEvent event) {
 	    	try {
