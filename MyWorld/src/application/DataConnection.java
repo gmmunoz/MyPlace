@@ -171,13 +171,21 @@ public class DataConnection {
 		getComment.setString(1, user);
 		getComment.setString(2,  place);
 		getComment.setInt(3,  which_list);
-		ResultSet results = getComment.executeQuery();
+		ResultSet rs = getComment.executeQuery();
 		String string_results = "";
-		if (results!=null) {
-			string_results = results.getString("comment");
+		
+		if(rs.getString("comment") != null) {
+			string_results = rs.getString("comment");
+			return string_results;
+			
+		} else {
+			String noComment = "No comment";
+			return noComment;
+
 		}
-		return string_results;
 	}
+	
+	
 	
 	public void close() throws Exception {
 		c.close();

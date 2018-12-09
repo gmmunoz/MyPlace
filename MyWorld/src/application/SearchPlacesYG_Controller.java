@@ -75,17 +75,16 @@ public class SearchPlacesYG_Controller {
 	    	Place index = searchResults.getResults().get(selectedIndex);
 	    	
 	    	AccountTracker currUser = new AccountTracker();	
-			dcon.addLocation(index, currUser.getUser(), 2, comment);	
-			if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 2) == true) {
-				System.out.println("Location has been added!");
-
+			if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 2) == false) {
+				dcon.addLocation(index, currUser.getUser(), 2, comment);	
+				System.out.println("You've successfully added this place to your list!");
 				// Send back to main framework
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));	
 				backgroundRoot.getChildren().setAll(pane);
 			} else {
-				System.out.println("Error adding location!");	
+				System.out.println("You've already added this place to your list!");	
 			}
-			dcon.close();
+			//dcon.close();
 			
 	    }
 
@@ -111,17 +110,19 @@ public class SearchPlacesYG_Controller {
 
 	    	
 	    @FXML
-	    void LogoutUser(ActionEvent event) {
+	    void LogoutUser(ActionEvent event) throws Exception {
+	    	dcon.close();
 	    	System.out.println("You have officially logged out!");
 	        Stage stage = (Stage) LogoutBut.getScene().getWindow();
 	        stage.close();
 	    }
 
 	    @FXML
-	    void SendUsertoPrevPage(ActionEvent event) throws IOException {
+	    void SendUsertoPrevPage(ActionEvent event) throws Exception {
 	    	//now load previous page
-	    			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
-	    			backgroundRootRoot.getChildren().setAll(pane);
+	    	dcon.close();
+	    	AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));
+	   		backgroundRootRoot.getChildren().setAll(pane);
 	    	    }
 
 	    public boolean isValid(String input) {
@@ -147,7 +148,7 @@ public class SearchPlacesYG_Controller {
 	    	}
 	    
 	    	else {
-	    		System.out.println("this is name " + name + " " + city);
+	    		//System.out.println("this is name " + name + " " + city);
 	    		return initialize();
 	    	}
 	    }

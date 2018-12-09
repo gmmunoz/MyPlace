@@ -48,6 +48,7 @@ public class PlaceSearch {
 		return city.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ) && !city.trim().isEmpty();
 	}
 	
+	//returns an observable array list of the results of a search
 	public ArrayList<Place> getResults() throws Exception {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
@@ -143,7 +144,6 @@ public class PlaceSearch {
 		    //System.out.println(similarVenues);*/
 		    
 	    	Place new_place = new Place(name, fullAddress);
-	    	
 	    	locationList.add(new_place);
 	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
 	    }

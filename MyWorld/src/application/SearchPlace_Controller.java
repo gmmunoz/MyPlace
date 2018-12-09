@@ -76,18 +76,18 @@ public class SearchPlace_Controller {
 		PlaceSearch searchResults = new PlaceSearch(name, city);
 		Place index = searchResults.getResults().get(selectedIndex);
 
-		AccountTracker currUser = new AccountTracker();	
-		dcon.addLocation(index, currUser.getUser(), 1, comment);
-		if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 1) == true) {
-			System.out.println("Location has been added!");
+		AccountTracker currUser = new AccountTracker();
+		if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 1) == false) {
+			dcon.addLocation(index, currUser.getUser(), 1, comment);
+			System.out.println("You've successfully added this place to your list!");
 
 			// Send back to main framework
-			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));	
 			backgroundRoot.getChildren().setAll(pane);
 		} else {
-			System.out.println("Error adding location!");	
+			System.out.println("You've already added this place to your list!");	
 		}
-		dcon.close();
+		//dcon.close();
 	}
 
 	public ArrayList<String> initialize() throws Exception {
@@ -111,15 +111,17 @@ public class SearchPlace_Controller {
 	}
 
 	@FXML
-	void LogoutUser(ActionEvent event) {
+	void LogoutUser(ActionEvent event) throws Exception {
+		dcon.close();
 		System.out.println("You have officially logged out!");
 		Stage stage = (Stage) LogoutBut.getScene().getWindow();
 		stage.close();
 	}
 
 	@FXML
-	void SendUsertoPrevPage(ActionEvent event) throws IOException {
+	void SendUsertoPrevPage(ActionEvent event) throws Exception {
 		// now load previous page
+		dcon.close();
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
 	}
@@ -153,7 +155,7 @@ public class SearchPlace_Controller {
 		}
 
 		else {
-			System.out.println("this is name " + name + " " + city);
+			//System.out.println("this is name " + name + " " + city);
 			return initialize();
 		}
 	}
