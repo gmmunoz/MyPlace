@@ -1,38 +1,25 @@
 package application;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class ViewListofPlacesYB_Controller {
-	
 	private DataConnection dcon = null;
-	String user;
-	 @SuppressWarnings("rawtypes")
-	private ObservableList<ObservableList<String>> data;
-	//private ObservableList<> rowData;
 
 	public ViewListofPlacesYB_Controller() throws Exception{
 		dcon = new DataConnection();
-		
 	}
+	
     @FXML
     private AnchorPane backgroundRoot;
 
@@ -44,9 +31,8 @@ public class ViewListofPlacesYB_Controller {
 
     @FXML
     private Button AddBut;
-
-    @FXML
-    private TableView<String> PinnedPlaces;
+    
+    private ObservableList<String> data = FXCollections.observableArrayList();
     
     @FXML
     private Button seePlaces;
@@ -54,49 +40,39 @@ public class ViewListofPlacesYB_Controller {
     @FXML
     private TextField userName;
     
+    @FXML
+    private ListView<String> listNames;
     
+    @FXML
+    private Button seeListBut;
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	@FXML
-    void viewList(ActionEvent event) throws Exception {
-    	user = userName.getText();
-    	if(user == null) {
-    		System.out.println("Please input userName!");
-    	} else {
-    		ResultSet rs = dcon.loadPlaces(user,1);
-    		
-    		for(int i =0; i<rs.getMetaData().getColumnCount(); i++) {
-    			final int j = i;
-    			@SuppressWarnings("rawtypes")
-				TableColumn col = new TableColumn<String,String>(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){                    
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {                                                                                              
-                        return new SimpleStringProperty(((List) param.getValue()).get(j).toString());                        
-                    }                    
-                });
-
-                PinnedPlaces.getColumns().addAll(col); 
-                //System.out.println("Column ["+i+"] " + col);
-            }
-
-    		//now need to figure out rows situation
-    		System.out.println(rs.next());
-    		
-            while(rs.next()){
-                //Iterate Row
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for(int i=1 ; i<=rs.getMetaData().getColumnCount(); i++){
-                    //Iterate Column
-                    row.add(rs.getString(i));
-                    //System.out.println("Row [" + i +"] added " + row );
-                }
-                System.out.println("Row [1] added "+ row );
-                //data.add(row);    			
-                
-    		} 		
+    @FXML
+    private Button viewInfoBut;
+    
+    @FXML //view information
+    void displayInfo(ActionEvent event) throws IOException {
+    	String location = listNames.getSelectionModel().getSelectedItem(); 	
+    	//System.out.println(location);
+    	
+    	if(location != null) {
+    	//now load info page	
+    		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/YBInfo.fxml"));
+    		backgroundRoot.getChildren().setAll(pane);
+    		TrackingInfo trackInfo = new TrackingInfo(location);
+    	} else {   	
+    		System.out.println("Please select pinned place!");
     	}
+    }
 
-    	dcon.close();
+    @FXML //see list
+    void handleDisplay(ActionEvent event) throws Exception{
+    	AccountTracker currUser = new AccountTracker();
+    	ArrayList<ArrayList<String>> list = dcon.loadPlaces(currUser.getUser(),1);
+		for(int i = 0; i < list.size(); i++ ) {
+			String name = dcon.loadPlaces(currUser.getUser(), 1).get(i).get(0);
+			data.add(name);
+		}
+		listNames.setItems(data);	
     }
 
     @FXML
@@ -118,10 +94,6 @@ public class ViewListofPlacesYB_Controller {
     	//now load previous page
     			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));
     			backgroundRoot.getChildren().setAll(pane);
-    }
-    
-    public class dataClass{
-    //2 --> places YB
     }
 
 }

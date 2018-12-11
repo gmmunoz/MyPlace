@@ -1,4 +1,4 @@
-package application;
+ package application;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class PlaceSearch {
 	private String foursquare_id = "1FFZZL5MNNBG2KJCB0H2UTN554BZOQXY4CHUTARLAL5WMJTT";
 	private String foursquare_secret = "HMVC3IMTTWCXRLXBENBPXXBMXKJBTMXA5HFJVMWJJ3ZBHNOZ";
 	private String v = "20181122";
+
 	ArrayList<Place> locationList = new ArrayList<>();
 
 	public PlaceSearch() {
@@ -36,6 +37,7 @@ public class PlaceSearch {
 	public PlaceSearch(String name, String city_name) throws IOException {
 		place_name = name;
 		city = city_name;
+		//dataConn = new DataConnection();
 	}
 	
 	public boolean isValidInput(String input) {
@@ -46,6 +48,7 @@ public class PlaceSearch {
 		return city.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ) && !city.trim().isEmpty();
 	}
 	
+	//returns an observable array list of the results of a search
 	public ArrayList<Place> getResults() throws Exception {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
@@ -56,7 +59,7 @@ public class PlaceSearch {
 		    	con.setRequestMethod("GET");
 		    }
 		    else if(code == HttpURLConnection.HTTP_BAD_REQUEST) {
-		    	System.out.println("That city does not exist");
+		    	System.out.println("That city does not exist!");
 		    }
 	    }
 	    catch(RuntimeException e) {
@@ -141,7 +144,6 @@ public class PlaceSearch {
 		    //System.out.println(similarVenues);*/
 		    
 	    	Place new_place = new Place(name, fullAddress);
-	    	
 	    	locationList.add(new_place);
 	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
 	    }

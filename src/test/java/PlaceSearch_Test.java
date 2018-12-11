@@ -74,27 +74,27 @@ public class PlaceSearch_Test {
 	}
 	
 	/* Test invalid search input -- user enters a valid city that is not in our city database */
-	@Test
-	void searchCity_nonexistant() throws Exception{
-		DataConnection dataConnection = new DataConnection(); 
-		
-		final String search_City = "Naples"; //COME BACK TO THIS -- NEED LIST TO TEST CITY NOT IN DATABASE
-		assertFalse(dataConnection.isValidCity(search_City)); 
-		
-		dataConnection.close();
-	}
-	
+//	@Test
+//	void searchCity_nonexistant() throws Exception{
+//		DataConnection dataConnection = new DataConnection(); 
+//		
+//		final String search_City = "Naples"; //COME BACK TO THIS -- NEED LIST TO TEST CITY NOT IN DATABASE
+//		assertFalse(dataConnection.isValidCity(search_City)); 
+//		
+//		dataConnection.close();
+//	}
+//	
 	/* Test valid search input -- user enters city in our city database */
-	@Test
-	void searchCity_existant() throws Exception {
-		DataConnection dataConnection = new DataConnection(); 
-		
-		final String search_City = "Miami"; //COME BACK TO THIS -- NEED LIST TO TEST CITY IN DATABASE
-		assertTrue(dataConnection.isValidCity(search_City)); 
-		
-		dataConnection.close();
-		
-	}
+//	@Test
+//	void searchCity_existant() throws Exception {
+//		DataConnection dataConnection = new DataConnection(); 
+//		
+//		final String search_City = "Miami"; //COME BACK TO THIS -- NEED LIST TO TEST CITY IN DATABASE
+//		assertTrue(dataConnection.isValidCity(search_City)); 
+//		
+//		dataConnection.close();
+//		
+//	}
 }
 
 	
