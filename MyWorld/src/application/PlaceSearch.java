@@ -28,7 +28,6 @@ public class PlaceSearch {
 	private String foursquare_id = "1FFZZL5MNNBG2KJCB0H2UTN554BZOQXY4CHUTARLAL5WMJTT";
 	private String foursquare_secret = "HMVC3IMTTWCXRLXBENBPXXBMXKJBTMXA5HFJVMWJJ3ZBHNOZ";
 	private String v = "20181122";
-	private DataConnection dataConn = null;
 	ArrayList<Place> locationList = new ArrayList<>();
 
 	public PlaceSearch() {
@@ -37,7 +36,6 @@ public class PlaceSearch {
 	public PlaceSearch(String name, String city_name) throws IOException {
 		place_name = name;
 		city = city_name;
-		dataConn = new DataConnection();
 	}
 	
 	public boolean isValidInput(String input) {
