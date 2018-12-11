@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 public class SearchPlace_Controller {
 	String name;
 	String city;
-	String user;
 
 	ArrayList<String> stringPlaces = new ArrayList<String>();
 	
