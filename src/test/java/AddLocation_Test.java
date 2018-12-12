@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import application.DataConnection;
@@ -17,6 +18,7 @@ public class AddLocation_Test {
 	//Name: test Pass: "123"
 	final String userTest = "test"; 
 	final String userPass = "123"; 
+	final String dummyComment = "";
 	
 	void createAccount(String name, String pass) throws Exception {
 		dataConnection.addUser(name, pass, pass, pass);
@@ -37,14 +39,14 @@ public class AddLocation_Test {
 		
 		Place place = new Place(locationNameTest, locationAddressTest);
 		
-		if(dataConnection.placeInAccount(userTest, locationNameTest, 0)) {
-			assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
+		if(dataConnection.placeInAccount(userTest, locationNameTest, 1)) {
+			assertEquals(dataConnection.deleteLocation(place, userTest, 1), locationNameTest);
 		}
 		
-		assertEquals(dataConnection.addLocation(place, userTest, 0), locationNameTest); 
-		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 0));
+		assertEquals(dataConnection.addLocation(place, userTest, 1, dummyComment), locationNameTest); 
+		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 1));
 		
-		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
+		assertEquals(dataConnection.deleteLocation(place, userTest, 1), locationNameTest);
 		
 		dataConnection.deleteUser(userTest);
 		dataConnection.close();
@@ -54,21 +56,21 @@ public class AddLocation_Test {
 	/* deleteLocation successfully removes existing place from database */
 	@Test
 	void deleteLocation_test() throws Exception {
-		dataConnection = new DataConnection(); 
+		dataConnection = new DataConnection();
 		
 		if(dataConnection.userExists(userTest)) {
-			dataConnection.deleteUser(userTest); 
+			dataConnection.deleteUser(userTest);
 		}
-		createAccount(userTest, userPass); 
+		createAccount(userTest, userPass);
 		
 		final String locationNameTest = "testName";
 		final String locationAddressTest = "testAddress";
 		
 		Place place = new Place(locationNameTest, locationAddressTest);
-		assertEquals(dataConnection.addLocation(place, userTest, 0), locationNameTest); 
-		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 0));
-		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationNameTest);
-		assertFalse(dataConnection.placeInAccount(userTest, locationNameTest, 0)); 
+		assertEquals(dataConnection.addLocation(place, userTest, 1, dummyComment), locationNameTest);
+		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 1));
+		assertEquals(dataConnection.deleteLocation(place, userTest, 1), locationNameTest);
+		assertFalse(dataConnection.placeInAccount(userTest, locationNameTest, 1));
 		
 		dataConnection.deleteUser(userTest);
 		dataConnection.close();
@@ -79,12 +81,12 @@ public class AddLocation_Test {
 	/* deleteLocation attempts to remove non-existing place from database */
 	@Test
 	void deleteLocation_invalid() throws Exception {
-		dataConnection = new DataConnection(); 
+		dataConnection = new DataConnection();
 		
 		if(dataConnection.userExists(userTest)) {
-			dataConnection.deleteUser(userTest); 
+			dataConnection.deleteUser(userTest);
 		}
-		createAccount(userTest, userPass); 
+		createAccount(userTest, userPass);
 		
 		final String locationINVALID_Test = "testINVALID";
 		
@@ -93,7 +95,7 @@ public class AddLocation_Test {
 		
 		assertEquals(dataConnection.deleteLocation(place, userTest, 0), locationINVALID_Test); /*COME BACK TO THIS*/
 		
-		assertFalse(dataConnection.placeInAccount(userTest, locationINVALID_Test, 0)); 
+		assertFalse(dataConnection.placeInAccount(userTest, locationINVALID_Test, 0));
 		
 		dataConnection.deleteUser(userTest);
 		dataConnection.close();
@@ -102,8 +104,16 @@ public class AddLocation_Test {
 	
 	
 	/* loadPlaces successfully loads all places in a given user's list*/
-	/*@Test
+	@Test
 	void loadPlaces_test() throws Exception {
+		dataConnection = new DataConnection(); 
+		
+		if(dataConnection.userExists(userTest)) {
+			dataConnection.deleteUser(userTest);
+		}
+		createAccount(userTest, userPass);
+		
+		
 		//dummy places
 		final String n1 = "1"; //dummy name
 		final String a1 = "1"; //dummy address
@@ -111,20 +121,22 @@ public class AddLocation_Test {
 		final String a2 = "2"; //dummy address
 		
 		//Dummy 1
-		Place p1 = new Place(n1, a1); 
-		assertEquals(dataConnection.addLocation(p1, userTest, 0), n1);
+		Place p1 = new Place(n1, a1);
+		assertEquals(dataConnection.addLocation(p1, userTest, 1, dummyComment), p1.getPlaceName());
 		
 		//Dummy 2
-		Place p2 = new Place(n2, a2); 
-		assertEquals(dataConnection.addLocation(p2, userTest, 0), n2);
+		Place p2 = new Place(n2, a2);
+		assertEquals(dataConnection.addLocation(p2, userTest, 1, dummyComment), p2.getPlaceName());
 		
-		ResultSet rs = dataConnection.loadPlaces(userTest, 0); 
-		while(rs.next()) {
-			assertTrue(rs.getString(0), ); 
-		}*/
+		ArrayList<ArrayList<String>> rs = dataConnection.loadPlaces(userTest, 1);
+		assertTrue(rs.size()>0);
 		
-		
-		
+		dataConnection.deleteUser(userTest);
+		dataConnection.close();
 	}
+		
+		
+		
+}
 	
 
