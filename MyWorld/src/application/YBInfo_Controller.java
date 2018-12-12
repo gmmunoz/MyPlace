@@ -1,7 +1,5 @@
 package application;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;

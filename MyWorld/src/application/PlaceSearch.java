@@ -28,7 +28,7 @@ public class PlaceSearch {
 	private String foursquare_id = "1FFZZL5MNNBG2KJCB0H2UTN554BZOQXY4CHUTARLAL5WMJTT";
 	private String foursquare_secret = "HMVC3IMTTWCXRLXBENBPXXBMXKJBTMXA5HFJVMWJJ3ZBHNOZ";
 	private String v = "20181122";
-	//private DataConnection dataConn = null;
+
 	ArrayList<Place> locationList = new ArrayList<>();
 
 	public PlaceSearch() {
@@ -49,7 +49,7 @@ public class PlaceSearch {
 	}
 	
 	//returns an observable array list of the results of a search
-	public ArrayList<Place> getResults() throws Exception {
+    public ArrayList<Place> getResults() throws Exception {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -85,22 +85,24 @@ public class PlaceSearch {
 	    }
 	    
 	    Object obj = new JSONParser().parse(new FileReader("output.txt"));
-	    ArrayList<Place> locationList = new ArrayList<>();
+	    //ArrayList<Place> locationList = new ArrayList<>();
 	    JSONObject jsonObject = (JSONObject) obj;
 	    JSONObject jsonObj = (JSONObject) jsonObject.get("response");
 	    JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
+	    System.out.println(jsonArray);
+	    ArrayList<Place> result = convertJSONtoArrayList(jsonArray);
 	    
-	    //System.out.println(jsonObject);
-	    //System.out.println(jsonArray);
+	    //System.out.println(result.get(0).getPlaceName());
+	    //System.out.println(result.get(0).getPlaceAddress());
 	    
-	    //@SuppressWarnings("unchecked")
-		//Iterator<Object> iterator = array.iterator();
-	    //while (iterator.hasNext()) {
-	    	//Object it = iterator.next();
+	    return result;
+    }
+
 	    
+    public ArrayList<Place> convertJSONtoArrayList(JSONArray jsonArray) {	 
 	    for (int x = 0; x < jsonArray.size(); x++) {
 	    	JSONObject data = (JSONObject) jsonArray.get(x);
-	    	String venue_id = (String) (data.get("id"));
+	    	//String venue_id = (String) (data.get("id"));
 	    	
 	    	String name = (String) data.get("name");
 	    	

@@ -39,11 +39,11 @@ public class Place {
 		
 	}
 
-	public String getAddress() {
-		// TODO Auto-generated method stub
-		return address;
-	}
-	
+//	public String getAddress() {
+//		// TODO Auto-generated method stub
+//		return address;
+//	}
+//	
 	/*public JSONArray getSimVenues() {
 		return similarVenues; 
 	}*/

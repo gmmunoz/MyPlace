@@ -24,7 +24,7 @@ public class SearchPlace_Controller {
 	
 	public SearchPlace_Controller() throws Exception {
 		dcon = new DataConnection();
-		initialize();
+		//initialize();
 		psearch = new PlaceSearch();
 	}
 
@@ -93,7 +93,7 @@ public class SearchPlace_Controller {
 
 		try {
 			for (int i = 0; i < searchPlaces.size(); i++) {
-				String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
+				String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getAddress();
 				stringPlaces.add(entry);
 				data.add(entry);
 			}
@@ -121,10 +121,6 @@ public class SearchPlace_Controller {
 		backgroundRoot.getChildren().setAll(pane);
 	}
 
-	/*
-	 * public boolean isValid(String input) { return input.matches(
-	 * "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ); }
-	 */
 
 	// handle search --> integrate with API
 	@FXML

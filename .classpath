@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry including="**/*.java" kind="src" output="target/classes" path="MyWorld/src">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -24,6 +20,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/ly-lanschaszberger/eclipse-workspace/MyPlace_ASE/target/classes/application/sqlite-jdbc-3.23.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Fran Callejas/Documents/CU Semester Files/2018 Fall/ASE/MyPlace_ASE/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Fran Callejas/Documents/CU Semester Files/2018 Fall/ASE/MyPlace_ASE/sqlite-jdbc-3.23.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
