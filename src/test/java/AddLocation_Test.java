@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import application.DataConnection;
@@ -17,6 +18,7 @@ public class AddLocation_Test {
 	//Name: test Pass: "123"
 	final String userTest = "test"; 
 	final String userPass = "123"; 
+	final String dummyComment = "";
 	
 	void createAccount(String name, String pass) throws Exception {
 		dataConnection.addUser(name, pass, pass, pass);
@@ -41,7 +43,7 @@ public class AddLocation_Test {
 			assertEquals(dataConnection.deleteLocation(place, userTest, 1), locationNameTest);
 		}
 		
-		assertEquals(dataConnection.addLocation(place, userTest, 1), locationNameTest); 
+		assertEquals(dataConnection.addLocation(place, userTest, 1, dummyComment), locationNameTest); 
 		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 1));
 		
 		assertEquals(dataConnection.deleteLocation(place, userTest, 1), locationNameTest);
@@ -65,7 +67,7 @@ public class AddLocation_Test {
 		final String locationAddressTest = "testAddress";
 		
 		Place place = new Place(locationNameTest, locationAddressTest);
-		assertEquals(dataConnection.addLocation(place, userTest, 1), locationNameTest);
+		assertEquals(dataConnection.addLocation(place, userTest, 1, dummyComment), locationNameTest);
 		assertTrue(dataConnection.placeInAccount(userTest, locationNameTest, 1));
 		assertEquals(dataConnection.deleteLocation(place, userTest, 1), locationNameTest);
 		assertFalse(dataConnection.placeInAccount(userTest, locationNameTest, 1));
@@ -120,14 +122,14 @@ public class AddLocation_Test {
 		
 		//Dummy 1
 		Place p1 = new Place(n1, a1);
-		assertEquals(dataConnection.addLocation(p1, userTest, 1), p1.getPlaceName());
+		assertEquals(dataConnection.addLocation(p1, userTest, 1, dummyComment), p1.getPlaceName());
 		
 		//Dummy 2
 		Place p2 = new Place(n2, a2);
-		assertEquals(dataConnection.addLocation(p2, userTest, 1), p2.getPlaceName());
+		assertEquals(dataConnection.addLocation(p2, userTest, 1, dummyComment), p2.getPlaceName());
 		
-		ResultSet rs = dataConnection.loadPlaces(userTest, 1);
-		assertTrue(rs.next());
+		ArrayList<ArrayList<String>> rs = dataConnection.loadPlaces(userTest, 1);
+		assertTrue(rs.size()>0);
 		
 		dataConnection.deleteUser(userTest);
 		dataConnection.close();

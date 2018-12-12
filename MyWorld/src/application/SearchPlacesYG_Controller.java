@@ -17,11 +17,14 @@ import javafx.stage.Stage;
 public class SearchPlacesYG_Controller {
 		String name;
 		String city;
+		String user;
 
 		ArrayList<String> stringPlaces = new ArrayList<String>();
+		ObservableList<String> data;
 		
 		public SearchPlacesYG_Controller() throws Exception {
 			initialize();
+			data = FXCollections.observableArrayList();
 			dcon = new DataConnection();
 		}
 		
@@ -87,8 +90,6 @@ public class SearchPlacesYG_Controller {
 
 	    	    
 	    public ArrayList<String> initialize() throws Exception {
-	    	ObservableList<String> data;
-			data = FXCollections.observableArrayList();
 	    	PlaceSearch searchResults = new PlaceSearch(name,city);
 	    	ArrayList<Place> searchPlaces = searchResults.getResults();
 	    		    	
@@ -124,11 +125,9 @@ public class SearchPlacesYG_Controller {
 	   		backgroundRootRoot.getChildren().setAll(pane);
 	    	    }
 
-	    /*
 	    public boolean isValid(String input) {
 			return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
 		}
-	    */
 	    
 	    //handle search --> integrate with API
 	    @FXML
