@@ -13,7 +13,6 @@ public class AddLocation_Test {
 	
 	DataConnection dataConnection; 
 	
-	/* test test test test */
 	//add dummy user
 	//Name: test Pass: "123"
 	final String userTest = "test"; 
@@ -135,7 +134,34 @@ public class AddLocation_Test {
 		dataConnection.close();
 	}
 		
+	/* Test commentary */
+	//All commentary valid, just need to ensure it works as expected
+	@Test
+	void commentary_test() throws Exception{
+		dataConnection = new DataConnection(); 
 		
+		if(dataConnection.userExists(userTest)) {
+			dataConnection.deleteUser(userTest);
+		}
+		createAccount(userTest, userPass);
+		
+		
+		//dummy place
+		final String n1 = "1"; //dummy name
+		final String a1 = "1"; //dummy address
+		final String commentTest = "testing!"; 
+		
+		
+		//Dummy 
+		Place p1 = new Place(n1, a1);
+		assertEquals(dataConnection.addLocation(p1, userTest, 1, commentTest), p1.getPlaceName());
+		
+		assertEquals(dataConnection.loadComment(userTest, n1, 1), commentTest);
+		
+		dataConnection.deleteUser(userTest);
+		dataConnection.close();
+		
+	}
 		
 }
 	

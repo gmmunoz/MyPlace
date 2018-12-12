@@ -23,7 +23,7 @@ public class SearchPlacesYG_Controller {
 		ObservableList<String> data;
 		
 		public SearchPlacesYG_Controller() throws Exception {
-			initialize();
+			//initialize();
 			data = FXCollections.observableArrayList();
 			dcon = new DataConnection();
 			psearch = new PlaceSearch();

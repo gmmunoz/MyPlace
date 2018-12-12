@@ -23,7 +23,7 @@ public class SearchPlace_Controller {
 
 	public SearchPlace_Controller() throws Exception {
 		dcon = new DataConnection();
-		initialize();
+		//initialize();
 		psearch = new PlaceSearch();
 	}
 
