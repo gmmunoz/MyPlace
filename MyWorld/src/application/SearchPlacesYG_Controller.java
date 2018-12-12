@@ -15,10 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SearchPlacesYG_Controller {
-		String name;
-		String city;
-		String user;
-
+		private String name;
+		private String city;
+		private String user;
+		private DataConnection dcon = null;
 		ArrayList<String> stringPlaces = new ArrayList<String>();
 		ObservableList<String> data;
 		
@@ -64,8 +64,6 @@ public class SearchPlacesYG_Controller {
 	    @FXML
 	    private Button addBut;
 
-	    private DataConnection dcon = null;
-
 	    @FXML
 	    void AddPlaceYBtoDB(ActionEvent event) throws Exception {
 	    	String comment = Comment.getText();
@@ -79,7 +77,7 @@ public class SearchPlacesYG_Controller {
 				dcon.addLocation(index, currUser.getUser(), 2, comment);	
 				System.out.println("You've successfully added this place to your list!");
 				// Send back to main framework
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/Options.fxml"));	
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
 				backgroundRoot.getChildren().setAll(pane);
 			} else {
 				System.out.println("You've already added this place to your list!");	
