@@ -125,10 +125,6 @@ public class SearchPlace_Controller {
 		backgroundRoot.getChildren().setAll(pane);
 	}
 
-	/*
-	 * public boolean isValid(String input) { return input.matches(
-	 * "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" ); }
-	 */
 
 	// handle search --> integrate with API
 	@FXML

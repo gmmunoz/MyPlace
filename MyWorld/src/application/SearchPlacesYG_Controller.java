@@ -23,6 +23,7 @@ public class SearchPlacesYG_Controller {
 		public SearchPlacesYG_Controller() throws Exception {
 			initialize();
 			dcon = new DataConnection();
+			psearch = new PlaceSearch();
 		}
 		
 		@FXML
@@ -62,6 +63,8 @@ public class SearchPlacesYG_Controller {
 	    private Button addBut;
 
 	    private DataConnection dcon = null;
+	    
+	    private PlaceSearch psearch;
 
 	    @FXML
 	    void AddPlaceYBtoDB(ActionEvent event) throws Exception {
@@ -124,34 +127,29 @@ public class SearchPlacesYG_Controller {
 	   		backgroundRootRoot.getChildren().setAll(pane);
 	    	    }
 
-	    /*
-	    public boolean isValid(String input) {
-			return input.matches( "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)" );
-		}
-	    */
 	    
 	    //handle search --> integrate with API
 	    @FXML
 	    ArrayList<String> handleSearch(ActionEvent event) throws Exception {
 	    	//check for fields being filled in 
-	    	if(placeName.getText().trim().isEmpty() || City.getText().trim().isEmpty()) {
-	    		System.out.println("Please fill in both fields!");
-	    		return null;
-	    	}
 	    	name = placeName.getText();
-	    	city = City.getText();
-	    	
+	    	city = City.getText();    	
 
-	    	//both fields are filled, checking for special characters
-	    	if(!isValid(name) || !isValid(city)) {
-	    		System.out.println("Please enter valid entries!");
-	    		return null;
-	    	}
-	    
-	    	else {
-	    		//System.out.println("this is name " + name + " " + city);
-	    		return initialize();
-	    	}
+	    	// both fields are filled, checking for special characters
+			if (!psearch.isValidInput(name)) {
+				System.out.println("Please enter valid entries only consisting of letters!");
+				return null;
+			}
+
+			else if (!psearch.isValidInput_City(city)) {
+				System.out.println("Please enter a city name consisting of only letters!");
+				return null;
+			}
+
+			else {
+				//System.out.println("this is name " + name + " " + city);
+				return initialize();
+			}
 	    }
 	    
 	}

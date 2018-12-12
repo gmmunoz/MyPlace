@@ -49,7 +49,7 @@ public class PlaceSearch {
 	}
 	
 	//returns an observable array list of the results of a search
-	public ArrayList<Place> getResults() throws Exception {
+    public ArrayList<Place> getResults() throws Exception {
 		String urlString = ("https://api.foursquare.com/v2/venues/search?near=" + city + "&query=" + place_name + "&v=" + v + "&client_id=" + foursquare_id + "&client_secret=" + foursquare_secret).replaceAll(" ", "%20");
 		URL url = new URL(urlString);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -90,17 +90,16 @@ public class PlaceSearch {
 	    JSONObject jsonObj = (JSONObject) jsonObject.get("response");
 	    JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
 	    
-	    //System.out.println(jsonObject);
-	    //System.out.println(jsonArray);
+	    ArrayList<Place> result = convertJSONtoArrayList(jsonArray);
 	    
-	    //@SuppressWarnings("unchecked")
-		//Iterator<Object> iterator = array.iterator();
-	    //while (iterator.hasNext()) {
-	    	//Object it = iterator.next();
+	    return result;
+    }
+
 	    
+    public ArrayList<Place> convertJSONtoArrayList(JSONArray jsonArray) {	 
 	    for (int x = 0; x < jsonArray.size(); x++) {
 	    	JSONObject data = (JSONObject) jsonArray.get(x);
-	    	String venue_id = (String) (data.get("id"));
+	    	//String venue_id = (String) (data.get("id"));
 	    	
 	    	String name = (String) data.get("name");
 	    	
@@ -145,7 +144,7 @@ public class PlaceSearch {
 		    
 	    	Place new_place = new Place(name, fullAddress);
 	    	locationList.add(new_place);
-	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
+	    	//ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
 	    }
 	    
 	    return locationList;
