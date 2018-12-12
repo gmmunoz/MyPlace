@@ -174,7 +174,7 @@ public class DataConnection {
 		ResultSet rs = getComment.executeQuery();
 		String string_results = "";
 		
-		if(rs.getString("comment") != null) {
+		if(rs.next()) {
 			string_results = rs.getString("comment");
 			return string_results;
 			
