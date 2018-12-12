@@ -2,8 +2,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 
 import application.DataConnection;
@@ -72,6 +82,37 @@ public class PlaceSearch_Test {
 		assertFalse(placeSearch.isValidInput_City(search_City));
 		
 	}
+	
+	/* Test JSONtoArray methods to ensure we are properly treating data coming from API*/
+	@SuppressWarnings("unchecked")
+	@Test
+	void searchResults_test() throws FileNotFoundException, IOException, ParseException {	    
+		Object obj = new JSONParser().parse(new FileReader("JSONObjectTest.txt"));
+		JSONArray jsonArray = (JSONArray) obj;
+	    
+		System.out.println(jsonArray.get(0));
+		
+		//initialize expected
+		JSONObject test = (JSONObject) jsonArray.get(0);
+		//String place_name = (String) test.get("name");
+		String place_name = "Raw South Juice Co"; 
+		String place_add = "9804 SW 77th AveMiami, FL 33156United States"; 
+	    Place rawSouth_test = new Place(place_name, place_add); 
+	    ArrayList<Place> expected_result = new ArrayList<Place>();
+	    expected_result.add(rawSouth_test);
+	    
+	    //test function 
+	    JSONArray tester = new JSONArray();
+	    tester.add((JSONObject) jsonArray.get(0));
+	    PlaceSearch placeSearch_test = new PlaceSearch(); 
+	    ArrayList<Place> placeSearch_result = placeSearch_test.convertJSONtoArrayList(tester); 
+	    
+	    assertEquals(placeSearch_result.get(0).getPlaceName(), expected_result.get(0).getPlaceName()); 
+	    assertEquals(placeSearch_result.get(0).getPlaceAddress(), expected_result.get(0).getPlaceAddress()); 
+
+	    
+	}
+	
 	
 	/* Test invalid search input -- user enters a valid city that is not in our city database */
 //	@Test

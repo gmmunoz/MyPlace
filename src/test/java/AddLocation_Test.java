@@ -149,13 +149,12 @@ public class AddLocation_Test {
 		//dummy place
 		final String n1 = "1"; //dummy name
 		final String a1 = "1"; //dummy address
-		final String commentTest = "testing!"; 
+		final String commentTest = ""; 
 		
 		
 		//Dummy 
 		Place p1 = new Place(n1, a1);
 		assertEquals(dataConnection.addLocation(p1, userTest, 1, commentTest), p1.getPlaceName());
-		
 		assertEquals(dataConnection.loadComment(userTest, n1, 1), commentTest);
 		
 		dataConnection.deleteUser(userTest);

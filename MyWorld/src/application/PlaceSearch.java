@@ -85,12 +85,15 @@ public class PlaceSearch {
 	    }
 	    
 	    Object obj = new JSONParser().parse(new FileReader("output.txt"));
-	    ArrayList<Place> locationList = new ArrayList<>();
+	    //ArrayList<Place> locationList = new ArrayList<>();
 	    JSONObject jsonObject = (JSONObject) obj;
 	    JSONObject jsonObj = (JSONObject) jsonObject.get("response");
 	    JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
-	    
+	    System.out.println(jsonArray);
 	    ArrayList<Place> result = convertJSONtoArrayList(jsonArray);
+	    
+	    //System.out.println(result.get(0).getPlaceName());
+	    //System.out.println(result.get(0).getPlaceAddress());
 	    
 	    return result;
     }

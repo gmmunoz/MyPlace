@@ -186,7 +186,6 @@ public class DataConnection {
 	}
 	
 	
-	
 	public void close() throws Exception {
 		c.close();
 	}
