@@ -144,7 +144,7 @@ public class PlaceSearch {
 		    
 	    	Place new_place = new Place(name, fullAddress);
 	    	locationList.add(new_place);
-	    	//ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
+	    	ObservableList<Place> locationsDropDown = FXCollections.observableArrayList(locationList);
 	    }
 	    
 	    return locationList;
