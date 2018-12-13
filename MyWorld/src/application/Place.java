@@ -24,9 +24,9 @@ public class Place {
 		return name;
 	}
 	
-	public String getPlaceAddress() {
+	/*public String getPlaceAddress() {
 		return address;
-	}
+	}*/
 	
 	/*public JSONArray getSimilarVenues() {
 		return similarVenues;
@@ -39,11 +39,11 @@ public class Place {
 		
 	}
 
-//	public String getAddress() {
-//		// TODO Auto-generated method stub
-//		return address;
-//	}
-//	
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return address;
+	}
+	
 	/*public JSONArray getSimVenues() {
 		return similarVenues; 
 	}*/

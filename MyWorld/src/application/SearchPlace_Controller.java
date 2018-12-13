@@ -24,7 +24,6 @@ public class SearchPlace_Controller {
 	
 	public SearchPlace_Controller() throws Exception {
 		dcon = new DataConnection();
-		//initialize();
 		psearch = new PlaceSearch();
 	}
 
@@ -80,9 +79,8 @@ public class SearchPlace_Controller {
 			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
 			backgroundRoot.getChildren().setAll(pane);
 		} else {
-			System.out.println("You've already added this place to your list!");	
+			System.out.println("You've already added this place to your list!");
 		}
-		dcon.close();
 	}
 
 	public ArrayList<String> initialize() throws Exception {
@@ -107,7 +105,7 @@ public class SearchPlace_Controller {
 
 	@FXML
 	void LogoutUser(ActionEvent event) throws Exception {
-		//dcon.close();
+		dcon.close();
 		System.out.println("You have officially logged out!");
 		Stage stage = (Stage) LogoutBut.getScene().getWindow();
 		stage.close();
@@ -116,7 +114,7 @@ public class SearchPlace_Controller {
 	@FXML
 	void SendUsertoPrevPage(ActionEvent event) throws Exception {
 		// now load previous page
-		//dcon.close();
+		dcon.close();
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
 	}
