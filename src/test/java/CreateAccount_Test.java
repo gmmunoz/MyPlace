@@ -15,10 +15,13 @@ class CreateAccount_Test {
 		String usernameTest = "test"; 
 		String passwordTest = "12"; 
 		
+		//delete user if "test" already exists
 		assertEquals(usernameTest, dataConnection.deleteUser(usernameTest));
 		assertFalse(dataConnection.userExists(usernameTest));
 		
-		assertTrue(dataConnection.addUser(usernameTest, passwordTest, "12", "12") == 3); 
+		//ensure that user is valid and added to database
+		assertFalse(dataConnection.validAccount(usernameTest, passwordTest)); 
+		assertEquals(dataConnection.addUser(usernameTest, passwordTest, "12", "12"), 3); 
 		assertTrue(dataConnection.userExists(usernameTest)); 
 		
 		//delete test user
@@ -35,12 +38,29 @@ class CreateAccount_Test {
 		
 		String usernameAttempt = ""; 
 		String passwordAttempt = ""; 
-		
-		assertTrue(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12") == 1); 
+
+		//ensure empty fields cannot be added to database
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12"), 1); 
 		
 		dataConnection.close(); 
 		
 	}
+	
+	/* --- still testing empty fields */
+	@Test
+	void createAccount_emptyField() throws Exception {
+		dataConnection = new DataConnection(); 
+		
+		String usernameAttempt = "test"; 
+		String passwordAttempt = "123";
+		String sqAttempt = ""; 
+
+		//ensure empty fields cannot be added to database
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, sqAttempt, sqAttempt), 1); 
+		
+		dataConnection.close(); 
+	}
+	
 	
 	/* Create account with invalid username (already exists) */
 	@Test
@@ -51,10 +71,11 @@ class CreateAccount_Test {
 		String passwordAttempt = "12"; 
 		
 		//add test user
-		assertTrue(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12") == 3);
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12"), 3);
+		assertTrue(dataConnection.validAccount(usernameAttempt, passwordAttempt));
 		
 		//try adding user with same username as test
-		assertTrue(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12") == 2);
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12"), 2);
 		
 		//remove from database
 		assertEquals(usernameAttempt, dataConnection.deleteUser(usernameAttempt));

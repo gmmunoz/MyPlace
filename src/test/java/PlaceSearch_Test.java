@@ -22,6 +22,16 @@ import application.PlaceSearch;
 
 public class PlaceSearch_Test {
 	
+	/* Test valid search input -- isValid should return True */
+	@Test 
+	void searchInput_AllValid() throws Exception {
+		final String search_Thing = "pizza"; 
+		final String search_City = "Chicago"; 
+		
+		PlaceSearch placeSearch = new PlaceSearch(search_Thing, search_City); 
+		assertTrue(placeSearch.isValidInput(search_Thing));
+		
+	}
 	
 	/* Test valid search input -- isValid should return True */
 	@Test 
@@ -57,6 +67,26 @@ public class PlaceSearch_Test {
 	@Test
 	void searchCity_valid() throws Exception{
 		final String search_City = "Chicago";
+		
+		PlaceSearch placeSearch = new PlaceSearch(); 
+		assertTrue(placeSearch.isValidInput_City(search_City));
+		
+	}
+	
+	/* Test valid search input -- user inputs valid city all uppercase */
+	@Test
+	void searchCity_Uppercase() throws Exception{
+		final String search_City = "CHICAGO";
+		
+		PlaceSearch placeSearch = new PlaceSearch(); 
+		assertTrue(placeSearch.isValidInput_City(search_City));
+		
+	}
+	
+	/* Test valid search input -- user inputs valid city with space*/
+	@Test
+	void searchCity_Space() throws Exception{
+		final String search_City = "New York";
 		
 		PlaceSearch placeSearch = new PlaceSearch(); 
 		assertTrue(placeSearch.isValidInput_City(search_City));
