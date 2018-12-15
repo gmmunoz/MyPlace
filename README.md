@@ -6,10 +6,9 @@ The software engineering project that we plan to work on is a command line tool 
 To install and run this software, you must:
 
 1. Make sure that Java is installed on your computer.
-2. Install the SQLite JDBC on your computer (this can be found at https://bitbucket.org/xerial/sqlite-jdbc/downloads/).
-3. Install JSON Simple on your computer (this can be found at http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm).
-4. Git clone this github repo.
-5. Run MyApp.java as a Java Application.
+2. Git clone this github repo.
+3. Both the SQLite JDBC and the JSON Simple jar files are included in our github repo so when you clone the repo you will automatically download those necessary resources as well. However, you will have to change the dependencies in your project so that in the .classpath file it uses your local file path for the jar files.
+4. Run MyApp.java as a Java Application.
 
 
 To operate the application:
