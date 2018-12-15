@@ -177,16 +177,17 @@ public class DataConnection {
 		
 		if(rs.next()) {
 			string_results = rs.getString("comment");
-			if(string_results.equals("")) {
+			/*if(string_results.equals("")) {
 				string_results = "No Comment";
-			}
+			}*/
 			return string_results;
 			
-		} else {
-			string_results = "No Comment";
+		} /*else {
+			string_results = "No Comment ELSE";
 			return string_results;
 
-		}
+		}*/
+		return "No Comment";
 	}
 	
 	
