@@ -77,6 +77,7 @@ public class YBInfo_Controller {
     @FXML
     void SendUsertoPrevPage(ActionEvent event) throws Exception {
     	//now load previous page
+    	//go to list of places
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));
 		backgroundRoot.getChildren().setAll(pane);
     }

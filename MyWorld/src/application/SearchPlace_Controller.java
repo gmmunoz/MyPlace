@@ -15,15 +15,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SearchPlace_Controller {
-	String name;
-	String city;
-
-	ArrayList<String> stringPlaces = new ArrayList<String>();
+	private String name;
+	private String city;
+	private String user;
+	private DataConnection dcon = null;
+	private PlaceSearch psearch;
+	private ArrayList<String> stringPlaces = new ArrayList<String>();
 	
-
 	public SearchPlace_Controller() throws Exception {
 		dcon = new DataConnection();
-		//initialize();
 		psearch = new PlaceSearch();
 	}
 
@@ -63,9 +63,6 @@ public class SearchPlace_Controller {
 	@FXML
 	private Button addBut;
 
-	private DataConnection dcon = null;
-
-	private PlaceSearch psearch;
 
 	@FXML
 	void AddPlaceYBtoDB(ActionEvent event) throws Exception {
@@ -79,14 +76,11 @@ public class SearchPlace_Controller {
 		if (dcon.placeInAccount(currUser.getUser(), index.getPlaceName(), 1) == false) {
 			dcon.addLocation(index, currUser.getUser(), 1, comment);
 			System.out.println("You've successfully added this place to your list!");
-
-			// Send back to main framework
-			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/ViewListofPlacesYB.fxml"));	
+			AnchorPane pane = FXMLLoader.load(getClass().getResource("../fxml/MainFramework.fxml"));	
 			backgroundRoot.getChildren().setAll(pane);
 		} else {
-			System.out.println("You've already added this place to your list!");	
+			System.out.println("You've already added this place to your list!");
 		}
-		//dcon.close();
 	}
 
 	public ArrayList<String> initialize() throws Exception {
@@ -97,7 +91,7 @@ public class SearchPlace_Controller {
 
 		try {
 			for (int i = 0; i < searchPlaces.size(); i++) {
-				String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
+				String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getAddress();
 				stringPlaces.add(entry);
 				data.add(entry);
 			}

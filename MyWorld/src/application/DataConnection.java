@@ -90,7 +90,7 @@ public class DataConnection {
 		PreparedStatement addLocation = c.prepareStatement(query);
 		addLocation.setString(1, user);
 		addLocation.setString(2, location.getPlaceName());
-		addLocation.setString(3, location.getPlaceAddress());
+		addLocation.setString(3, location.getAddress());
 		addLocation.setInt(4, which_list);
 		addLocation.setString(5, comment);
 		addLocation.executeUpdate();
@@ -165,6 +165,7 @@ public class DataConnection {
 	}
 	
 	//loads comment
+	@SuppressWarnings("unlikely-arg-type")
 	public String loadComment(String user, String place, int which_list) throws SQLException {
 		String query = "SELECT comment FROM places WHERE username = ? AND place_name = ? AND which_tab = ?";
 		PreparedStatement getComment = c.prepareStatement(query);
@@ -176,11 +177,14 @@ public class DataConnection {
 		
 		if(rs.next()) {
 			string_results = rs.getString("comment");
+			if(string_results.equals("")) {
+				string_results = "No Comment";
+			}
 			return string_results;
 			
 		} else {
-			String noComment = "No comment";
-			return noComment;
+			string_results = "No Comment";
+			return string_results;
 
 		}
 	}
