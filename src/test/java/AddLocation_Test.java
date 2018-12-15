@@ -152,18 +152,17 @@ public class AddLocation_Test {
 		final String commentTest = "comment_test"; 
 		
 		
-		//Dummy 
+		//Dummy -- when user enters a comment
 		Place p1 = new Place(n1, a1);
 		assertEquals(dataConnection.addLocation(p1, userTest, 1, commentTest), p1.getPlaceName());
-		System.out.println("TESTING COMMENT: " + dataConnection.loadComment(userTest, p1.getPlaceName(), 1));
 		assertEquals(dataConnection.loadComment(userTest, p1.getPlaceName(), 1), commentTest);
 		
+		//when user does not enter any comment
 		final String n2 = "name_test_2"; //dummy name
 		final String a2 = "address_test_2"; //dummy address
 		final String commentTest2 = ""; 
 		Place p2 = new Place(n2, a2);
 		assertEquals(dataConnection.addLocation(p2, userTest, 1, commentTest2), p2.getPlaceName());
-		System.out.println("TESTING COMMENT: " + dataConnection.loadComment(userTest, p2.getPlaceName(), 1));
 		assertEquals(dataConnection.loadComment(userTest, p2.getPlaceName(), 1), commentTest2);
 		
 		dataConnection.deleteUser(userTest);
