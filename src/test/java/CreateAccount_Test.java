@@ -33,34 +33,68 @@ class CreateAccount_Test {
 	
 	/* Create account with invalid field */
 	@Test
-	void createAccount_invalidField() throws Exception {
+	void createAccount_invalidFieldUN() throws Exception {
 		dataConnection = new DataConnection(); 
 		
 		String usernameAttempt = ""; 
-		String passwordAttempt = ""; 
+		String passwordAttempt = "123"; 
+		String sqAttempt1 = "123";
+		String sqAttempt2 = "123"; 
 
 		//ensure empty fields cannot be added to database
-		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, "12", "12"), 1); 
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, sqAttempt1, sqAttempt2), 1); 
 		
 		dataConnection.close(); 
 		
 	}
 	
-	/* --- still testing empty fields */
 	@Test
-	void createAccount_emptyField() throws Exception {
+	void createAccount_invalidFieldPS() throws Exception {
 		dataConnection = new DataConnection(); 
 		
 		String usernameAttempt = "test"; 
-		String passwordAttempt = "123";
-		String sqAttempt = ""; 
+		String passwordAttempt = ""; 
+		String sqAttempt1 = "123";
+		String sqAttempt2 = "123"; 
 
 		//ensure empty fields cannot be added to database
-		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, sqAttempt, sqAttempt), 1); 
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, sqAttempt1, sqAttempt2), 1); 
 		
 		dataConnection.close(); 
+		
 	}
 	
+	@Test
+	void createAccount_invalidFieldSQ1() throws Exception {
+		dataConnection = new DataConnection(); 
+		
+		String usernameAttempt = "test"; 
+		String passwordAttempt = "123"; 
+		String sqAttempt1 = "";
+		String sqAttempt2 = "123"; 
+
+		//ensure empty fields cannot be added to database
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, sqAttempt1, sqAttempt2), 1); 
+		
+		dataConnection.close(); 
+		
+	}
+	
+	@Test
+	void createAccount_invalidFieldSQ2() throws Exception {
+		dataConnection = new DataConnection(); 
+		
+		String usernameAttempt = "test"; 
+		String passwordAttempt = "123"; 
+		String sqAttempt1 = "123";
+		String sqAttempt2 = ""; 
+
+		//ensure empty fields cannot be added to database
+		assertEquals(dataConnection.addUser(usernameAttempt, passwordAttempt, sqAttempt1, sqAttempt2), 1); 
+		
+		dataConnection.close(); 
+		
+	}
 	
 	/* Create account with invalid username (already exists) */
 	@Test

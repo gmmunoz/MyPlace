@@ -133,7 +133,7 @@ public class AddLocation_Test {
 	}
 		
 	/* Test commentary */
-	//All commentary valid, just need to ensure it works as expected
+	//All commentary valid, just need to ensure it works as expected	
 	@Test
 	void commentary_test() throws Exception{
 		dataConnection = new DataConnection(); 
@@ -167,7 +167,7 @@ public class AddLocation_Test {
 		dataConnection.close();
 		
 	}
-		
+	
 }
 	
 

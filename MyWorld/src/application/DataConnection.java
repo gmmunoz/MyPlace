@@ -164,7 +164,6 @@ public class DataConnection {
 	}
 	
 	//loads comment
-	@SuppressWarnings("unlikely-arg-type")
 	public String loadComment(String user, String place, int which_list) throws SQLException {
 		String query = "SELECT comment FROM places WHERE username = ? AND place_name = ? AND which_tab = ?";
 		PreparedStatement getComment = c.prepareStatement(query);
@@ -186,7 +185,7 @@ public class DataConnection {
 			return string_results;
 
 		}*/
-		return "No Comment";
+		return string_results;
 	}
 	
 	
