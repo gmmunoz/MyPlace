@@ -97,7 +97,7 @@ public class SearchPlacesYG_Controller {
 	    		    	
 	    	try {
 	    		for(int i = 0; i< searchPlaces.size(); i++) {
-	    			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getPlaceAddress();
+	    			String entry = searchPlaces.get(i).getPlaceName() + " " + searchPlaces.get(i).getAddress();
 	    			stringPlaces.add(entry);
 	    			data.add(entry);
 	    		} 
