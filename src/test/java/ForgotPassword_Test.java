@@ -31,8 +31,8 @@ public class ForgotPassword_Test {
 		createAccount(username, password, sq1, sq2); 
 		
 		//test inputs -- if correct, should successfully retrieve password
-		System.out.println(dataConnection.securityQuestionCheck(username, sq1, sq2));
-		System.out.println(password); 
+		//System.out.println(dataConnection.securityQuestionCheck(username, sq1, sq2));
+		//System.out.println(password); 
 		assertTrue(dataConnection.userExists(username));
 		assertEquals(dataConnection.securityQuestionCheck(username, sq1, sq2), password);
 		

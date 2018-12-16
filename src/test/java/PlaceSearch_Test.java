@@ -120,7 +120,7 @@ public class PlaceSearch_Test {
 		Object obj = new JSONParser().parse(new FileReader("JSONObjectTest.txt"));
 		JSONArray jsonArray = (JSONArray) obj;
 	    
-		System.out.println(jsonArray.get(0));
+		//System.out.println(jsonArray.get(0));
 		
 		//initialize expected
 		JSONObject test = (JSONObject) jsonArray.get(0);

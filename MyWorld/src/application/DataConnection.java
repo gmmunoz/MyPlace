@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataConnection {
@@ -21,7 +20,6 @@ public class DataConnection {
 	         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	         System.exit(0);
 	    }
-	    System.out.println("Opened database successfully");
 	}
 	
 	public boolean validAccount(String user, String pass) throws Exception {
@@ -72,6 +70,7 @@ public class DataConnection {
 			add_statement.setString(4, answer2);
 			add_statement.executeUpdate();
 			add_statement.close();
+			System.out.println("Added new user to database: " + user);
 			return 3; //3 corresponds to account being added successfully
 		}
 	}
@@ -95,7 +94,7 @@ public class DataConnection {
 		addLocation.setString(5, comment);
 		addLocation.executeUpdate();
 		addLocation.close();
-		System.out.println("Successfully added location!");
+		System.out.println("Successfully added location: " + location.getPlaceName());
 		return location.getPlaceName(); //returns the name of the place that it added
 	}
 	
@@ -108,7 +107,7 @@ public class DataConnection {
 		delete_location.setInt(3, which_list);
 		delete_location.executeUpdate();
 		delete_location.close();
-		System.out.println("Successfully deleted a location from list.");
+		//System.out.println("Successfully deleted a location from list.");
 		return location.getPlaceName(); //returns the name of the place that it deleted
 	}
 	

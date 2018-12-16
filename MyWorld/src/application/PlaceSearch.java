@@ -89,7 +89,7 @@ public class PlaceSearch {
 	    JSONObject jsonObject = (JSONObject) obj;
 	    JSONObject jsonObj = (JSONObject) jsonObject.get("response");
 	    JSONArray jsonArray = (JSONArray) jsonObj.get("venues");
-	    System.out.println(jsonArray);
+	    //System.out.println(jsonArray);
 	    ArrayList<Place> result = convertJSONtoArrayList(jsonArray);
 	    
 	    //System.out.println(result.get(0).getPlaceName());
