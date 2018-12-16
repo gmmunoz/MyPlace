@@ -14,7 +14,7 @@ public class Place_Test {
 		Place columbia = new Place(dummyName, dummyAddress); 
 		
 		assertEquals(columbia.getPlaceName(), dummyName);
-		assertEquals(columbia.getPlaceAddress(), dummyAddress); 
+		assertEquals(columbia.getAddress(), dummyAddress); 
 		
 	}
 

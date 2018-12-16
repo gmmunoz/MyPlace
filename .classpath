@@ -20,7 +20,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/ly-lanschaszberger/Desktop/columbia/MyPlace_ASE/json-simple-1.1.jar"/>
-	<classpathentry kind="lib" path="/Users/ly-lanschaszberger/Desktop/columbia/MyPlace_ASE/sqlite-jdbc-3.23.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Fran Callejas/Documents/CU Semester Files/2018 Fall/ASE/MyPlace_ASE/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Fran Callejas/Documents/CU Semester Files/2018 Fall/ASE/MyPlace_ASE/sqlite-jdbc-3.23.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

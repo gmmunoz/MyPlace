@@ -138,7 +138,7 @@ public class PlaceSearch_Test {
 	    ArrayList<Place> placeSearch_result = placeSearch_test.convertJSONtoArrayList(tester); 
 	    
 	    assertEquals(placeSearch_result.get(0).getPlaceName(), expected_result.get(0).getPlaceName()); 
-	    assertEquals(placeSearch_result.get(0).getPlaceAddress(), expected_result.get(0).getPlaceAddress()); 
+	    assertEquals(placeSearch_result.get(0).getAddress(), expected_result.get(0).getAddress()); 
 
 	    
 	}
