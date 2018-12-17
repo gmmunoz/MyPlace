@@ -8,34 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewListofPlacesYB_Controller">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewListofPlacesYB_Controller">
    <children>
-      <AnchorPane fx:id="backgroundRoot" layoutX="-4.0" layoutY="-13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="655.0" style="-fx-background-color: #311a95;">
+      <AnchorPane fx:id="backgroundRoot" layoutX="-4.0" layoutY="-13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="896.0" style="-fx-background-color: #311a95;">
          <children>
             <ButtonBar layoutX="471.0" layoutY="327.0" prefHeight="40.0" prefWidth="200.0" />
-            <Button fx:id="LogoutBut" layoutX="520.0" layoutY="453.0" mnemonicParsing="false" onAction="#LogoutUser" text="Logout" textFill="MEDIUMPURPLE">
+            <Button fx:id="LogoutBut" layoutX="548.0" layoutY="549.0" mnemonicParsing="false" onAction="#LogoutUser" text="Logout" textFill="MEDIUMPURPLE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="SendBackBut" layoutX="362.0" layoutY="453.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" text="Back to previous page" textFill="MEDIUMPURPLE">
+            <Button fx:id="SendBackBut" layoutX="390.0" layoutY="549.0" mnemonicParsing="false" onAction="#SendUsertoPrevPage" text="Back to previous page" textFill="MEDIUMPURPLE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="AddBut" layoutX="529.0" layoutY="89.0" mnemonicParsing="false" onAction="#AddPlace" text="+" textFill="MEDIUMPURPLE">
+            <Button fx:id="AddBut" layoutX="557.0" layoutY="185.0" mnemonicParsing="false" onAction="#AddPlace" text="+" textFill="MEDIUMPURPLE">
                <font>
                   <Font name="Arial Rounded MT Bold" size="14.0" />
                </font>
             </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="73.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="101.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../MyPlace_ASE%202/MyWorld/src/fxml/MyPlace%20copy.png" />
                </image>
             </ImageView>
-            <ListView fx:id="listNames" layoutX="156.0" layoutY="174.0" prefHeight="245.0" prefWidth="388.0" />
-            <Button fx:id="seeListBut" layoutX="307.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleDisplay" text="See List" />
-            <Button fx:id="viewInfoBut" layoutX="73.0" layoutY="438.0" mnemonicParsing="false" onAction="#displayInfo" text="View Information" />
+            <ListView fx:id="listNames" layoutX="184.0" layoutY="270.0" prefHeight="245.0" prefWidth="388.0" />
+            <Button fx:id="seeListBut" layoutX="335.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleDisplay" text="See List" />
+            <Button fx:id="viewInfoBut" layoutX="101.0" layoutY="534.0" mnemonicParsing="false" onAction="#displayInfo" text="View Information" />
          </children>
       </AnchorPane>
    </children>

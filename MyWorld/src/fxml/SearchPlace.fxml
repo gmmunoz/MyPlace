@@ -34,18 +34,18 @@
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="MatchesList" layoutX="59.0" layoutY="350.0" prefHeight="27.0" prefWidth="712.0" />
+                  <ComboBox fx:id="MatchesList" layoutX="59.0" layoutY="377.0" prefHeight="27.0" prefWidth="712.0" />
                   <Button fx:id="SearchBut" layoutX="163.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="30.0" prefWidth="94.0" text="Search" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="addBut" layoutX="696.0" layoutY="463.0" mnemonicParsing="false" onAction="#AddPlaceYBtoDB" prefHeight="30.0" prefWidth="75.0" text="Add" textFill="MEDIUMPURPLE">
+                  <Button fx:id="addBut" layoutX="677.0" layoutY="463.0" mnemonicParsing="false" onAction="#AddPlaceYBtoDB" prefHeight="30.0" prefWidth="94.0" text="Add Place" textFill="MEDIUMPURPLE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="Comment" layoutX="387.0" layoutY="130.0" prefHeight="30.0" prefWidth="498.0" promptText="Comment (300 characters): (What was your experience like? Did you like a certain dish?)" />
+                  <TextField fx:id="Comment" layoutX="59.0" layoutY="330.0" prefHeight="30.0" prefWidth="498.0" promptText="Comment (300 characters): (What was your experience like? Did you like a certain dish?)" />
                </children>
             </AnchorPane>
          </children>
