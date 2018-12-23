@@ -3,12 +3,14 @@
 The software engineering project that we plan to work on is a command line tool that generates a pop-up display to save places that you have been to that you liked and places that you want to go to in the future. This application will allow for people to more easily save their travel recommendations and travel wishlist with a model more interactive and engaging than a traditional list.
 
 
+
 To install and run this software, you must:
 
 1. Make sure that Java is installed on your computer.
 2. Git clone this github repo.
 3. Both the SQLite JDBC and the JSON Simple jar files are included in our github repo so when you clone the repo you will automatically download those necessary resources as well. However, you will have to change the dependencies in your project so that in the .classpath file it uses your local file path for the jar files.
 4. Run MyApp.java as a Java Application.
+
 
 
 To operate the application:
@@ -23,6 +25,7 @@ To operate the application:
 8. To add a new place to the list, click the button in the upper right hand corner of the list page and then you will be prompted to enter your search criteria. From there, you can choose the place from the search results that you want to add to your list, add a comment about the place, and then click add to add that place to the list.
 9. To view a specific place's information, you can select the desired place and click the "View Info" button. You will then be prompted to another page, where you must click the "See Info" button in order for that pinned place's information such as address, name and comment to appear.
 10. You can then either go back to see the list and see specific information, go back to go to the other list, search and add a new place, or simply logout.
+
 
 
 To run the tests, you must:
